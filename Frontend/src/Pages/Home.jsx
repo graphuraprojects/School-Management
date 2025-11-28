@@ -1,12 +1,126 @@
 import React from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../Styles/Home.css'
 import hero from "../assets/heropage.png"
 
-// Placeholder image - tu baad mein actual school image daal dena
+
 // const heroImage = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80"
 
+
+const eventImages = {
+  scienceFair: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=80",
+  sportsDay: "https://images.unsplash.com/photo-1700914297011-60e0e8d12c0b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  musicConcert: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&q=80"
+}
+
+// Events data - 
+const upcomingEvents = [
+  {
+    id: 1,
+    title: "Annual Science Fair",
+    description: "Showcasing innovative projects by our talented students. Join us to witness the future of science!",
+    date: "March 15, 2025",
+    time: "9:00 AM - 4:00 PM",
+    image: eventImages.scienceFair
+  },
+  {
+    id: 2,
+    title: "Inter-School Sports Day",
+    description: "A day of athletic competition and sportsmanship among various schools. Come support your teams!",
+    date: "April 22, 2025",
+    time: "8:00 AM - 5:00 PM",
+    image: eventImages.sportsDay
+  },
+  {
+    id: 3,
+    title: "Spring Music Concert",
+    description: "Evening filled with melodious performances by our school choir and orchestra. A celebration of talent!",
+    date: "May 01, 2025",
+    time: "7:00 PM - 9:30 PM",
+    image: eventImages.musicConcert
+  }
+]
+
+const announcements = [
+  {
+    id: 1,
+    title: "New Digital Learning Platform Launched",
+    date: "February 28, 2024",
+    description: "We are excited to announce the launch of our new comprehensive digital learning platform, enhancing online resources for all students."
+  },
+  {
+    id: 2,
+    title: "Parent-Teacher Conference Schedule",
+    date: "February 20, 2024",
+    description: "The schedule for the upcoming parent-teacher conferences has been released. Please check your emails for booking slots."
+  },
+  {
+    id: 3,
+    title: "Admissions Open for Academic Year 2025-2026",
+    date: "February 15, 2024",
+    description: "Applications for the next academic year are now open. Visit our admissions page for detailed information and guidelines."
+  }
+]
+
+// Activities data
+const activities = [
+  {
+    id: 1,
+    title: "Robotics Club Wins State Championship",
+    date: "March 05, 2024",
+    description: "Our Robotics Club showcased exceptional skill and teamwork, securing the top position in the annual state championship!"
+  },
+  {
+    id: 2,
+    title: "Debate Team Qualifies for Nationals",
+    date: "February 25, 2024",
+    description: "The EduConnect Hub Debate Team has successfully qualified for the National Debate Tournament, a testament to their dedication."
+  },
+  {
+    id: 3,
+    title: "Annual Photography Exhibition Highlights",
+    date: "February 18, 2024",
+    description: "Explore the creative works from our photography club in their annual exhibition, celebrating diverse perspectives and talents."
+  }
+]
+
+const galleryImages = [
+  {
+    id: 1,
+    src: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80",
+    alt: "School Library"
+  },
+  {
+    id: 2,
+    src: "https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80",
+    alt: "Science Lab"
+  },
+  {
+    id: 3,
+    src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&q=80",
+    alt: "Classroom"
+  },
+  {
+    id: 4,
+    src: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&q=80",
+    alt: "Students Learning"
+  }
+]
+
 function Home() {
+
+    const [currentSlide, setCurrentSlide] = useState(0)
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % Math.ceil(galleryImages.length / 2))
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + Math.ceil(galleryImages.length / 2)) % Math.ceil(galleryImages.length / 2))
+  }
+
+
   return (
     <>
     <div className="home-container">
@@ -16,7 +130,8 @@ function Home() {
           <h1 className="hero-title">
             Inspiring Futures,<br />
             Empowering Minds:<br />
-            <span className="highlight">Welcome to EduConnect Hub</span>
+            <span className="highlight">Welcome To <br />
+             Graphura EduConnect</span>
           </h1>
           <p className="hero-description">
             At EduConnect Hub, we are dedicated to providing a holistic 
@@ -69,7 +184,7 @@ function Home() {
             </div>
             <h3 className="card-title">Our Mission</h3>
             <p className="card-description">
-              EduConnect Hub is committed to delivering a comprehensive 
+               Graphura is committed to delivering a comprehensive 
               educational experience through rigorous academics, diverse 
               extracurriculars, and personalized support, preparing students for 
               success in an ever-evolving world.
@@ -137,6 +252,133 @@ function Home() {
             </div>
             <h3 className="stat-number">50+</h3>
             <p className="stat-label">Community Projects</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Upcoming Events Section */}
+      <section className="events-section">
+        <div className="section-header">
+          <h2 className="section-title">Upcoming Events</h2>
+          <p className="section-subtitle">Stay informed about what's happening at our school.</p>
+        </div>
+
+        <div className="events-container">
+          {upcomingEvents.map((event) => (
+            <div className="event-card" key={event.id}>
+              <div className="event-image-wrapper">
+                <img src={event.image} alt={event.title} className="event-image" />
+                <div className="event-date-badge">
+                  <span className="event-date">{event.date}</span>
+                  <span className="event-time">{event.time}</span>
+                </div>
+              </div>
+              <div className="event-content">
+                <h3 className="event-title">{event.title}</h3>
+                <p className="event-description">{event.description}</p>
+                <Link to="/activities" className="btn btn-outline">
+                  View Details
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      
+      {/* Photo Gallery Section */}
+      <section className="gallery-section">
+        <div className="section-header">
+          <h2 className="section-title">Our Photo Gallery</h2>
+          <p className="section-subtitle">A glimpse into our vibrant school life.</p>
+        </div>
+
+        <div className="gallery-slider">
+          <button className="gallery-nav gallery-prev" onClick={prevSlide}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+
+          <div className="gallery-track">
+            <div 
+              className="gallery-slides" 
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+              {Array.from({ length: Math.ceil(galleryImages.length / 2) }).map((_, slideIndex) => (
+                <div className="gallery-slide" key={slideIndex}>
+                  {galleryImages.slice(slideIndex * 2, slideIndex * 2 + 2).map((image) => (
+                    <div className="gallery-item" key={image.id}>
+                      <img src={image.src} alt={image.alt} />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button className="gallery-nav gallery-next" onClick={nextSlide}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+
+        <div className="gallery-dots">
+          {Array.from({ length: Math.ceil(galleryImages.length / 2) }).map((_, index) => (
+            <button 
+              key={index}
+              className={`gallery-dot ${currentSlide === index ? 'active' : ''}`}
+              onClick={() => setCurrentSlide(index)}
+            />
+          ))}
+        </div>
+      </section>
+
+       {/* Latest Updates Section */}
+      <section className="updates-section">
+        <div className="section-header">
+          <h2 className="section-title">Latest Updates</h2>
+          <p className="section-subtitle">Stay updated with our news and activities.</p>
+        </div>
+
+        <div className="updates-container">
+          {/* Announcements Column */}
+          <div className="updates-column">
+            <h3 className="updates-column-title">Announcements</h3>
+            
+            <div className="updates-list">
+              {announcements.map((item) => (
+                <div className="update-item" key={item.id}>
+                  <h4 className="update-title">{item.title}</h4>
+                  <span className="update-date">{item.date}</span>
+                  <p className="update-description">{item.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <Link to="/contact" className="updates-link">
+              Contact Us for Info <span>→</span>
+            </Link>
+          </div>
+
+             {/* Activities Column */}
+          <div className="updates-column">
+            <h3 className="updates-column-title">Activities</h3>
+            
+            <div className="updates-list">
+              {activities.map((item) => (
+                <div className="update-item" key={item.id}>
+                  <h4 className="update-title">{item.title}</h4>
+                  <span className="update-date">{item.date}</span>
+                  <p className="update-description">{item.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <Link to="/activities" className="updates-link">
+              Explore More Activities <span>→</span>
+            </Link>
           </div>
         </div>
       </section>

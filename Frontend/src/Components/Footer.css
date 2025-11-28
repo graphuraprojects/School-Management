@@ -51,12 +51,12 @@
 }
 
 .social-icon {
-    color: #555;
+    color: #4482ff;
     transition: color 0.3s ease;
 }
 
 .social-icon:hover {
-    color: #3498db;
+    color: #135ae8;
 }
 
 /* Footer Sections */
@@ -83,14 +83,14 @@
 }
 
 .footer-links li a {
-    color: #3498db;
+    color: #4482ff;
     text-decoration: none;
     font-size: 14px;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease;    
 }
 
 .footer-links li a:hover {
-    color: #2980b9;
+    color: #135ae8;
     text-decoration: underline;
 }
 
