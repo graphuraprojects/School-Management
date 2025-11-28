@@ -1,0 +1,104 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #ffffff;
+    /* border-bottom: 3px solid #e74c3c; */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 24px;
+    color: #3498db;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #3498db;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333333;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 5px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #4482ff;
+}
+
+.nav-link.active {
+    color: #4482ff;
+    font-weight: 600;
+}
+
+/* User Profile */
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #e0e0e0;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.profile-avatar:hover {
+    border-color: #3498db;
+}
+
+/* Responsive Design - Mobile First innit */
+@media (max-width: 1024px) {
+    .header-container {
+        padding: 15px 20px;
+    }
+    
+    .navbar {
+        gap: 15px;
+    }
+    
+    .nav-link {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+}
