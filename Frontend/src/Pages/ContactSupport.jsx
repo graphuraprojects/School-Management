@@ -1,4 +1,5 @@
 import React from 'react'
+import "../Styles/ContactSupport.css"
 
 function ContactSupport() {
   return (

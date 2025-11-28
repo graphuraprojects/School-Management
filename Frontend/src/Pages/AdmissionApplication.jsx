@@ -1,4 +1,5 @@
 import React from 'react'
+import "../Styles/AdmissionApplication.css"
 
 function AdmissionApplication() {
   return (
