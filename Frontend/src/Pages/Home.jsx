@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom'
 import '../Styles/Home.css'
 import hero from "../assets/heropage.png"
 
-// Placeholder image - tu baad mein actual school image daal dena
+
 // const heroImage = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80"
 
-// Placeholder images for events - baad mein actual images daal dena
+
 const eventImages = {
   scienceFair: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=80",
-  sportsDay: "https://images.unsplash.com/photo-1461896836934- voices-of-the-wind?w=400&q=80",
+  sportsDay: "https://images.unsplash.com/photo-1700914297011-60e0e8d12c0b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   musicConcert: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&q=80"
 }
 
-// Events data - baad mein yeh backend se aayega
+// Events data - 
 const upcomingEvents = [
   {
     id: 1,
@@ -35,7 +35,7 @@ const upcomingEvents = [
   {
     id: 3,
     title: "Spring Music Concert",
-    description: "An evening filled with melodious performances by our school choir and orchestra. A celebration of talent!",
+    description: "Evening filled with melodious performances by our school choir and orchestra. A celebration of talent!",
     date: "May 01, 2025",
     time: "7:00 PM - 9:30 PM",
     image: eventImages.musicConcert
@@ -130,7 +130,8 @@ function Home() {
           <h1 className="hero-title">
             Inspiring Futures,<br />
             Empowering Minds:<br />
-            <span className="highlight">Welcome to EduConnect Hub</span>
+            <span className="highlight">Welcome To <br />
+             Graphura EduConnect</span>
           </h1>
           <p className="hero-description">
             At EduConnect Hub, we are dedicated to providing a holistic 
@@ -183,7 +184,7 @@ function Home() {
             </div>
             <h3 className="card-title">Our Mission</h3>
             <p className="card-description">
-              EduConnect Hub is committed to delivering a comprehensive 
+               Graphura is committed to delivering a comprehensive 
               educational experience through rigorous academics, diverse 
               extracurriculars, and personalized support, preparing students for 
               success in an ever-evolving world.

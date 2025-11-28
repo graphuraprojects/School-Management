@@ -1,6 +1,7 @@
 import React from 'react'
 import './Footer.css'
 import { Link } from 'react-router-dom'
+import graphuraLogo from '../assets/graphuraLogo.png'
 
 function Footer() {
   return (
@@ -9,11 +10,10 @@ function Footer() {
         {/* Brand Section */}
         <div className='footer-brand'>
           <div className='footer-logo'>
-            <span className='footer-logo-icon'>🎓</span>
-            <span className='footer-logo-text'>EduConnect Hub</span>
+            <img src={graphuraLogo} alt="Graphura Logo" />
           </div>
           <p className='footer-description'>
-            EduConnect Hub is dedicated to fostering academic excellence and holistic development.
+             Graphura is dedicated to fostering academic excellence and holistic development.
           </p>
           <div className='social-icons'>
             <a href="#" className='social-icon' aria-label="Facebook">
@@ -70,15 +70,15 @@ function Footer() {
           <h3 className='footer-heading'>Contact Us</h3>
           <div className='contact-info'>
             <p>123 School Lane, Education City, ED 12345</p>
-            <p>Phone: +1 (123) 456-7890</p>
-            <p>Email: info@educonnecthub.edu</p>
+            <p>Phone: +91 7378021327</p>
+            <p>Email: Official@graphura.in</p>
           </div>
         </div>
       </div>
 
       {/* Copyright Bar */}
       <div className='footer-bottom'>
-        <p>© 2025 EduConnect Hub. All rights reserved.</p>
+        <p>© 2025  Graphura India Private Limited. All rights reserved.</p>
       </div>
     </footer>
   )

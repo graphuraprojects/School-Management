@@ -229,7 +229,7 @@
 /* ============ CTA Section ============ */
 .cta-section {
   padding: 80px 40px;
-  background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #4482ff 0%, #135ae8 100%);
   border-radius: 24px;
   margin: 40px;
   text-align: center;
@@ -253,7 +253,7 @@
 
 .cta-section .btn-primary {
   background-color: white;
-  color: #0ea5e9;
+  color: #4482ff;
 }
 
 .cta-section .btn-primary:hover {
