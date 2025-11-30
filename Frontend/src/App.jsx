@@ -17,16 +17,16 @@ import ContactSupport from './Pages/ContactSupport.jsx'
 function App() {
   const [apiData, setApiData] = useState("");
 
-  useEffect(() => {
-    axios.get('http://localhost:3000/')
-      .then(res => {
-        setApiData(res.data)
-        console.log(res.data)
-      })
-      .catch(err => {
-        console.error(err)
-      })
-  }, [])
+  // useEffect(() => {
+  //   axios.get('http://localhost:3000/')
+  //     .then(res => {
+  //       setApiData(res.data)
+  //       console.log(res.data)
+  //     })
+  //     .catch(err => {
+  //       console.error(err)
+  //     })``
+  // }, [])
 
   return (
     <>
@@ -41,8 +41,8 @@ function App() {
         <Route path="contact" element={<ContactSupport/>}/>
       </Route>
     </Routes>
-    <h1 className='text-blue-500'>{apiData.message} </h1>
-    <h1 className='text-blue-500'>{apiData.time} </h1>
+    {/* <h1 className='text-blue-500'>{apiData.message} </h1>
+    <h1 className='text-blue-500'>{apiData.time} </h1> */}
     </>
   )
 }
