@@ -17,9 +17,9 @@ function Header() {
   return (
     <>
     <header className='header-container'>
-      <div className='logo'>
+      <NavLink to="/" className='logo' onClick={closeMenu}>
         <img src={graphuraLogo} alt="Graphura Logo" />
-      </div>
+      </NavLink>
 
       {/* Hamburger Menu Button */}
       <button 
