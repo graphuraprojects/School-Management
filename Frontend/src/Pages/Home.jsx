@@ -386,7 +386,7 @@ function Home() {
       {/* Quick Links / CTA Section */}
       <section className="cta-section">
         <div className="cta-content">
-          <h2>Ready to Join Our Community?</h2>
+          <h2>Ready to Join Our School?</h2>
           <p>Take the first step towards a brighter future for your child.</p>
           <Link to="/admission" className="btn btn-primary btn-large">
             Start Application
