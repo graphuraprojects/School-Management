@@ -295,22 +295,28 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
-  background-color: #ffffff;
-  color: #1a1a2e;
-  border: 2px solid #e9ecef;
+  padding: 12px 28px;
+  background-color: #4285f4;
+  color: #ffffff;
+  border: none;
   border-radius: 8px;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   margin-top: auto;
+  box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
 }
 
 .view-details-btn:hover {
-  background-color: #1a1a2e;
-  border-color: #1a1a2e;
-  color: #ffffff;
+  background-color: #3367d6;
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
+  transform: translateY(-2px);
+}
+
+.view-details-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(66, 133, 244, 0.3);
 }
 
 /* ==================== NO RESULTS ==================== */
