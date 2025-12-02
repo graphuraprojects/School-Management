@@ -1,37 +1,19 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import mongoose from 'mongoose';
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const connectDB = require("./config/db");
 
 dotenv.config();
 
 const app = express();
+app.use(express.json());
 app.use(cors());
 const PORT = process.env.PORT || 3000;
 
-;(async () => {
-  try {
-    const mongoUri = process.env.MONGODB_URI;
-    if (!mongoUri) {
-      console.error('Error: MONGODB_URI is not set in environment (.env)');
-      process.exit(1);
-    }
+connectDB();
 
-    // Connect without deprecated options; driver handles defaults now
-    await mongoose.connect(mongoUri, {
-      // Optional: reduce wait time for connection failures
-      serverSelectionTimeoutMS: 5000
-    });
-
-    console.log('Connected to MongoDB');
-  } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-  }
-})();
-
-app.get('/', (req, res) => {
-  res.json({ message: 'World!', time: new Date().toISOString() });
-});
+app.use("/api/merchandise", require("./routes/merchandise"));
+app.use("/api/users", require("./routes/users"))
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

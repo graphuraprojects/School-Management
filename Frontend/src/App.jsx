@@ -1,6 +1,4 @@
-import axios from 'axios'
 import { Routes, Route } from "react-router-dom";
-import { useState, useEffect } from 'react'
 import Layout from './Layout/Layout.jsx'
 import Home from './Pages/Home.jsx'
 
@@ -9,25 +7,15 @@ import AboutSchool from './Pages/AboutSchool.jsx'
 import CoursesAcademics from './Pages/CoursesAcademics.jsx'
 import Activities from './Pages/Activities.jsx'
 import AdmissionApplication from './Pages/AdmissionApplication.jsx'
-import ProductsECommerce from './Pages/ProductsECommerce.jsx'
 import ContactSupport from './Pages/ContactSupport.jsx'
+import Merchandise from './Pages/Merchandise.jsx';
+import Cart from './Pages/Cart.jsx';
+import Login from './Pages/Login.jsx';
+import Register from './Pages/Register.jsx';
 
 
 
 function App() {
-  const [apiData, setApiData] = useState("");
-
-  // useEffect(() => {
-  //   axios.get('http://localhost:3000/')
-  //     .then(res => {
-  //       setApiData(res.data)
-  //       console.log(res.data)
-  //     })
-  //     .catch(err => {
-  //       console.error(err)
-  //     })``
-  // }, [])
-
   return (
     <>
     <Routes>
@@ -37,12 +25,13 @@ function App() {
         <Route path="courses" element={<CoursesAcademics/>}/>
         <Route path="activities" element={<Activities/>}/>
         <Route path="admission" element={<AdmissionApplication/>}/>
-        <Route path="products" element={<ProductsECommerce/>}/>
+        <Route path="store" element={<Merchandise />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="contact" element={<ContactSupport/>}/>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Route>
     </Routes>
-    {/* <h1 className='text-blue-500'>{apiData.message} </h1>
-    <h1 className='text-blue-500'>{apiData.time} </h1> */}
     </>
   )
 }

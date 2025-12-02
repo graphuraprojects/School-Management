@@ -38,7 +38,7 @@ function Header() {
         <NavLink to="/courses" className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>Courses</NavLink>
         <NavLink to="/activities" className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>Activities</NavLink>
         <NavLink to="/admission" className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>Admission</NavLink>
-        <NavLink to="/products" className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>Store</NavLink>
+        <NavLink to="/store" className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>Store</NavLink>
         <NavLink to="/contact" className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>Contact</NavLink>
       </nav>
 

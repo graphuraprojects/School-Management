@@ -1,0 +1,137 @@
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { CartContext } from "../CartFunction";
+
+const Merchandise = () => {
+  const { cart, addToCart, removeFromCart } = useContext(CartContext);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    axios
+      .get(`${apiUrl}/merchandise`)
+      .then((res) => {
+        setProducts(res.data);
+        console.log(res.data);
+        console.log("Products API Response =>", res.data);
+        console.log("Type =>", Array.isArray(res.data));
+      })
+      .catch((err) => {
+        console.error("Error fetching merchandise data:", err);
+      });
+  }, []);
+  return (
+    <div className="bg-[#f6f7f8]">
+      {/* store header */}
+      <section className="p-4">
+        <div className="relative rounded-xl shadow-xl overflow-hidden h-[200px] sm:h-[280px] md:h-[300px]">
+          <img
+            src="https://res.cloudinary.com/drq2a0262/image/upload/v1764487169/screen_cp2zfl.png"
+            alt="store-banner"
+          />
+          <div className="absolute inset-0 bg-black/50">
+            <div className="absolute inset-0 flex flex-col justify-center text-white px-4">
+              <h1 className="text-white font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+                <i className="fa-solid fa-store"></i> School Store
+              </h1>
+              <p className="font-semibold mt-2 sm:text-lg md:text-xl lg:text-2xl">
+                Everything you need for a successful school year.
+              </p>
+              <ul className="gap-10 lg:gap-20 hidden sm:flex mt-4">
+                <li className="text-white text-lg md:text-xl lg:text-2xl font-semibold">
+                  <i className="fa-solid fa-shirt"></i> Spirit Wears
+                </li>
+                <li className="text-white text-lg md:text-xl lg:text-2xl font-semibold">
+                  <i className="fa-solid fa-pencil"></i> School Supplies
+                </li>
+                <li className="text-white text-lg md:text-xl lg:text-2xl font-semibold">
+                  <i className="fa-solid fa-book-open"></i> Books & Textbooks
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* category filter */}
+      <section className="category-filter">
+        <div className="w-full border-b border-gray-300 py-3">
+          <nav className="categories overflow-x-auto scrollbar-hide py-2">
+            <ul className="flex items-center min-w-max gap-4 md:gap-4 lg:gap-6 px-4 sm:justify-center">
+              {[
+                "All",
+                "Uniforms",
+                "Stationery",
+                "Bags",
+                "Books",
+                "Accessories",
+              ].map((category) => (
+                <li
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`cursor-pointer font-semibold py-2 px-5 rounded-3xl border border-gray-300 transition-colors duration-200 ${
+                    selectedCategory === category
+                      ? "bg-blue-600 text-white"
+                      : "bg-white text-[#57699b]"
+                  }`}
+                >
+                  {category}
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </section>
+
+      {/* products here */}
+      <section className="products flex justify-center">
+        <div className="px-4 py-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl">
+          {products.length === 0 ? (
+            <p className="text-center mt-10">No products available.</p>
+          ) : (
+            products
+              .filter(
+                (product) =>
+                  selectedCategory.toLowerCase() === "all" ||
+                  selectedCategory.toLowerCase() ===
+                    product.category.toLowerCase()
+              )
+              .map((item) => (
+                <div
+                  key={item._id}
+                  className="group bg-white rounded-xl shadow-lg p-4 overflow-hidden hover:scale-105 hover:shadow-xl transition-transform duration-200 cursor-pointer flex flex-col"
+                >
+                  <div className="w-full h-48 sm:h-56 lg-h-60 mb-3">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover rounded-md"
+                    />
+                  </div>
+                  <h4 className="md:text-lg font-bold text-gray-800 mb-1 group-hover:text-blue-600">
+                    {item.title.length > 25
+                      ? item.title.slice(0, 25) + "..."
+                      : item.title}
+                  </h4>
+                  <div className="mt-auto">
+                    <p className="text-gray-500 font-semibold text md:text-lg">
+                      ₹{item.price}
+                    </p>
+                    <button
+                      onClick={() => addToCart(item)}
+                      className="shadow-md w-full bg-blue-300 text-blue-600 py-1.5 mt-1 font-semibold rounded-lg cursor-pointer hover:bg-blue-900 hover:text-white hover:scale-102 transition-transform duration-300 hover:shadow-lg active:bg-blue-900 active:text-white"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              ))
+          )}
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Merchandise;
