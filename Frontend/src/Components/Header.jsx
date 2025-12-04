@@ -1,57 +1,56 @@
-import React, { useState } from 'react'
-import './Header.css'
-import { NavLink } from 'react-router-dom'
-import graphuraLogo from '../assets/graphuraLogo.png'
+import React, { useContext, useState } from 'react';
+import './Header.css';
+import { NavLink } from 'react-router-dom';
+import graphuraLogo from '../assets/graphura.png';
+import { CartContext } from '../CartFunction';
 
 function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { cart, addToCart, removeFromCart } = useContext(CartContext);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
 
-  const closeMenu = () => {
-    setIsMenuOpen(false)
-  }
+  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+
 
   return (
-    <>
-    <header className='header-container'>
-      <NavLink to="/" className='logo' onClick={closeMenu}>
+    <header className="header-container">
+      <NavLink to="/" className="logo" onClick={closeMenu}>
         <img src={graphuraLogo} alt="Graphura Logo" />
       </NavLink>
 
-      {/* Hamburger Menu Button */}
-      <button 
-        className={`hamburger ${isMenuOpen ? 'active' : ''}`} 
+      {/* Hamburger */}
+      <button
+        className={`hamburger ${isMenuOpen ? 'active' : ''}`}
         onClick={toggleMenu}
-        aria-label="Toggle navigation menu"
+        aria-label="Toggle menu"
       >
-        <span className='hamburger-line'></span>
-        <span className='hamburger-line'></span>
-        <span className='hamburger-line'></span>
+        <span className="hamburger-line"></span>
+        <span className="hamburger-line"></span>
+        <span className="hamburger-line"></span>
       </button>
 
       <nav className={`navbar ${isMenuOpen ? 'nav-open' : ''}`}>
-        <NavLink to="/" className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>Home</NavLink>
-        <NavLink to="/about" className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>About</NavLink>
-        <NavLink to="/courses" className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>Courses</NavLink>
-        <NavLink to="/activities" className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>Activities</NavLink>
-        <NavLink to="/admission" className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>Admission</NavLink>
-        <NavLink to="/store" className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>Store</NavLink>
-        <NavLink to="/contact" className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>Contact</NavLink>
+        <NavLink to="/" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Home</NavLink>
+        <NavLink to="/about" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>About</NavLink>
+        <NavLink to="/courses" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Courses</NavLink>
+        <NavLink to="/activities" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Activities</NavLink>
+        <NavLink to="/admission" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Admission</NavLink>
+        <NavLink to="/store" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Store</NavLink>
+        <NavLink to="/contact" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Contact</NavLink>
+        <NavLink to="/cart" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""} md:hidden` }>Cart</NavLink>
       </nav>
 
-      {/* <div className='user-profile'>
-        <img 
-          src="https://api.dicebear.com/7.x/avataaars/svg?seed=student" 
-          alt="User Profile" 
-          className='profile-avatar'
-        />
-      </div> */}
+      <div className='hidden md:flex gap-6'>
+        <div><i className="fa-solid fa-user text-2xl"></i></div>
+        <div className='relative'>
+          <NavLink to="/cart"><i className="fa-solid fa-cart-shopping text-2xl"></i></NavLink>
+          <span className='absolute bg-blue-500 rounded-full -top-2 -right-2 px-1.5 text-[10px] text-white'>{totalQuantity}</span>
+        </div>
+        </div>
     </header>
-    </>
-  )
+  );
 }
 
-export default Header
+export default Header;

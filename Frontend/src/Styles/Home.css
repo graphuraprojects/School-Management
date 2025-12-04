@@ -3,7 +3,6 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
 }
 
 /* ============ Hero Section ============ */
@@ -12,7 +11,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 60px;
-  padding: 60px 40px;
   min-height: 80vh;
 }
 

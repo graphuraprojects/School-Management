@@ -122,10 +122,10 @@ function Home() {
 
 
   return (
-    <>
+    <div className='bg-[#f6f7f8]'>
     <div className="home-container">
       {/* Hero Section */}
-      <section className="hero-section">
+      <section className="hero-section bg-white shadow-xl px-6">
         <div className="hero-content">
           <h1 className="hero-title">
             Inspiring Futures,<br />
@@ -395,7 +395,7 @@ function Home() {
       </section>
     </div>
     
-    </>
+    </div>
   )
 }
 
