@@ -12,12 +12,13 @@ import Merchandise from './Pages/Merchandise.jsx';
 import Cart from './Pages/Cart.jsx';
 import Login from './Pages/Login.jsx';
 import Register from './Pages/Register.jsx';
-
-
+import Payment from './Pages/Payment.jsx';
+import Dashboard from "./Pages/Dashboard.jsx";
+import NotFound from "./Pages/NotFound.jsx";
 
 function App() {
   return (
-    <>
+    <div  className="bg-[#f6f7f8]">
     <Routes>
       <Route path="/" element={<Layout />} >
         <Route index element={<Home />} />
@@ -30,9 +31,12 @@ function App() {
         <Route path="contact" element={<ContactSupport/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/dashboard" element={<Dashboard />} /> 
+        <Route path="/404" element={<NotFound />} />
       </Route>
     </Routes>
-    </>
+    </div>
   )
 }
 

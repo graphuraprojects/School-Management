@@ -102,7 +102,7 @@ function AboutSchool() {
                 alt="Mission Icon"
                 className="pillar-icon"
               />
-              <h3>Our Mission</h3>
+              <h3 className="font-bold">Our Mission</h3>
               <p>
                 To provide a nurturing and stimulating environment that empowers
                 students to achieve their full academic, personal and social
@@ -112,7 +112,7 @@ function AboutSchool() {
 
             <div className="pillar-card reveal-on-scroll">
               <img src={ourVision} alt="Vision Icon" className="pillar-icon" />
-              <h3>Our Vision</h3>
+              <h3 className="font-bold">Our Vision</h3>
               <p>
                 To be a beacon of innovative education, fostering a community of
                 lifelong learners and responsible citizens.
@@ -121,7 +121,7 @@ function AboutSchool() {
 
             <div className="pillar-card reveal-on-scroll">
               <img src={ourValues} alt="Values Icon" className="pillar-icon" />
-              <h3>Our Values</h3>
+              <h3  className="font-bold">Our Values</h3>
               <p>
                 Integrity, Respect, Excellence, Collaboration, and Innovation
                 guide every action and decision.
@@ -166,7 +166,7 @@ function AboutSchool() {
           <div className="campus-grid">
             <div className="campus-card reveal-on-scroll">
               <img src={advSchool} alt="Advanced Classroom" />
-              <h3>Advanced Classrooms</h3>
+              <h3 className="font-bold">Advanced Classrooms</h3>
               <p>
                 Equipped with cutting-edge technology to facilitate interactive
                 and engaging learning experiences.
@@ -175,7 +175,7 @@ function AboutSchool() {
 
             <div className="campus-card reveal-on-scroll">
               <img src={exLibrary} alt="Extensive Library" />
-              <h3>Extensive Library</h3>
+              <h3 className="font-bold">Extensive Library</h3>
               <p>
                 A rich collection of resources and a serene environment
                 conducive to deep learning and research.
@@ -184,7 +184,7 @@ function AboutSchool() {
 
             <div className="campus-card reveal-on-scroll">
               <img src={scienceLib} alt="Science Laboratories" />
-              <h3>Science Laboratories</h3>
+              <h3 className="font-bold">Science Laboratories</h3>
               <p>
                 Dedicated labs for physics, chemistry, and biology, fostering
                 hands-on scientific discovery.
@@ -193,7 +193,7 @@ function AboutSchool() {
 
             <div className="campus-card reveal-on-scroll">
               <img src={compLabs} alt="Computer Labs" />
-              <h3>Computer Labs</h3>
+              <h3 className="font-bold">Computer Labs</h3>
               <p>
                 Equipped with high-performance computers and software for
                 programming, design, and digital literacy.
@@ -202,7 +202,7 @@ function AboutSchool() {
 
             <div className="campus-card reveal-on-scroll">
               <img src={schlFaci} alt="Sports Facilities" />
-              <h3>Sports Facilities</h3>
+              <h3 className="font-bold">Sports Facilities</h3>
               <p>
                 Indoor and outdoor courts, fields, and a gym to support a wide
                 range of athletic activities.
@@ -211,7 +211,7 @@ function AboutSchool() {
 
             <div className="campus-card reveal-on-scroll">
               <img src={artandmusic} alt="Art & Music Studios" />
-              <h3>Art & Music Studios</h3>
+              <h3 className="font-bold">Art & Music Studios</h3>
               <p>
                 Creative spaces designed to inspire artistic expression and
                 musical talent.

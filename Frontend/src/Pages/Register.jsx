@@ -60,7 +60,7 @@ const Register = () => {
 
 
   return (
-    <div className="bg-[#f6f7f8] h-screen flex items-center justify-center flex-col p-5">
+    <div className="bg-[#f6f7f8] h-screen flex items-center justify-center flex-col p-5 mt-5">
       <div className="bg-white p-3 sm:p-5 flex flex-col items-center max-w-[450px] shadow-lg rounded-lg w-full">
         {!otpScreen ? (
           <>

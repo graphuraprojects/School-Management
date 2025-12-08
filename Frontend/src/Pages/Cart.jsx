@@ -86,7 +86,7 @@ const Cart = () => {
                         <span>Total</span>
                         <span>₹{totalAmount + (totalAmount > 399 ? 0 : 29)}</span>
                     </div>
-                    <button className="w-full cursor-pointer bg-blue-500 p-2 shadow-xl rounded-lg mt-2 text-white font-semibold hover:shadow-2xl hover:bg-blue-900 hover:scale-105 transition-transform duration-300 active:bg-blue-900">Place Order</button>
+                    <button className="w-full cursor-pointer bg-blue-500 p-2 shadow-xl rounded-lg mt-2 text-white font-semibold hover:shadow-2xl hover:bg-blue-900 hover:scale-105 transition-transform duration-300 active:bg-blue-900" onClick={()=>navigate("/payment")}>Place Order</button>
                 </div>
             )
         }

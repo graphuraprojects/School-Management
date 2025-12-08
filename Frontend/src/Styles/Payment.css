@@ -1,0 +1,222 @@
+/* ===================================
+   PAYMENT PAGE WRAPPER
+=================================== */
+.payment-wrapper {
+  width: 100%;
+  padding: 40px 70px;
+  background: #f7f9fc;
+  min-height: 100vh;
+  color: #0d1b2a;
+  font-family: "Inter", sans-serif;
+}
+
+.breadcrumbs {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.breadcrumbs span {
+  margin: 0 6px;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+/* ===================================
+   MAIN LAYOUT
+=================================== */
+.payment-container {
+  display: flex;
+  gap: 30px;
+}
+
+/* ===================================
+   PAYMENT OPTIONS (LEFT)
+=================================== */
+.payment-options {
+  flex: 2;
+}
+
+/* Card-like payment boxes */
+.payment-box {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 2px solid transparent;
+  transition: 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08); /* ⭐ Shadow Added */
+}
+
+.payment-box:hover {
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.payment-box.active {
+  border-color: #2563eb;
+  background: #eff6ff;
+  box-shadow: 0px 8px 20px rgba(37, 99, 235, 0.2); /* ⭐ Active Shadow */
+}
+
+.payment-header {
+  display: flex;
+  gap: 15px;
+  cursor: pointer;
+}
+
+.payment-header h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.payment-header p {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ===================================
+   PAYMENT FORM FIELDS
+=================================== */
+.payment-form {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.payment-form input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  font-size: 15px;
+}
+
+.row {
+  display: flex;
+  gap: 18px;
+}
+
+.row div {
+  flex: 1;
+}
+
+/* ===================================
+   ORDER SUMMARY (RIGHT)
+=================================== */
+.order-summary {
+  flex: 1;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  height: fit-content;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12); /* ⭐ Strong Shadow */
+}
+
+.order-summary h2 {
+  margin-bottom: 18px;
+  font-size: 22px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.summary-row.total {
+  font-size: 18px;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+.pay-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  background: #1d75ee;
+  color: white;
+  font-size: 17px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.pay-btn:hover {
+  background: #1559b3;
+}
+
+.secure-text {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+=================================== */
+@media (max-width: 1024px) {
+  .payment-wrapper {
+    padding: 30px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 26px;
+  }
+
+  /* Stack layout (Left on top, Right below) */
+  .payment-container {
+    flex-direction: column;
+  }
+
+  .order-summary {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .payment-wrapper {
+    padding: 20px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .payment-box {
+    padding: 16px;
+  }
+
+  .payment-header h3 {
+    font-size: 18px;
+  }
+
+  .payment-header p {
+    font-size: 13px;
+  }
+
+  .summary-row {
+    font-size: 14px;
+  }
+
+  .summary-row.total {
+    font-size: 16px;
+  }
+
+  .pay-btn {
+    font-size: 15px;
+    padding: 12px;
+  }
+}

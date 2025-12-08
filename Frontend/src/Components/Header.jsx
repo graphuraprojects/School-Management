@@ -5,6 +5,7 @@ import graphuraLogo from '../assets/graphura.png';
 import { CartContext } from '../CartFunction';
 
 function Header() {
+  const user = JSON.parse(localStorage.getItem("user"));
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { cart, addToCart, removeFromCart } = useContext(CartContext);
 
@@ -31,14 +32,17 @@ function Header() {
         <span className="hamburger-line"></span>
       </button>
 
-      <nav className={`navbar ${isMenuOpen ? 'nav-open' : ''}`}>
+      <nav className={`navbar ${isMenuOpen ? 'nav-open' : ''}` }>
         <NavLink to="/" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Home</NavLink>
         <NavLink to="/about" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>About</NavLink>
-        <NavLink to="/courses" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Courses</NavLink>
-        <NavLink to="/activities" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Activities</NavLink>
         <NavLink to="/admission" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Admission</NavLink>
         <NavLink to="/store" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Store</NavLink>
         <NavLink to="/contact" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>Contact</NavLink>
+        {user?.role === "admin" && (
+          <NavLink to="/dashboard" className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""}`}>
+            Dashboard
+          </NavLink>
+        )}
         <NavLink to="/cart" onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? "active-link" : ""} md:hidden` }>Cart</NavLink>
       </nav>
 

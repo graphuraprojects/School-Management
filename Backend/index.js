@@ -14,6 +14,7 @@ connectDB();
 
 app.use("/api/merchandise", require("./routes/merchandise"));
 app.use("/api/users", require("./routes/users"))
+app.use("/api/admission", require("./routes/admission"))
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

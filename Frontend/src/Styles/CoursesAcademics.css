@@ -208,7 +208,7 @@
 
 .course-image {
   width: 100%;
-  height: 180px;
+  height: 280px;
   overflow: hidden;
   background: #e9ecef;
 }
@@ -333,77 +333,6 @@
   font-size: 1.1rem;
   color: #6c757d;
 }
-
-/* ==================== RESPONSIVE DESIGN ==================== */
-
-@media (max-width: 1200px) {
-  .courses-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 992px) {
-  .courses-content {
-    flex-direction: column;
-  }
-
-  .filter-sidebar {
-    width: 100%;
-    position: static;
-  }
-
-  .courses-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .courses-hero {
-    padding: 40px 16px;
-  }
-
-  .courses-hero h1 {
-    font-size: 2rem;
-  }
-
-  .courses-hero p {
-    font-size: 1rem;
-  }
-
-  .courses-content {
-    padding: 24px 16px;
-    gap: 24px;
-  }
-
-  .courses-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .filter-sidebar {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .courses-hero h1 {
-    font-size: 1.75rem;
-  }
-
-  .course-image {
-    height: 160px;
-  }
-
-  .course-content {
-    padding: 16px;
-  }
-
-  .course-title {
-    font-size: 1rem;
-  }
-}
-
-/* ...existing code... */
 
 /* ==================== MOBILE FILTER COMPONENTS ==================== */
 
@@ -554,8 +483,6 @@
   transform: scale(0.98);
 }
 
-/* ...existing code... */
-
 /* ==================== RESPONSIVE DESIGN ==================== */
 
 @media (max-width: 1200px) {
@@ -569,6 +496,11 @@
     flex-direction: column;
   }
 
+  .filter-sidebar {
+    width: 100%;
+    position: static;
+  }
+  
   /* Show mobile filter toggle */
   .mobile-filter-toggle {
     display: flex;
@@ -699,5 +631,234 @@
   .filter-sidebar {
     width: 100%;
     max-width: none;
+  }
+}
+
+
+/* ==================== NEW MODAL STYLES (Added) ==================== */
+
+/* Backdrop with Fade In */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Modal Panel with Slide Up/Scale */
+.modal-panel {
+  background: #ffffff;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  border-radius: 16px;
+  overflow-y: auto; /* Internal scrolling */
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Close Button */
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+  color: #1a1a2e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.modal-close-btn:hover {
+  background: #f0f4f8;
+}
+
+/* Hero Image */
+.modal-hero-image {
+  width: 100%;
+  height: 250px;
+  flex-shrink: 0;
+}
+
+.modal-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content Area */
+.modal-content {
+  padding: 30px;
+}
+
+.modal-header {
+  margin-bottom: 24px;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 20px;
+}
+
+.modal-tags-list {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.modal-header h2 {
+  font-size: 1.75rem;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+/* Grid Layout for Info */
+.modal-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.modal-main-info h3 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: #1a1a2e;
+}
+
+.modal-main-info p {
+  color: #495057;
+  line-height: 1.7;
+}
+
+/* Sidebar Info Box */
+.modal-sidebar-info {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  height: fit-content;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.info-item .label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6c757d;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.info-item .value {
+  color: #1a1a2e;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Actions Footer */
+.modal-actions {
+  display: flex;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+  justify-content: flex-end;
+}
+
+.btn-enrol {
+  background-color: #4361ee;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn-enrol:hover {
+  background-color: #3651d4;
+  transform: translateY(-2px);
+}
+
+.btn-cancel {
+  background-color: transparent;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+  background-color: #f1f3f5;
+  color: #1a1a2e;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+  .modal-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .modal-hero-image {
+    height: 180px;
+  }
+  
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+  
+  .btn-enrol, .btn-cancel {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.4rem;
   }
 }

@@ -1,219 +1,395 @@
-/* ---------------------- */
-/* MAIN PAGE STYLING      */
-/* ---------------------- */
+/* ========== Theme ========== */
+:root {
+  --primary-1: #4f93ff;
+  --primary-2: #2b6ef6;
+  --muted: #6b7280;
+  --muted-2: #94a3b8;
+  --danger: #ef4444;
+  --success: #16a34a;
+  --card-bg: #ffffff;
+  --card-shadow: 0 8px 28px rgba(15,23,42,0.06);
+  --radius: 14px;
+  --max-width: 1100px;
+}
+
+/* ========== Page wrapper ========== */
+* { box-sizing: border-box; }
+body, html { height: 100%; margin: 0; padding: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial; -webkit-font-smoothing:antialiased; }
 
 .contact-page {
   width: 100%;
-  min-height: 100vh;
-  background: white;
-  font-family: Arial, sans-serif;
-  color: #333;
-  padding: 40px 20px;
+  max-width: var(--max-width);
+  margin: 28px auto;
+  padding: 28px;
+  color: #0f172a;
 }
 
-/* Title Section */
+/* ========== Title section ========== */
 .title-section {
-  text-align: center;
-  margin-bottom: 40px;
+  text-align: left;
+  margin-bottom: 18px;
 }
-
 .title-section h1 {
-  font-size: 42px;
-  font-weight: bold;
+  font-size: 1.85rem;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.02em;
 }
-
 .title-section p {
-  max-width: 650px;
-  margin: 10px auto 0;
-  color: gray;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
 }
 
-/* ---------------------- */
-/* MAIN CONTENT LAYOUT    */
-/* ---------------------- */
-
+/* ========== Content grid (form + info) ========== */
 .content-section {
-  max-width: 1100px;
-  margin: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
+  grid-template-columns: 1fr 340px;
+  gap: 22px;
+  align-items: start;
+  margin-bottom: 22px;
 }
 
-/* Cards (Form + Info) */
+/* ========== Card base ========== */
 .card {
-  padding: 25px;
-  border: 1px solid #ddd;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  background: white;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(250,251,255,1) 100%);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(15,23,42,0.03);
 }
 
-.card h2 {
-  margin-bottom: 15px;
-  font-size: 22px;
-  font-weight: bold;
+/* ========== Form card ========== */
+.contact-form.card {
+  padding: 26px;
+}
+.contact-form h2 {
+  margin: 0 0 14px 0;
+  font-size: 1.45rem;
+  color: #071133;
 }
 
-/* ---------------------- */
-/* FORM DESIGN            */
-/* ---------------------- */
+/* Labels visible above fields (better accessibility) */
+.contact-form label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 600;
+}
 
-.contact-form input,
+/* Inputs and textarea */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="file"],
 .contact-form textarea {
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  transition: 0.2s ease;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(15,23,42,0.08);
+  background: #ffffff;
+  font-size: 0.98rem;
+  color: #0b1220;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+  transition: box-shadow .18s ease, border-color .18s ease, transform .06s ease;
+  outline: none;
+  -webkit-appearance: none;
+  resize: vertical;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: #1d4ed8;
-  box-shadow: 0 0 4px rgba(29, 78, 216, 0.3);
-}
+/* Textarea larger */
+.contact-form textarea { min-height: 160px; padding-top: 12px; }
 
-/* ---------------------- */
-/* BUTTONS                */
-/* ---------------------- */
-
-.btn-primary-one {
-  width: 100%;
-  padding: 14px;
-  background: #4285f4;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: 0.25s;
+/* Placeholder styling */
+.contact-form ::placeholder {
+  color: rgba(107,114,128,0.45);
   font-weight: 500;
 }
 
-.btn-primary-one:hover {
-  background: #3367d6;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+/* Hover & focus states */
+.contact-form input:hover,
+.contact-form textarea:hover { border-color: rgba(15,23,42,0.12); }
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--primary-2);
+  box-shadow: 0 6px 20px rgba(47,84,255,0.08);
+  transform: translateY(-1px);
 }
 
-.btn-primary-one:active {
+/* optional file input minimal style */
+.contact-form input[type="file"] {
+  padding: 10px 12px;
+  background: #fbfdff;
+}
+
+/* ========== Buttons ========== */
+.btn-primary-one {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(90deg, var(--primary-2), var(--primary-1));
+  box-shadow: 0 10px 24px rgba(47,84,255,0.12);
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+.btn-primary-one:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(47,84,255,0.14); }
+.btn-primary-one:active { transform: translateY(0); }
+.btn-primary-one[disabled] { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* WhatsApp / secondary style (used in contact-info) */
+.btn-whatsapp-unified {
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+  background: #25D366; /* WhatsApp green */
+  box-shadow: 0 10px 24px rgba(37,211,102,0.18);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.btn-whatsapp-unified:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(37,211,102,0.22);
+}
+
+.btn-whatsapp-unified:active {
   transform: translateY(0);
 }
-
-.btn-whatsapp {
-  width: 100%;
-  padding: 14px;
-  background: #16a34a;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: 0.25s;
-}
-
-.btn-whatsapp:hover {
-  background: #15803d;
-  transform: translateY(-2px);
-}
-
-/* ---------------------- */
-/* MAP SECTION            */
-/* ---------------------- */
-
-.map-section {
-  text-align: center;
-  margin-top: 60px;
+/* ========== Contact Info card ========== */
+.contact-info.card {
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 8px;
 }
+.contact-info h2 { margin: 0 0 6px 0; font-size: 1.15rem; }
+.contact-info .info-line { margin: 6px 0; color: #0f172a; }
+.contact-info a { color: inherit; text-decoration: none; font-weight: 600; }
+.button-row { display: flex; gap: 10px; margin-top: 12px; }
 
-.map-section h2 {
-  margin-bottom: 20px;
+/* small helper text */
+.small-note { color: var(--muted); font-size: 0.9rem; margin-top: 12px; }
+
+/* ========== Map section ========== */
+.map-section {
+  margin-bottom: 22px;
 }
-
-/* Perfect alignment + size */
-.map-section img {
-  width: 90%;
-  max-width: 900px;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+.map-section h2 { font-size: 1.1rem; margin: 0 0 10px 0; color: #0f172a; }
+.map-container {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(15,23,42,0.03);
+}
+.map-container iframe {
+  width: 100%;
+  height: 420px;  
+  border: 0;
   display: block;
-  margin: 0 auto;
 }
-
-/* ---------------------- */
-/* FAQ SECTION            */
-/* ---------------------- */
+/* ============================================================
+   PREMIUM FAQ (Questions + Answers + Animations + Hover + Shadow)
+   ============================================================ */
 
 .faq-section {
-  max-width: 900px;
-  margin: 60px auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .faq-section h2 {
-  text-align: center;
-  margin-bottom: 25px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 22px;
+  color: #0f172a;
 }
 
+/* =============================== */
+/*           FAQ BOX               */
+/* =============================== */
 .faq-box {
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  background: #fafafa;
-  transition: background 0.3s ease;
-}
-
-.faq-box summary {
+  background: #ffffff;
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.03);
   cursor: pointer;
-  font-size: 17px;
-  font-weight: bold;
-}
-
-.faq-box p {
-  margin-top: 10px;
-  color: #555;
-}
-
-.faq-box:hover {
-  background: #f1f5f9;
-}
-
-
-/* MAP SECTION            */
-/* ---------------------- */
-
-.map-section {
-  text-align: center;
-  margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.map-section h2 {
-  margin-bottom: 20px;
-}
-
-/* Map container for responsive iframe */
-.map-container {
-  width: 90%;
-  max-width: 900px;
-  border-radius: 15px;
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
   overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
 }
 
-.map-container iframe {
-  display: block;
-  width: 100%;
-  height: 450px;
-  border: none;
+/* Hover effect */
+.faq-box:hover {
+  background: #f9fafb;
+  box-shadow: 0 5px 16px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+/* =============================== */
+/*        FAQ QUESTION + ICON      */
+/* =============================== */
+.faq-box summary {
+  font-size: 1.05rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  color: #0f172a;
+  transition: color 0.25s ease;
+  outline: none;
+}
+
+/* Remove default arrow */
+.faq-box summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Custom arrow icon */
+.faq-box summary::before {
+  content: "▶";
+  font-size: 0.95rem;
+  margin-right: 12px;
+  color: #475569;
+  transition: transform 0.28s ease, color 0.3s ease;
+}
+
+/* Rotate arrow when open */
+.faq-box[open] summary::before {
+  transform: rotate(90deg);
+  color: var(--primary-2);
+}
+
+/* Question color on open */
+.faq-box[open] summary {
+  color: var(--primary-2);
+}
+
+/* =============================== */
+/*     BEAUTIFIED ANSWER BOX       */
+/* =============================== */
+
+.faq-box p,
+.faq-box div {
+  margin-top: 14px;
+  padding: 16px 20px;
+  padding-left: 26px;
+  background: #f8fafc;
+  border-left: 4px solid var(--primary-2);
+  border-radius: 12px;
+  line-height: 1.65;
+  font-size: 1rem;
+  color: #1e293b;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.05);
+  animation: fadeAnswer 0.3s ease;
+}
+
+/* On open highlight */
+.faq-box[open] p,
+.faq-box[open] div {
+  background: #f1f5f9;
+  border-left-color: var(--primary-1);
+}
+
+/* Keyframe animation */
+@keyframes fadeAnswer {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Emphasizing bold text inside answers */
+.faq-box p strong,
+.faq-box div strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+/* =============================== */
+/*               Responsive        */
+/* =============================== */
+@media (max-width: 720px) {
+  .faq-section h2 {
+    font-size: 1.4rem;
+  }
+  .faq-box {
+    padding: 16px 18px;
+  }
+  .faq-box summary {
+    font-size: 1rem;
+  }
+  .faq-box p,
+  .faq-box div {
+    font-size: 0.95rem;
+    padding: 14px 18px;
+  }
+}
+
+/* ========== Validation & Status ========== */
+.field-error {
+  color: var(--danger);
+  margin-top: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.success-msg {
+  color: var(--success);
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+/* aria-live status (screen-reader friendly) */
+.status-msg {
+  margin-top: 12px;
+  font-weight: 700;
+}
+.status-msg[aria-live] { /* visible state styling if needed */ }
+
+/* ========== Utilities & optional icon input (commented hints) ========== */
+/* If you want icons inside inputs:
+.input-icon { position: relative; }
+.input-icon input { padding-left: 44px; }
+.input-icon .icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+*/
+
+/* ========== Responsive ========== */
+@media (max-width: 980px) {
+  :root { --max-width: 840px; }
+  .content-section { grid-template-columns: 1fr 320px; gap: 18px; }
+  .map-container iframe { height: 380px; }
+}
+@media (max-width: 720px) {
+  .contact-page { padding: 16px; }
+  .content-section { grid-template-columns: 1fr; }
+  .contact-info.card { order: 2; }
+  .contact-form.card { order: 1; padding: 18px; }
+  .map-container iframe { height: 320px; }
+  .title-section h1 { font-size: 1.5rem; }
+  .contact-form h2 { font-size: 1.25rem; }
+}
+input {
+  border: 1px solid #d9dce0 !important;
+}
+textarea {
+  border: 1px solid #d9dce0 !important;
+}
+.contact-form, .contact-info {
+  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.1) !important;
 }

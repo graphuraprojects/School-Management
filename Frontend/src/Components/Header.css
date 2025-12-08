@@ -26,7 +26,7 @@
 @media (min-width: 768px) {
   .header-container {
     max-width: 1150px;      
-    margin: 10px auto;       
+    margin: 0 auto 10px auto;       
     border-radius: 18px;
     box-shadow: 0 4px 18px rgba(0,0,0,0.1);
     padding: 14px 28px;      
@@ -122,5 +122,11 @@
     border-bottom: 1px solid #eee;
     padding-bottom: 12px;
     font-size: 17px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbar{
+    gap: 40px;
   }
 }

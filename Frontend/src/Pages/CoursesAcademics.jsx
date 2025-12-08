@@ -1,403 +1,489 @@
-import React, { useState } from 'react'
-import "../Styles/CoursesAcademics.css"
+import React, { useState, useEffect } from "react";
+import "../Styles/CoursesAcademics.css";
 
-// Sample course data - later you'll fetch this from your backend API
+/* --------------  COURSE DATA -------------- */
 const coursesData = [
   {
     id: 1,
-    title: "Algebra I Fundamentals",
-    description: "An introductory course to algebraic concepts, covering linear equations, inequalities, and basic functions.",
-    duration: "16 Weeks",
-    faculty: "Dr. Jenny Chen",
+    title: "Mathematics – Grade 6",
+    description:
+      "Fundamentals of numbers, fractions, decimals, geometry, and simple equations for Grade 6 learners.",
+    duration: "1 Academic Year",
+    faculty: "Mrs. Anjali Sharma",
     level: "Beginner",
     subject: "Mathematics",
     gradeLevel: "Middle School (6-8)",
     programType: "Standard Curriculum",
-    image: "https://plus.unsplash.com/premium_photo-1661432575489-b0400f4fea58?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["Mathematics"]
+    image:
+      "https://images.unsplash.com/photo-1509223197845-458d87318791?auto=format&fit=crop&w=1200&q=60",
+    tags: ["Math", "Grade 6"],
   },
   {
     id: 2,
-    title: "Biology: Life Sciences",
-    description: "Explore the fundamental principles of life, from cellular structures to ecosystems.",
-    duration: "18 Weeks",
-    faculty: "Prof. David Lee",
-    level: "Intermediate",
+    title: "General Science – Grade 7",
+    description:
+      "Covers basic Physics, Chemistry, and Biology concepts with real-life examples and activities.",
+    duration: "1 Academic Year",
+    faculty: "Mr. Rohan Mehta",
+    level: "Beginner",
     subject: "Science",
-    gradeLevel: "High School (9-12)",
+    gradeLevel: "Middle School (6-8)",
     programType: "Standard Curriculum",
-    image: "https://plus.unsplash.com/premium_photo-1661432575489-b0400f4fea58?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["Science", "High School (9-12)"]
+    image:
+      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=60",
+    tags: ["Science", "Experiments"],
   },
   {
     id: 3,
-    title: "World History: Ancient to Modern",
-    description: "A comprehensive study of human civilizations from ancient times through the modern era, focusing on key events.",
-    duration: "20 Weeks",
-    faculty: "Ms. Sarah Miller",
+    title: "English Grammar & Reading – Grade 8",
+    description:
+      "Improve writing, grammar, comprehension, and vocabulary through interactive reading sessions.",
+    duration: "1 Academic Year",
+    faculty: "Ms. Priya Kapoor",
+    level: "Intermediate",
+    subject: "Language Arts",
+    gradeLevel: "Middle School (6-8)",
+    programType: "Standard Curriculum",
+    image:
+      "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1200&q=60",
+    tags: ["English", "Grammar"],
+  },
+  {
+    id: 4,
+    title: "Social Studies – Grade 9",
+    description:
+      "Learn about Indian history, civics, geography, economics and global awareness topics.",
+    duration: "1 Academic Year",
+    faculty: "Mr. Akash Verma",
     level: "Intermediate",
     subject: "Social Studies",
     gradeLevel: "High School (9-12)",
     programType: "Standard Curriculum",
-    image: "https://plus.unsplash.com/premium_photo-1661432575489-b0400f4fea58?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["Social Studies"]
-  },
-  {
-    id: 4,
-    title: "Creative Writing Workshop",
-    description: "Develop your storytelling skills through various genres, including fiction, poetry, and creative non-fiction.",
-    duration: "12 Weeks",
-    faculty: "Mr. Alex Johnson",
-    level: "Intermediate",
-    subject: "Language Arts",
-    gradeLevel: "High School (9-12)",
-    programType: "Enrichment Program",
-    image: "https://plus.unsplash.com/premium_photo-1661432575489-b0400f4fea58?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["Language Arts", "Arts & Music"]
+    image:
+      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=60",
+    tags: ["Social Studies"],
   },
   {
     id: 5,
-    title: "Introduction to Programming",
-    description: "Learn the basics of computer programming using Python. Covers fundamental concepts like variables, loops, and functions.",
-    duration: "14 Weeks",
-    faculty: "Dr. Chris Wong",
+    title: "Computer Basics & Coding – Grade 10",
+    description:
+      "Introduction to computers, typing skills, MS Office, and basic programming in HTML & Python.",
+    duration: "1 Academic Year",
+    faculty: "Ms. Neha Bhatia",
     level: "Beginner",
     subject: "Computer Science",
     gradeLevel: "High School (9-12)",
     programType: "Standard Curriculum",
-    image: "https://plus.unsplash.com/premium_photo-1661432575489-b0400f4fea58?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["Computer Science"]
+    image:
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=60",
+    tags: ["Coding", "Basic Computers"],
   },
   {
     id: 6,
-    title: "Physics: Mechanics & Motion",
-    description: "An in-depth exploration of classical mechanics, energy, and waves, featuring hands-on labs.",
-    duration: "16 Weeks",
-    faculty: "Dr. Olivia Brown",
+    title: "Physics – Class 11 (NCERT)",
+    description:
+      "Mechanics, laws of motion, waves, and thermodynamics taught using models & experiments.",
+    duration: "1 Academic Year",
+    faculty: "Dr. Sameer Rao",
     level: "Advanced",
     subject: "Science",
     gradeLevel: "High School (9-12)",
-    programType: "Advanced Placement",
-    image: "https://plus.unsplash.com/premium_photo-1661432575489-b0400f4fea58?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["Science", "Advanced Placement"]
+    programType: "Standard Curriculum",
+    image:
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=60",
+    tags: ["Physics", "Class 11"],
   },
   {
     id: 7,
-    title: "AP Calculus AB",
-    description: "Rigorous preparation for the AP Calculus AB exam, covering limits, derivatives, integrals, and their applications.",
-    duration: "32 Weeks",
-    faculty: "Prof. Robert Davis",
-    level: "Expert",
-    subject: "Mathematics",
+    title: "Chemistry – Class 12 (NCERT)",
+    description:
+      "Physical, Organic, and Inorganic Chemistry concepts with lab-based learning.",
+    duration: "1 Academic Year",
+    faculty: "Mrs. Shweta Kulkarni",
+    level: "Advanced",
+    subject: "Science",
     gradeLevel: "High School (9-12)",
-    programType: "Advanced Placement",
-    image: "https://plus.unsplash.com/premium_photo-1661432575489-b0400f4fea58?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["Mathematics"]
+    programType: "Standard Curriculum",
+    image:
+      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=60",
+    tags: ["Chemistry", "Class 12"],
   },
   {
     id: 8,
-    title: "Literary Analysis & Criticism",
-    description: "Develop critical reading and analytical writing skills through the study of diverse literary texts.",
-    duration: "18 Weeks",
-    faculty: "Dr. Sophia Garcia",
-    level: "Advanced",
-    subject: "Language Arts",
-    gradeLevel: "High School (9-12)",
-    programType: "Advanced Placement",
-    image: "https://plus.unsplash.com/premium_photo-1661432575489-b0400f4fea58?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["Language Arts"]
-  }
-]
+    title: "Fine Arts & Drawing – School Program",
+    description:
+      "Creative drawing, painting, coloring, and craft activities for school students.",
+    duration: "12 Weeks",
+    faculty: "Ms. Alisha D’Souza",
+    level: "Beginner",
+    subject: "Arts & Music",
+    gradeLevel: "Elementary (K-5)",
+    programType: "Enrichment Program",
+    image:
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=60",
+    tags: ["Arts", "Drawing"],
+  },
+];
 
+/* --------------  FILTER OPTIONS -------------- */
 const gradeLevels = [
   "Elementary (K-5)",
   "Middle School (6-8)",
   "High School (9-12)",
-  "Advanced Placement"
-]
-
+];
 const subjects = [
   "Mathematics",
   "Science",
   "Language Arts",
   "Social Studies",
   "Computer Science",
-  "Arts & Music"
-]
-
+  "Arts & Music",
+];
 const programTypes = [
   "Standard Curriculum",
   "Honors Program",
   "Enrichment Program",
-  "Specialized Workshop"
-]
+  "Specialized Workshop",
+];
+const difficultyLevels = ["Beginner", "Intermediate", "Advanced"];
 
-const difficultyLevels = [
-  "Beginner",
-  "Intermediate",
-  "Advanced",
-  "Expert"
-]
+/* ==========================================================
+   RE-USABLE MODAL COMPONENT
+   ========================================================== */
+function CourseModal({ course, onClose }) {
+  // Lock body scroll and handle Escape key
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    const handleEsc = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [onClose]);
 
-function CoursesAcademics() {
+  if (!course) return null;
+
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <div
+        className="modal-panel"
+        onClick={(e) => e.stopPropagation()} // Prevent click from closing modal
+        role="dialog"
+        aria-modal="true"
+      >
+        <button className="modal-close-btn" onClick={onClose}>
+          &times;
+        </button>
+
+        <div className="modal-hero-image">
+          <img src={course.image} alt={course.title} />
+        </div>
+
+        <div className="modal-content">
+          <div className="modal-header">
+            <div className="modal-tags-list">
+              {course.tags.map((tag, idx) => (
+                <span key={idx} className="course-tag">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <h2>{course.title}</h2>
+          </div>
+
+          <div className="modal-grid">
+            <div className="modal-main-info">
+              <h3>About this Course</h3>
+              <p>{course.description}</p>
+            </div>
+
+            <div className="modal-sidebar-info">
+              <div className="info-item">
+                <span className="label">Grade Level</span>
+                <span className="value">{course.gradeLevel}</span>
+              </div>
+              <div className="info-item">
+                <span className="label">Subject</span>
+                <span className="value">{course.subject}</span>
+              </div>
+              <div className="info-item">
+                <span className="label">Program Type</span>
+                <span className="value">{course.programType}</span>
+              </div>
+              <div className="info-item">
+                <span className="label">Difficulty</span>
+                <span className="value">{course.level}</span>
+              </div>
+              <div className="info-item">
+                <span className="label">Duration</span>
+                <span className="value">{course.duration}</span>
+              </div>
+              <div className="info-item">
+                <span className="label">Faculty</span>
+                <span className="value">{course.faculty}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="modal-actions">
+            <button className="btn-enrol">Enrol Now</button>
+            <button className="btn-cancel" onClick={onClose}>
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================================
+   MAIN PAGE
+   ========================================================== */
+export default function CoursesAcademics() {
+  /* --------------  FILTER STATE -------------- */
   const [filters, setFilters] = useState({
     gradeLevels: [],
     subjects: [],
     programTypes: [],
-    difficultyLevels: []
-  })
-
+    difficultyLevels: [],
+  });
   const [expandedSections, setExpandedSections] = useState({
     gradeLevel: true,
     subject: true,
     programType: true,
-    difficultyLevel: true
-  })
+    difficultyLevel: true,
+  });
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // New state for mobile filter toggle
-  const [isFilterOpen, setIsFilterOpen] = useState(false)
+  /* --------------  MODAL STATE -------------- */
+  const [selectedCourse, setSelectedCourse] = useState(null);
 
-  const toggleSection = (section) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [section]: !prev[section]
-    }))
-  }
-
-  const handleFilterChange = (category, value) => {
-    setFilters(prev => {
-      const currentFilters = prev[category]
-      const newFilters = currentFilters.includes(value)
-        ? currentFilters.filter(item => item !== value)
-        : [...currentFilters, value]
-      return { ...prev, [category]: newFilters }
-    })
-  }
-
-  // Count active filters
-  const activeFilterCount = 
-    filters.gradeLevels.length + 
-    filters.subjects.length + 
-    filters.programTypes.length + 
-    filters.difficultyLevels.length
-
-  // Clear all filters
-  const clearAllFilters = () => {
+  /* --------------  FILTER LOGIC -------------- */
+  const toggleSection = (s) =>
+    setExpandedSections((p) => ({ ...p, [s]: !p[s] }));
+  const handleFilterChange = (cat, val) => {
+    setFilters((p) => {
+      const arr = p[cat];
+      return {
+        ...p,
+        [cat]: arr.includes(val) ? arr.filter((x) => x !== val) : [...arr, val],
+      };
+    });
+  };
+  const clearAllFilters = () =>
     setFilters({
       gradeLevels: [],
       subjects: [],
       programTypes: [],
-      difficultyLevels: []
-    })
-  }
+      difficultyLevels: [],
+    });
 
-  const filteredCourses = coursesData.filter(course => {
-    const gradeMatch = filters.gradeLevels.length === 0 || filters.gradeLevels.includes(course.gradeLevel)
-    const subjectMatch = filters.subjects.length === 0 || filters.subjects.includes(course.subject)
-    const programMatch = filters.programTypes.length === 0 || filters.programTypes.includes(course.programType)
-    const difficultyMatch = filters.difficultyLevels.length === 0 || filters.difficultyLevels.includes(course.level)
-    return gradeMatch && subjectMatch && programMatch && difficultyMatch
-  })
+  const activeFilterCount = Object.values(filters).reduce(
+    (a, b) => a + b.length,
+    0
+  );
 
+  const filteredCourses = coursesData.filter(
+    (c) =>
+      (filters.gradeLevels.length
+        ? filters.gradeLevels.includes(c.gradeLevel)
+        : true) &&
+      (filters.subjects.length ? filters.subjects.includes(c.subject) : true) &&
+      (filters.programTypes.length
+        ? filters.programTypes.includes(c.programType)
+        : true) &&
+      (filters.difficultyLevels.length
+        ? filters.difficultyLevels.includes(c.level)
+        : true)
+  );
+
+  /* --------------  RENDER -------------- */
   return (
     <div className="courses-academics-page">
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="courses-hero">
         <h1>Our Academic Programs</h1>
-        <p>Discover a wide range of courses designed to foster critical thinking, creativity, and a lifelong love for learning.</p>
+        <p>
+          Discover engaging school-level courses designed for growing minds from
+          Grades K–12.
+        </p>
       </section>
 
-      {/* Main Content */}
       <div className="courses-content">
-        {/* Mobile Filter Toggle Button */}
-        <button 
+        {/* Mobile filter toggle */}
+        <button
           className="mobile-filter-toggle"
-          onClick={() => setIsFilterOpen(!isFilterOpen)}
+          onClick={() => setIsFilterOpen((p) => !p)}
         >
-          <span className="filter-icon">⚙️</span>
-          <span>Filters</span>
+          <span>⚙️ Filters</span>
           {activeFilterCount > 0 && (
             <span className="filter-badge">{activeFilterCount}</span>
           )}
         </button>
 
-        {/* Filter Overlay for Mobile */}
-        <div 
-          className={`filter-overlay ${isFilterOpen ? 'active' : ''}`}
-          onClick={() => setIsFilterOpen(false)}
-        ></div>
-
         {/* Filter Sidebar */}
-        <aside className={`filter-sidebar ${isFilterOpen ? 'open' : ''}`}>
-          {/* Mobile Filter Header */}
-          <div className="mobile-filter-header">
-            <h3>Filters</h3>
-            <button 
-              className="close-filter-btn"
-              onClick={() => setIsFilterOpen(false)}
-            >
-              ✕
-            </button>
-          </div>
-
+        <aside className={`filter-sidebar ${isFilterOpen ? "open" : ""}`}>
           <h3 className="filter-title">Filter Courses</h3>
-
-          {/* Clear Filters Button */}
           {activeFilterCount > 0 && (
             <button className="clear-filters-btn" onClick={clearAllFilters}>
               Clear All ({activeFilterCount})
             </button>
           )}
 
-          {/* Grade Level Filter */}
+          {/* Grade */}
           <div className="filter-section">
-            <button 
+            <button
               className="filter-section-header"
-              onClick={() => toggleSection('gradeLevel')}
+              onClick={() => toggleSection("gradeLevel")}
             >
-              <span>Grade Level</span>
-              <span className={`chevron ${expandedSections.gradeLevel ? 'expanded' : ''}`}>▼</span>
+              Grade Level
             </button>
             {expandedSections.gradeLevel && (
               <div className="filter-options">
-                {gradeLevels.map(level => (
-                  <label key={level} className="filter-checkbox">
+                {gradeLevels.map((l) => (
+                  <label key={l} className="filter-checkbox">
                     <input
                       type="checkbox"
-                      checked={filters.gradeLevels.includes(level)}
-                      onChange={() => handleFilterChange('gradeLevels', level)}
+                      checked={filters.gradeLevels.includes(l)}
+                      onChange={() => handleFilterChange("gradeLevels", l)}
                     />
-                    <span className="checkmark"></span>
-                    <span className="filter-label">{level}</span>
+                    <span className="filter-label">{l}</span>
                   </label>
                 ))}
               </div>
             )}
           </div>
 
-          {/* Subject Filter */}
+          {/* Subject */}
           <div className="filter-section">
-            <button 
+            <button
               className="filter-section-header"
-              onClick={() => toggleSection('subject')}
+              onClick={() => toggleSection("subject")}
             >
-              <span>Subject</span>
-              <span className={`chevron ${expandedSections.subject ? 'expanded' : ''}`}>▼</span>
+              Subject
             </button>
             {expandedSections.subject && (
               <div className="filter-options">
-                {subjects.map(subject => (
-                  <label key={subject} className="filter-checkbox">
+                {subjects.map((s) => (
+                  <label key={s} className="filter-checkbox">
                     <input
                       type="checkbox"
-                      checked={filters.subjects.includes(subject)}
-                      onChange={() => handleFilterChange('subjects', subject)}
+                      checked={filters.subjects.includes(s)}
+                      onChange={() => handleFilterChange("subjects", s)}
                     />
-                    <span className="checkmark"></span>
-                    <span className="filter-label">{subject}</span>
+                    <span className="filter-label">{s}</span>
                   </label>
                 ))}
               </div>
             )}
           </div>
 
-          {/* Program Type Filter */}
+          {/* Program Type */}
           <div className="filter-section">
-            <button 
+            <button
               className="filter-section-header"
-              onClick={() => toggleSection('programType')}
+              onClick={() => toggleSection("programType")}
             >
-              <span>Program Type</span>
-              <span className={`chevron ${expandedSections.programType ? 'expanded' : ''}`}>▼</span>
+              Program Type
             </button>
             {expandedSections.programType && (
               <div className="filter-options">
-                {programTypes.map(type => (
-                  <label key={type} className="filter-checkbox">
+                {programTypes.map((t) => (
+                  <label key={t} className="filter-checkbox">
                     <input
                       type="checkbox"
-                      checked={filters.programTypes.includes(type)}
-                      onChange={() => handleFilterChange('programTypes', type)}
+                      checked={filters.programTypes.includes(t)}
+                      onChange={() => handleFilterChange("programTypes", t)}
                     />
-                    <span className="checkmark"></span>
-                    <span className="filter-label">{type}</span>
+                    <span className="filter-label">{t}</span>
                   </label>
                 ))}
               </div>
             )}
           </div>
 
-          {/* Difficulty Level Filter */}
+          {/* Difficulty */}
           <div className="filter-section">
-            <button 
+            <button
               className="filter-section-header"
-              onClick={() => toggleSection('difficultyLevel')}
+              onClick={() => toggleSection("difficultyLevel")}
             >
-              <span>Difficulty Level</span>
-              <span className={`chevron ${expandedSections.difficultyLevel ? 'expanded' : ''}`}>▼</span>
+              Difficulty Level
             </button>
             {expandedSections.difficultyLevel && (
               <div className="filter-options">
-                {difficultyLevels.map(level => (
-                  <label key={level} className="filter-checkbox">
+                {difficultyLevels.map((l) => (
+                  <label key={l} className="filter-checkbox">
                     <input
                       type="checkbox"
-                      checked={filters.difficultyLevels.includes(level)}
-                      onChange={() => handleFilterChange('difficultyLevels', level)}
+                      checked={filters.difficultyLevels.includes(l)}
+                      onChange={() => handleFilterChange("difficultyLevels", l)}
                     />
-                    <span className="checkmark"></span>
-                    <span className="filter-label">{level}</span>
+                    <span className="filter-label">{l}</span>
                   </label>
                 ))}
               </div>
             )}
           </div>
-
-          {/* Mobile Apply Button */}
-          <button 
-            className="apply-filters-btn"
-            onClick={() => setIsFilterOpen(false)}
-          >
-            Show {filteredCourses.length} Results
-          </button>
         </aside>
 
         {/* Course Grid */}
         <main className="courses-grid-container">
           <div className="courses-grid">
-            {filteredCourses.map(course => (
-              <div key={course.id} className="course-card">
+            {filteredCourses.map((c) => (
+              <div key={c.id} className="course-card">
                 <div className="course-image">
-                  <img src={course.image} alt={course.title} />
+                  <img src={c.image} alt={c.title} />
                 </div>
                 <div className="course-content">
                   <div className="course-tags">
-                    {course.tags.map((tag, index) => (
-                      <span key={index} className="course-tag">{tag}</span>
+                    {c.tags.map((t, i) => (
+                      <span key={i} className="course-tag">
+                        {t}
+                      </span>
                     ))}
                   </div>
-                  <h3 className="course-title">{course.title}</h3>
-                  <p className="course-description">{course.description}</p>
+                  <h3 className="course-title">{c.title}</h3>
+                  <p className="course-description">{c.description}</p>
                   <div className="course-meta">
-                    <p><strong>Duration:</strong> {course.duration}</p>
-                    <p><strong>Faculty:</strong> {course.faculty}</p>
-                    <p><strong>Level:</strong> {course.level}</p>
+                    <p>
+                      <strong>Duration:</strong> {c.duration}
+                    </p>
+                    <p>
+                      <strong>Faculty:</strong> {c.faculty}
+                    </p>
+                    <p>
+                      <strong>Level:</strong> {c.level}
+                    </p>
                   </div>
-                  <button className="view-details-btn">View Details →</button>
+                  {/* Updated Button to Open Modal */}
+                  <button
+                    className="view-details-btn"
+                    onClick={() => setSelectedCourse(c)}
+                  >
+                    View Details →
+                  </button>
                 </div>
               </div>
             ))}
+            {filteredCourses.length === 0 && (
+              <div className="no-results">
+                <p>No courses found. Try adjusting your filters.</p>
+              </div>
+            )}
           </div>
-
-          {filteredCourses.length === 0 && (
-            <div className="no-results">
-              <p>No courses found matching your filters. Try adjusting your selection.</p>
-            </div>
-          )}
         </main>
       </div>
-    </div>
-  )
-}
 
-export default CoursesAcademics
+      {/* RENDER MODAL CONDITIONALLY */}
+      {selectedCourse && (
+        <CourseModal
+          course={selectedCourse}
+          onClose={() => setSelectedCourse(null)}
+        />
+      )}
+    </div>
+  );
+}

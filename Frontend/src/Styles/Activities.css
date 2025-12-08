@@ -22,8 +22,8 @@
   padding: 1rem;
   margin: 2rem;
   border-radius: 20px;
-  
 }
+
 .act-h1 {
   font-size: 3rem;
   font-weight: 600;
@@ -39,13 +39,13 @@
 /* Active state for filter buttons */
 .act-btn.active {
   color: #fff;
-  background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+  background: linear-gradient(135deg, #1d4ed8, #1d4ed8);
   box-shadow: 0 22px 45px rgba(37, 99, 235, 0.35);
 }
 
 .act-description {
   font-size: 1.2rem;
-  color: #616161;
+  color: #363434;
 }
 
 #act-section1 {
@@ -59,12 +59,10 @@
   padding: 3rem 1.8rem;
   border-radius: 24px;
   height: 500px;
-  /* background: linear-gradient(135deg, #eff6ff 0%, #f9fafb 55%, #e0f2fe 100%); */
-  /* box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08),
-    0 0 0 1px rgba(148, 163, 184, 0.28); */
   .act-h1 {
     color: #2563eb;
     font-weight: 700;
+    text-shadow: 0px 0px 2px rgba(26,26,26,0.62);
     font-size: clamp(2.6rem, 4.4vw, 3.2rem);
   }
 }
@@ -83,13 +81,19 @@
   #act-sec2-box2 {
     margin: 0.25rem;
   }
+  h3{
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 1.4rem;
+    /* text-shadow: 0px 0px 2px rgba(26,26,26,0.62); */
+  }
 
   #act-sec2-box1 {
     .act-btn {
       background-color: #fff;
       border-radius: 999px;
-      margin-top: 0.6rem;
       margin-right: 1rem;
+      margin-bottom: 1rem;
       padding: 0.6rem 1.8rem;
       font-size: 1rem;
       font-weight: 600;
@@ -111,25 +115,7 @@
   }
 }
 
-/* Main highlight section on Activities page */
-
-#act-sec3-box1 {
-  max-width: 720px;
-  margin: 0 auto 1.8rem;
-}
-
-#act-sec3-box1 h2 {
-  font-size: 1.9rem;
-  font-weight: 600;
-  margin-bottom: 0.7rem;
-  color: #0f172a;
-}
-
-#act-sec3-box1 p {
-  font-size: 0.98rem;
-  color: #4b5563;
-  line-height: 1.7;
-}
+/* --- SECTION 3 STYLING (Videos) --- */
 #act-section3 {
   margin-top: 4rem;
   margin-bottom: 3rem;
@@ -142,10 +128,105 @@
   text-align: center;
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08),
     0 0 0 1px rgba(148, 163, 184, 0.28);
-  #act-sec3-box2 {
-    margin: 0.25rem;
-  }
 }
+
+/* Video Card Container */
+.cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Video Card Styles */
+.video-card {
+  position: relative;
+  width: 300px; /* Adjusted to fit your layout */
+  height: 180px; 
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  background-color: #000;
+  transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+  transform: scale(1.05);
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  pointer-events: none;
+}
+
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45px;
+  height: 45px;
+  border: 3px solid #32b5b52c;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.play-btn::after {
+  content: '';
+  display: block;
+  width: 0; 
+  height: 0; 
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 12px solid #00BFFF;
+  margin-left: 3px;
+}
+
+.video-card:hover .play-btn {
+  background: rgba(0, 0, 0, 0.7);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.card-title {
+  position: absolute;
+  bottom: 12px;
+  left: 15px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  z-index: 2;
+  margin: 0;
+}
+
+.video-stream {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- END SECTION 3 --- */
+
 
 #act-section4 {
   display: flex;
@@ -186,8 +267,9 @@
 /* ========= Scroll reveal animation ========= */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(50px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal-on-scroll.visible {
@@ -195,15 +277,15 @@
   transform: translateY(0);
 }
 
-/* small stagger for cards inside a grid */
+/* smoother stagger timing */
 #act-sec3-box2 .campus-card:nth-child(1) {
-  transition-delay: 0.3s;
+  transition-delay: 0.15s;
 }
 #act-sec3-box2 .campus-card:nth-child(2) {
-  transition-delay: 0.3s;
+  transition-delay: 0.35s;
 }
 #act-sec3-box2 .campus-card:nth-child(3) {
-  transition-delay: 0.5s;
+  transition-delay: 0.55s;
 }
 
 @media (max-width: 600px) {
@@ -221,5 +303,11 @@
   .act-description {
     font-size: 1rem;
     color: #616161;
+  }
+  
+  /* Make video cards stack on mobile */
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
   }
 }

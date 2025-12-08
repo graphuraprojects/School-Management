@@ -1,164 +1,408 @@
+/* ============================================================
+   FOOTER MAIN CONTAINER
+============================================================ */
 .footer-container {
-    background-color: #fff;
-    padding-top: 50px;
-    margin-top: auto;
+  background: linear-gradient(180deg, #eef2ff, #ffffff);
+  padding-top: 20px;
+  padding-bottom: 30px;
+  color: #222;
+  border-top: 1px solid #dddddd50;
 }
 
+/* ============================================================
+   WAVE SEPARATOR
+============================================================ */
+/* .footer-wave {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  background: transparent;
+  
+}
+.footer-wave svg {
+  display: block;
+  width: 100%;
+  height: 70px;
+}
+.footer-wave svg path {
+  fill: #eef2ff;
+} */
+
+/* ============================================================
+   GRID LAYOUT
+============================================================ */
 .footer-content {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px 20px;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1.6fr;
+  gap: 36px;
 }
 
-/* Brand Section */
-.footer-brand {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* ============================================================
+   NEWSLETTER
+============================================================ */
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.newsletter-text strong {
+  font-size: 15px;
 }
 
-.footer-logo-icon {
-    font-size: 24px;
-    color: #3498db;
+.newsletter-text span {
+  font-size: 13px;
+  color: #777;
 }
 
-.footer-logo-text {
-    font-size: 20px;
-    font-weight: 700;
-    color: #3498db;
+.newsletter-actions {
+  display: flex;
+  gap: 8px;
 }
 
-.footer-description {
-    color: #666;
-    font-size: 14px;
-    line-height: 1.6;
+.newsletter-actions input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
 }
 
-/* Social Icons */
+.newsletter-actions input:focus {
+  border-color: #4482ff;
+  box-shadow: 0 0 8px #4482ff50;
+}
+
+.btn-subscribe {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #4482ff, #135ae8);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-subscribe:hover {
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   SOCIAL ICONS
+============================================================ */
 .social-icons {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
+  display: flex;
+  gap: 12px;
 }
 
 .social-icon {
-    color: #4482ff;
-    transition: color 0.3s ease;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #e8eeff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  position: relative;
+  transition: 0.25s;
+  cursor: pointer;
+  box-shadow: 0 6px 14px #00000010;
 }
 
+.social-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: #000 !important;
+  stroke: #000 !important;
+  transition: 0.25s;
+}
+
+/* Instagram special (stroke only) */
+.social-icon[aria-label="Instagram"] svg {
+  fill: none !important;
+  stroke: #000 !important;
+}
+
+/* Hover effects */
 .social-icon:hover {
-    color: #135ae8;
+  transform: translateY(-6px) scale(1.07);
+  box-shadow: 0 12px 28px #00000025;
+  color: #fff;
 }
 
-/* Footer Sections */
+.social-icon::after {
+  content: "";
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #ffffff30;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.social-icon:hover::after {
+  opacity: 1;
+  transform: scale(1.25);
+}
+
+/* Brand hover colors */
+.social-icon[aria-label="Facebook"]:hover {
+  background: #1877f2;
+}
+.social-icon[aria-label="Google"]:hover {
+  background: #db4437;
+}
+.social-icon[aria-label="Instagram"]:hover {
+  background: radial-gradient(
+    circle at 30% 30%,
+    #feda75,
+    #fa7e1e,
+    #d62976,
+    #962fbf
+  );
+}
+.social-icon[aria-label="LinkedIn"]:hover {
+  background: #0077b5;
+}
+
+/* ============================================================
+   FOOTER SECTIONS
+============================================================ */
 .footer-section {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .footer-heading {
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 700;
 }
 
+/* Links */
 .footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.footer-links li a {
-    color: #4482ff;
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s ease;    
+.footer-links li span {
+  cursor: pointer;
+  font-size: 14px;
+  color: #000;
+  text-decoration: none !important;
+  transition: 0.2s ease;
 }
 
-.footer-links li a:hover {
-    color: #135ae8;
-    text-decoration: underline;
+.footer-links li span:hover {
+  color: #135ae8;
+  text-decoration: none !important;
 }
 
-/* Contact Info */
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+/* ============================================================
+   INSTITUTIONAL INFO
+============================================================ */
+.inst-heading {
+  font-size: 13px;
+  font-weight: 600;
 }
 
-.contact-info p {
-    color: #555;
-    font-size: 14px;
-    margin: 0;
-    line-height: 1.5;
+.inst-hours {
+  font-size: 13px;
+  color: #777;
 }
 
-/* Footer Bottom */
-.footer-bottom {
-    border-top: 1px solid #e0e0e0;
-    padding: 20px 40px;
-    text-align: center;
+.map-link {
+  font-size: 13px;
+  color: #000;
+  text-decoration: none !important;
 }
 
-.footer-bottom p {
-    color: #666;
-    font-size: 14px;
-    margin: 0;
+.map-link:hover {
+  color: #135ae8;
+  text-decoration: none;
 }
 
-/* Responsive Design - Mobile First innit */
+/* ============================================================
+   CONTACT INFO
+============================================================ */
+.contact-info p,
+.contact-info a {
+  font-size: 14px;
+  color: #555;
+  text-decoration: none;
+}
+
+/* ============================================================
+   LEGAL AREA (BOTTOM COPYRIGHT)
+============================================================ */
+.legal {
+  margin-top: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.legal-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.legal-links span {
+  cursor: pointer;
+  color: #000;
+  text-decoration: none !important;
+}
+
+.legal-links span:hover {
+  color: #135ae8;
+}
+
+/* ============================================================
+   BACK TO TOP BUTTON
+============================================================ */
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #4482ff, #135ae8);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  box-shadow: 0 10px 30px #00000030;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition: 0.3s;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
 @media (max-width: 1024px) {
-    .footer-content {
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-        padding: 0 30px 30px;
-    }
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
 }
 
 @media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 0 20px 30px;
-        text-align: center;
-    }
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 
-    .footer-brand {
-        align-items: center;
-    }
+  .newsletter-actions {
+    flex-direction: column;
+  }
 
-    .footer-logo {
-        justify-content: center;
-    }
-
-    .social-icons {
-        justify-content: center;
-    }
-
-    .footer-section {
-        align-items: center;
-    }
-
-    .footer-links {
-        align-items: center;
-    }
-
-    .contact-info {
-        align-items: center;
-    }
+  .social-icons,
+  .legal-links {
+    justify-content: center;
+  }
 }
+
+/* Fade-in reveal animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-content > * {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* Hover effect on links */
+.footer-links li span {
+  position: relative;
+}
+
+.footer-links li span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: #135ae8;
+  transition: 0.3s ease;
+}
+
+.footer-links li span:hover::after {
+  width: 100%;
+}
+
+/* Newsletter input focus glow */
+.newsletter-actions input:focus {
+  border-color: #135ae8;
+  box-shadow: 0 0 10px #135ae860;
+  transform: scale(1.02);
+}
+
+/* Subscribe button subtle pulse */
+.btn-subscribe:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* Social icon ripple hover */
+.social-icon:hover {
+  transform: translateY(-8px) scale(1.12);
+  filter: brightness(1.1);
+}
+
+/* Back to Top rotation */
+.back-to-top:hover {
+  transform: translateY(-4px) rotate(360deg);
+}
+
+/* Add subtle fade on wave */
+.footer-wave svg path {
+  animation: fadeWave 1.3s ease;
+}
+
+@keyframes fadeWave {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade for small text on hover */
+.legal-links span {
+  transition: 0.3s;
+}
+.legal-links span:hover {
+  opacity: 0.7;
+}
+

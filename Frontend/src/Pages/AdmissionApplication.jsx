@@ -1,52 +1,74 @@
-import React, { useState } from 'react'
-import "../Styles/AdmissionApplication.css"
+import React, { useState } from "react";
+import "../Styles/AdmissionApplication.css";
+import axios from "axios";
 
 function AdmissionApplication() {
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const [loading, setLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
   const [formData, setFormData] = useState({
     // Student Personal Details
-    fullName: '',
-    dateOfBirth: '',
-    gender: '',
-    nationality: '',
-    proposedGrade: '',
+    fullName: "",
+    dateOfBirth: "",
+    gender: "",
+    nationality: "",
+    proposedGrade: "",
     studentPhoto: null,
-    
+
     // Parent/Guardian Details
-    parentName: '',
-    relationship: '',
-    parentEmail: '',
-    parentPhone: '',
-    parentWhatsApp: '',
-    
+    parentName: "",
+    relationship: "",
+    parentEmail: "",
+    parentPhone: "",
+    parentWhatsApp: "",
+
     // Academic History & Documents
-    previousSchool: '',
-    previousGrade: '',
+    previousSchool: "",
+    previousGrade: "",
     birthCertificate: null,
     previousMarksheets: null,
-    
+
     // Emergency Contact
-    emergencyName: '',
-    emergencyRelationship: '',
-    emergencyPhone: '',
-    
+    emergencyName: "",
+    emergencyRelationship: "",
+    emergencyPhone: "",
+
     // Declaration
     agreeTerms: false,
-    additionalNotes: ''
-  })
+    additionalNotes: "",
+  });
 
   const handleInputChange = (e) => {
-    const { name, value, type, checked, files } = e.target
-    setFormData(prev => ({
+    const { name, value, type, checked, files } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : type === 'file' ? files[0] : value
-    }))
-  }
+      [name]:
+        type === "checkbox" ? checked : type === "file" ? files[0] : value,
+    }));
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
-    // TODO: Connect to backend API
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const data = new FormData();
+    Object.keys(formData).forEach((key) => {
+      data.append(key, formData[key]);
+    });
+
+    try {
+      const res = await axios.post(`${apiUrl}/admission`, data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      setShowPopup(true);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="admission-container">
@@ -55,21 +77,22 @@ function AdmissionApplication() {
         <div className="admission-header">
           <h1>Admission Application</h1>
           <p>
-            Welcome to the EduConnect Hub online admission portal. Please fill out the form below 
-            carefully, providing all necessary details and uploading required documents. Your journey 
-            with us begins here!
+            Welcome to the EduConnect Hub online admission portal. Please fill
+            out the form below carefully, providing all necessary details and
+            uploading required documents. Your journey with us begins here!
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="admission-form">
-          
           {/* Section 1: Student Personal Details */}
           <section className="form-section">
             <div className="section-header">
               <h2>Student Personal Details</h2>
-              <p>Please provide the basic information of the student applying.</p>
+              <p>
+                Please provide the basic information of the student applying.
+              </p>
             </div>
-            
+
             <div className="form-grid">
               <div className="form-group">
                 <label htmlFor="fullName">Full Name</label>
@@ -83,7 +106,7 @@ function AdmissionApplication() {
                   required
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="dateOfBirth">Date of Birth</label>
                 <input
@@ -95,7 +118,7 @@ function AdmissionApplication() {
                   required
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="gender">Gender</label>
                 <select
@@ -111,7 +134,7 @@ function AdmissionApplication() {
                   <option value="other">Other</option>
                 </select>
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="nationality">Nationality</label>
                 <input
@@ -124,7 +147,7 @@ function AdmissionApplication() {
                   required
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="proposedGrade">Proposed Grade / Class</label>
                 <select
@@ -150,7 +173,7 @@ function AdmissionApplication() {
                   <option value="10">Class 10</option>
                 </select>
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="studentPhoto">Student Photo</label>
                 <div className="file-upload">
@@ -161,7 +184,10 @@ function AdmissionApplication() {
                     accept="image/*"
                     onChange={handleInputChange}
                   />
-                  <span className="file-hint">Upload a recent passport-sized photograph of the student (JPG, PNG, max 5MB)</span>
+                  <span className="file-hint">
+                    Upload a recent passport-sized photograph of the student
+                    (JPG, PNG, max 5MB)
+                  </span>
                 </div>
               </div>
             </div>
@@ -171,9 +197,11 @@ function AdmissionApplication() {
           <section className="form-section">
             <div className="section-header">
               <h2>Parent / Guardian Details</h2>
-              <p>Provide contact information for the primary parent or guardian.</p>
+              <p>
+                Provide contact information for the primary parent or guardian.
+              </p>
             </div>
-            
+
             <div className="form-grid">
               <div className="form-group">
                 <label htmlFor="parentName">Full Name</label>
@@ -187,7 +215,7 @@ function AdmissionApplication() {
                   required
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="relationship">Relationship to Student</label>
                 <select
@@ -204,7 +232,7 @@ function AdmissionApplication() {
                   <option value="other">Other</option>
                 </select>
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="parentEmail">Email Address</label>
                 <input
@@ -217,7 +245,7 @@ function AdmissionApplication() {
                   required
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="parentPhone">Phone Number</label>
                 <input
@@ -230,7 +258,7 @@ function AdmissionApplication() {
                   required
                 />
               </div>
-              
+
               <div className="form-group full-width">
                 <label htmlFor="parentWhatsApp">WhatsApp Number</label>
                 <input
@@ -250,9 +278,11 @@ function AdmissionApplication() {
           <section className="form-section">
             <div className="section-header">
               <h2>Academic History & Documents</h2>
-              <p>Details of previous schooling and required document uploads.</p>
+              <p>
+                Details of previous schooling and required document uploads.
+              </p>
             </div>
-            
+
             <div className="form-grid">
               <div className="form-group">
                 <label htmlFor="previousSchool">Previous School Name</label>
@@ -265,7 +295,7 @@ function AdmissionApplication() {
                   onChange={handleInputChange}
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="previousGrade">Previous Grade / Class</label>
                 <input
@@ -277,7 +307,7 @@ function AdmissionApplication() {
                   onChange={handleInputChange}
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="birthCertificate">Birth Certificate</label>
                 <div className="file-upload">
@@ -288,10 +318,13 @@ function AdmissionApplication() {
                     accept=".pdf,.jpg,.jpeg,.png"
                     onChange={handleInputChange}
                   />
-                  <span className="file-hint">Upload a scanned copy of the student's birth certificate (PDF, JPG, max 5MB)</span>
+                  <span className="file-hint">
+                    Upload a scanned copy of the student's birth certificate
+                    (PDF, JPG, max 5MB)
+                  </span>
                 </div>
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="previousMarksheets">Previous Marksheets</label>
                 <div className="file-upload">
@@ -302,7 +335,10 @@ function AdmissionApplication() {
                     accept=".pdf,.jpg,.jpeg,.png"
                     onChange={handleInputChange}
                   />
-                  <span className="file-hint">Upload scanned copies of previous academic year marksheets (PDF, JPG, max 10MB)</span>
+                  <span className="file-hint">
+                    Upload scanned copies of previous academic year marksheets
+                    (PDF, JPG, max 10MB)
+                  </span>
                 </div>
               </div>
             </div>
@@ -314,7 +350,7 @@ function AdmissionApplication() {
               <h2>Emergency Contact</h2>
               <p>Provide details for an emergency contact person.</p>
             </div>
-            
+
             <div className="form-grid">
               <div className="form-group">
                 <label htmlFor="emergencyName">Full Name</label>
@@ -328,9 +364,11 @@ function AdmissionApplication() {
                   required
                 />
               </div>
-              
+
               <div className="form-group">
-                <label htmlFor="emergencyRelationship">Relationship to Student</label>
+                <label htmlFor="emergencyRelationship">
+                  Relationship to Student
+                </label>
                 <input
                   type="text"
                   id="emergencyRelationship"
@@ -341,7 +379,7 @@ function AdmissionApplication() {
                   required
                 />
               </div>
-              
+
               <div className="form-group full-width">
                 <label htmlFor="emergencyPhone">Phone Number</label>
                 <input
@@ -357,51 +395,38 @@ function AdmissionApplication() {
             </div>
           </section>
 
-          {/* Section 5: Declaration & Additional Notes */}
-          {/* <section className="form-section">
-            <div className="section-header">
-              <h2>Declaration & Additional Notes</h2>
-              <p>Please review and agree to the terms, and add any additional information.</p>
-            </div>
-            
-            <div className="form-grid">
-              <div className="form-group full-width checkbox-group">
-                <label className="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="agreeTerms"
-                    checked={formData.agreeTerms}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <span>I agree to the <a href="/terms" className="terms-link">terms and conditions</a> of EduConnect Hub.</span>
-                </label>
-              </div>
-              
-              <div className="form-group full-width">
-                <label htmlFor="additionalNotes">Additional Notes (Optional)</label>
-                <textarea
-                  id="additionalNotes"
-                  name="additionalNotes"
-                  placeholder="Any specific information or requests for the admission team..."
-                  value={formData.additionalNotes}
-                  onChange={handleInputChange}
-                  rows="4"
-                />
-              </div>
-            </div>
-          </section> */}
-
           {/* Submit Button */}
           <div className="form-actions">
-            <button type="submit" className="submit-btn">
-              Submit Application
-            </button>
+            <div className="form-actions">
+              <button
+                type="submit"
+                className="submit-btn bg-blue-600 text-white py-2 px-6 rounded-lg font-semibold"
+                disabled={loading}
+              >
+                {loading ? "Submitting..." : "Submit Application"}
+              </button>
+            </div>
           </div>
         </form>
       </div>
+      {showPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-xl shadow-xl text-center max-w-sm animate-fadeIn">
+            <h2 className="text-2xl font-bold text-green-600 mb-3">Success!</h2>
+            <p className="text-gray-700">
+              Admission Application Submitted Successfully 🎉
+            </p>
+            <button
+              onClick={() => setShowPopup(false)}
+              className="mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default AdmissionApplication
+export default AdmissionApplication;

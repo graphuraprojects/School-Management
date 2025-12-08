@@ -100,27 +100,39 @@ const Merchandise = () => {
               .map((item) => (
                 <div
                   key={item._id}
-                  className="group bg-white rounded-xl shadow-lg p-4 overflow-hidden hover:scale-105 hover:shadow-xl transition-transform duration-200 cursor-pointer flex flex-col"
+                  className="group bg-white rounded-2xl shadow-md p-4 overflow-hidden
+             transition-all duration-300 cursor-pointer flex flex-col
+             hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02]"
                 >
-                  <div className="w-full h-48 sm:h-56 lg-h-60 mb-3">
+                  <div className="w-full h-48 sm:h-56 lg:h-60 mb-3 overflow-hidden rounded-xl">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover rounded-md"
+                      className="w-full h-full object-cover rounded-xl
+                 transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
-                  <h4 className="md:text-lg font-bold text-gray-800 mb-1 group-hover:text-blue-600">
+
+                  <h4
+                    className="md:text-lg font-bold text-gray-800 mb-1
+                 transition-colors duration-300 group-hover:text-blue-600"
+                  >
                     {item.title.length > 25
                       ? item.title.slice(0, 25) + "..."
                       : item.title}
                   </h4>
-                  <div className="mt-auto">
-                    <p className="text-gray-500 font-semibold text md:text-lg">
+
+                  <div className="mt-auto space-y-1">
+                    <p className="text-gray-600 font-semibold text-md md:text-lg">
                       ₹{item.price}
                     </p>
+
                     <button
                       onClick={() => addToCart(item)}
-                      className="shadow-md w-full bg-blue-300 text-blue-600 py-1.5 mt-1 font-semibold rounded-lg cursor-pointer hover:bg-blue-900 hover:text-white hover:scale-102 transition-transform duration-300 hover:shadow-lg active:bg-blue-900 active:text-white"
+                      className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold
+                 shadow-md transition-all duration-300
+                 hover:shadow-xl hover:bg-blue-700 hover:-translate-y-1
+                 active:scale-95 cursor-pointer"
                     >
                       Add to Cart
                     </button>

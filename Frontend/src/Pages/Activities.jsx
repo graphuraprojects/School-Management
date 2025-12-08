@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../Styles/Activities.css";
 
+// Your existing imports
 import football from "../assets/activity/footballClub.jpg";
 import basketball from "../assets/activity/basketball.jpeg";
 import drama from "../assets/activity/annualSchoolDrama.jpg";
@@ -8,8 +9,57 @@ import scRobo from "../assets/activity/sc&robo.jpg";
 import music from "../assets/activity/musicEnsemble.jpg";
 import debate from "../assets/activity/schoolDebate.jpg";
 
+// --- DATA FOR VIDEO CARDS ---
+const videoData = [
+  {
+    id: 1,
+    title: "Annual Sports Day",
+    thumbnail:
+      "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1000&auto=format&fit=crop",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+  },
+  {
+    id: 2,
+    title: "Football Finals 2024",
+    thumbnail:
+      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1000&auto=format&fit=crop",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+  },
+  {
+    id: 3,
+    title: "Championship Awards",
+    thumbnail:
+      "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1000&auto=format&fit=crop",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+  },
+];
+
+// --- SUB-COMPONENT FOR VIDEO CARD ---
+const VideoCard = ({ data }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  return (
+    <div className="video-card" onClick={() => setIsPlaying(true)}>
+      {!isPlaying ? (
+        <>
+          <img src={data.thumbnail} alt={data.title} className="thumbnail" />
+          <div className="card-overlay"></div>
+          <div className="play-btn"></div>
+          <h3 className="card-title">{data.title}</h3>
+        </>
+      ) : (
+        <video className="video-stream" src={data.videoUrl} controls autoPlay />
+      )}
+    </div>
+  );
+};
+
 function Activities() {
   const pageRef = useRef(null);
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -18,7 +68,7 @@ function Activities() {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
           } else {
-            entry.target.classList.remove("visible"); // remove class when leaving screen
+            entry.target.classList.remove("visible");
           }
         });
       },
@@ -30,7 +80,7 @@ function Activities() {
 
     return () => observer.disconnect();
   }, []);
-  const [filter, setFilter] = useState("all");
+
   const textapply = (
     <>
       Participant in activities is a cornerstone of the EduConnect Hub
@@ -58,8 +108,8 @@ function Activities() {
         </section>
 
         {/* 2nd box */}
+        <h1 className="act-h1">Our Diverse Activities</h1>
         <section id="act-section2" className="reveal-on-scroll">
-          <h1 className="act-h1">Our Diverse Activities</h1>
           <div id="act-sec2-box1">
             <button
               type="button"
@@ -133,7 +183,9 @@ function Activities() {
               >
                 <img src={scRobo} alt="Science & Robotics" />
                 <h3>Science & Robotics</h3>
-                <p>Explore STEM fields with hands-on projects and competitions.</p>
+                <p>
+                  Explore STEM fields with hands-on projects and competitions.
+                </p>
               </div>
 
               <div
@@ -144,7 +196,9 @@ function Activities() {
               >
                 <img src={music} alt="Music Ensemble" />
                 <h3>Music Ensemble</h3>
-                <p>Harmonize with fellow musicians and perform at school events.</p>
+                <p>
+                  Harmonize with fellow musicians and perform at school events.
+                </p>
               </div>
 
               <div
@@ -155,39 +209,21 @@ function Activities() {
               >
                 <img src={debate} alt="Debate Club" />
                 <h3>Debate Club</h3>
-                <p>Sharpen your public speaking and critical thinking skills.</p>
+                <p>
+                  Sharpen your public speaking and critical thinking skills.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 3rd box */}
+        {/* 3rd box: VIDEO CARDS */}
         <section id="act-section3" className="reveal-on-scroll">
-          <div id="act-sec3-box1">
-            <h1 className="act-h1">Moments in Motion</h1>
-            <p className="act-description">
-              Relieve the excitement and passion of your student activities
-              through our feature video gallery.
-            </p>
-          </div>
-          <div id="act-sec3-box2" className="campus-section">
-            <div className="campus-grid">
-              <div className="campus-card reveal-on-scroll">
-                <img src={debate} alt="Art & Music Studios" />
-                <h3>debate club</h3>
-                {/* <p>Sharpen your public speaking in critical thinking skill.</p> */}
-              </div>
-              <div className="campus-card reveal-on-scroll">
-                <img src={debate} alt="Art & Music Studios" />
-                <h3>debate club</h3>
-                {/* <p>Sharpen your public speaking in critical thinking skill.</p> */}
-              </div>
-              <div className="campus-card reveal-on-scroll">
-                <img src={debate} alt="Art & Music Studios" />
-                <h3>debate club</h3>
-                {/* <p>Sharpen your public speaking in critical thinking skill.</p> */}
-              </div>
-            </div>
+          <h1 className="act-h1">Recent Highlights</h1>
+          <div className="cards-container">
+            {videoData.map((card) => (
+              <VideoCard key={card.id} data={card} />
+            ))}
           </div>
         </section>
 
