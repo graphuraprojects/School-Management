@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,17 +26,17 @@ const Register = () => {
     e.preventDefault();
 
     if (!formData.email.endsWith("@gmail.com")) {
-      alert("Only Gmail accounts are allowed!");
+      toast.warn("Only Gmail accounts are allowed!");
       return;
     }
 
     try {
       await axios.post(`${apiUrl}/users/send-otp`, { email: formData.email });
       setOtpScreen(true);
-      alert("OTP sent to your email!");
+      toast.success("OTP sent to your email!");
     } catch (error) {
       console.log(error);
-      alert("Failed to send OTP");
+      toast.error("Failed to send OTP",error);
     }
   };
 
@@ -50,11 +51,11 @@ const Register = () => {
       // Now register user
       await axios.post(`${apiUrl}/users/register`, formData);
 
-      alert("Account created successfully!");
+      toast.success("Account created successfully!");
       navigate("/login");
     }
   } catch (error) {
-    alert("OTP verification failed",error);
+    toast.error("OTP verification failed",error);
   }
 };
 
@@ -187,6 +188,7 @@ const Register = () => {
           </>
         )}
       </div>
+       <ToastContainer />
     </div>
   );
 };

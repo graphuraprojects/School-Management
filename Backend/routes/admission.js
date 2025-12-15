@@ -73,4 +73,32 @@ router.post("/", fileFields, async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const admissions = await Admission.find().sort({ createdAt: -1 }); // latest first
+    res.status(200).json({
+      success: true,
+      count: admissions.length,
+      data: admissions,
+    });
+  } catch (error) {
+    console.error("Error fetching admissions:", error);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
+
+// GET single admission by ID
+router.get("/:id", async (req, res) => {
+  try {
+    const admission = await Admission.findById(req.params.id);
+    if (!admission) {
+      return res.status(404).json({ success: false, message: "Admission not found" });
+    }
+    res.status(200).json({ success: true, data: admission });
+  } catch (error) {
+    console.error("Error fetching admission:", error);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
+
 module.exports = router;

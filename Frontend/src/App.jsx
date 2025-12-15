@@ -15,10 +15,21 @@ import Register from './Pages/Register.jsx';
 import Payment from './Pages/Payment.jsx';
 import Dashboard from "./Pages/Dashboard.jsx";
 import NotFound from "./Pages/NotFound.jsx";
+import Profile from "./Pages/Profile.jsx";
+import TrackOrder from "./Pages/TrackOrder.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ScrollToTop from "./Components/ScrollToTop.jsx";
 
 function App() {
   return (
     <div  className="bg-[#f6f7f8]">
+       <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        pauseOnHover
+      />
+      <ScrollToTop />
     <Routes>
       <Route path="/" element={<Layout />} >
         <Route index element={<Home />} />
@@ -33,7 +44,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/dashboard" element={<Dashboard />} /> 
-        <Route path="/404" element={<NotFound />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/track-order" element={<TrackOrder />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
     </div>

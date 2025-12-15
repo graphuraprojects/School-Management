@@ -13,8 +13,6 @@ const Merchandise = () => {
       .get(`${apiUrl}/merchandise`)
       .then((res) => {
         setProducts(res.data);
-        console.log(res.data);
-        console.log("Products API Response =>", res.data);
         console.log("Type =>", Array.isArray(res.data));
       })
       .catch((err) => {
@@ -100,7 +98,7 @@ const Merchandise = () => {
               .map((item) => (
                 <div
                   key={item._id}
-                  className="group bg-white rounded-2xl shadow-md p-4 overflow-hidden
+                  className="group relative bg-white rounded-2xl shadow-md p-4 overflow-hidden
              transition-all duration-300 cursor-pointer flex flex-col
              hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02]"
                 >
@@ -133,9 +131,11 @@ const Merchandise = () => {
                  shadow-md transition-all duration-300
                  hover:shadow-xl hover:bg-blue-700 hover:-translate-y-1
                  active:scale-95 cursor-pointer"
+                 disabled={item.quantity === 0}
                     >
                       Add to Cart
                     </button>
+                    <span className={`${item.quantity === 0 ? "block" : "hidden"} absolute top-5 left-5 rounded-2xl px-2 py-1 bg-[#ff0000b5] text-white font-semibold`}>Out of Stock</span>
                   </div>
                 </div>
               ))

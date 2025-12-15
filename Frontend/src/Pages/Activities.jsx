@@ -13,27 +13,27 @@ import debate from "../assets/activity/schoolDebate.jpg";
 const videoData = [
   {
     id: 1,
-    title: "Annual Sports Day",
+    title: "Farewell 2025",
     thumbnail:
-      "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1000&auto=format&fit=crop",
+      "https://plus.unsplash.com/premium_photo-1661780479839-1261d89e3159?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "https://res.cloudinary.com/dw4u4z3fr/video/upload/v1765731409/School_Farewell_Video_Generated_iyakgi.mp4",
   },
   {
     id: 2,
-    title: "Football Finals 2024",
+    title: "Interschool Football 2025",
     thumbnail:
-      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1000&auto=format&fit=crop",
+      "https://res.cloudinary.com/dw4u4z3fr/image/upload/v1765731793/football_l6umle.jpg",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      "https://res.cloudinary.com/dw4u4z3fr/video/upload/v1765730722/Football_Match_Video_Generated_uhqalg.mp4",
   },
   {
     id: 3,
-    title: "Championship Awards",
+    title: "Annual Sports Day",
     thumbnail:
-      "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1000&auto=format&fit=crop",
+      "https://res.cloudinary.com/dw4u4z3fr/image/upload/v1765731693/annulSportDay_hiysc4.jpg",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "https://res.cloudinary.com/dw4u4z3fr/video/upload/v1765731591/School_Sports_Day_Video_Creation_dxret0.mp4",
   },
 ];
 
@@ -109,7 +109,7 @@ function Activities() {
 
         {/* 2nd box */}
         <h1 className="act-h1">Our Diverse Activities</h1>
-        <section id="act-section2" className="reveal-on-scroll">
+        <section id="act-section2" className="">
           <div id="act-sec2-box1">
             <button
               type="button"
@@ -152,6 +152,7 @@ function Activities() {
                 <h3>Football Club</h3>
                 <p>Develop teamwork and athletic skill on the field.</p>
               </div>
+              
 
               <div
                 className={`campus-card reveal-on-scroll ${
@@ -163,7 +164,27 @@ function Activities() {
                 <h3>Basketball Team</h3>
                 <p>Join the team, train hard and compete for victory.</p>
               </div>
+              <div
+                className={`campus-card reveal-on-scroll ${
+                  filter === "all" || filter === "sports" ? "" : "hidden"
+                }`}
+                data-category="sports"
+              >
+                <img src={basketball} alt="Basketball" />
+                <h3>Basketball Team</h3>
+                <p>Join the team, train hard and compete for victory.</p>
+              </div>
 
+              <div
+                className={`campus-card reveal-on-scroll ${
+                  filter === "all" || filter === "culture" ? "" : "hidden"
+                }`}
+                data-category="culture"
+              >
+                <img src={drama} alt="Annual Drama Production" />
+                <h3>Annual Drama Production</h3>
+                <p>Showcase your acting and stage management talents.</p>
+              </div>
               <div
                 className={`campus-card reveal-on-scroll ${
                   filter === "all" || filter === "culture" ? "" : "hidden"
@@ -200,6 +221,7 @@ function Activities() {
                   Harmonize with fellow musicians and perform at school events.
                 </p>
               </div>
+              
 
               <div
                 className={`campus-card reveal-on-scroll ${
@@ -213,6 +235,54 @@ function Activities() {
                   Sharpen your public speaking and critical thinking skills.
                 </p>
               </div>
+              <div
+                className={`campus-card reveal-on-scroll ${
+                  filter === "all" || filter === "academic" ? "" : "hidden"
+                }`}
+                data-category="academic"
+              >
+                <img src={debate} alt="Debate Club" />
+                <h3>Debate Club</h3>
+                <p>
+                  Sharpen your public speaking and critical thinking skills.
+                </p>
+              </div>
+
+              <div
+                className={`campus-card reveal-on-scroll ${
+                  filter === "all" || filter === "sports" ? "" : "hide"
+                }`}
+                data-category="sports"
+              >
+                <img src="https://images.unsplash.com/photo-1685541000562-a00dcf472343?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="cricket Club" />
+                <h3>Cricket club</h3>
+                <p>Develop teamwork and athletic skill on the field.</p>
+              </div>
+              <div
+                className={`campus-card reveal-on-scroll ${
+                  filter === "all" || filter === "culture" ? "" : "hidden"
+                }`}
+                data-category="culture"
+              >
+                <img src="https://plus.unsplash.com/premium_photo-1705844346816-fd486fe16153?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Visual Arts" />
+                <h3>Visual Arts</h3>
+                <p>
+                  Explore creativity through colors, shapes, and imagination.
+                </p>
+              </div>
+                <div
+                className={`campus-card reveal-on-scroll ${
+                  filter === "all" || filter === "academic" ? "" : "hidden"
+                }`}
+                data-category="academic"
+              >
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D  " alt="Mathematics Club" />
+                <h3>Mathematics Club</h3>
+                <p>
+                  Sharpen your public speaking and critical thinking skills.
+                </p>
+              </div>
+              
             </div>
           </div>
         </section>
@@ -232,7 +302,7 @@ function Activities() {
           <h1 className="act-h1">Ready to join the Fun?</h1>
           <p className="act-description">{textapply}</p>
           <button type="button" className="act-btn">
-            Apply For Admission
+            <a href="/admission">Apply For Admission</a>
           </button>
         </section>
       </div>

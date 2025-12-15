@@ -100,19 +100,7 @@ function Footer() {
                 <span> - Get monthly tips, updates & campus news.</span>
               </div>
 
-              <div className="newsletter-actions">
-                <input
-                  type="email"
-                  placeholder="you@domain.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-
-                <button className="btn-subscribe">
-                  {subscribed ? "Subscribed ✓" : "Subscribe"}
-                </button>
-              </div>
+              
             </form>
 
             {/* Social Icons */}
@@ -215,7 +203,7 @@ function Footer() {
               <p className="inst-hours">Mon–Fri: 9 AM – 6 PM</p>
               <p className="inst-hours">Sat: 10 AM – 2 PM</p>
               <a
-                href="https://maps.google.com/?q=123+School+Lane"
+                href="https://maps.app.goo.gl/6bezSVeb72PZisUY8"
                 className="map-link"
                 target="_blank"
               >
@@ -228,17 +216,10 @@ function Footer() {
           <div className="footer-section">
             <h3 className="footer-heading">Contact Us</h3>
 
-            <div className="contact-information">
-              <p className="font-semibold text-gray-400">123 School Lane, Education City</p>
-              <p>
-                <a href="tel:+917378021327" className="font-semibold text-gray-400">+91 73780 21327</a>
-              </p>
-            </div>
-
-            <div className="legal-links">
-              <span onClick={() => goToPage("/privacy")}>Privacy Policy</span>
-              <span onClick={() => goToPage("/terms")}>Terms</span>
-              <span onClick={() => goToPage("/refund")}>Refund Policy</span>
+            <div className="contact-information flex flex-col gap-2">
+              <p className="flex gap-4 items-center"><i className="fa-solid fa-location-dot text-blue-500"></i><span> Graphura India Private Limited, near RSF, Pataudi, Gurgaon, Haryana 122503</span></p>
+              <p className="flex gap-4 items-center"><i className="fa-solid fa-phone text-blue-500"></i><span> +91 7378021327</span></p>
+              <p className="flex gap-4 items-center"><i className="fa-regular fa-envelope text-blue-500"></i><a href="mailto:support@graphura.in"><span> support@graphura.in</span></a></p>
             </div>
           </div>
         </div>

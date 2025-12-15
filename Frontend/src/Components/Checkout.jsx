@@ -1,0 +1,121 @@
+import React, { useContext } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { CartContext } from "../CartFunction";
+
+const CheckoutButton = ({ orderAmount, cartItems }) => {
+  const navigate = useNavigate();
+  const { setCart } = useContext(CartContext)
+  const placeFinalOrder = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      const fixedItems = cartItems.map((item) => ({
+        productId: item?.productId?._id || item?.productId || item?._id,
+        quantity: item.quantity,
+      }));
+
+      // ⬇️ Correct backend route + correct field name totalPrice
+      await axios.post("http://localhost:3000/api/orders/create", {
+        userId: user._id || user.id,
+        items: fixedItems,
+        totalPrice: orderAmount <= 399 ? orderAmount + 29 : orderAmount,
+      });
+
+      // Clear user cart
+      await axios.delete(
+        `http://localhost:3000/api/users/clear-cart/${user._id || user.id}`
+      );
+      setCart([]);
+      toast.success("Order placed successfully! Cart cleared.");
+      navigate("/track-order");
+    } catch (e) {
+      console.error("Order placement failed:", e?.response?.data || e);
+      toast.error("Error placing order!");
+    }
+  };
+
+  //  Open Razorpay window
+  const openRazorpay = async () => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3000/api/payment/create-order",
+        { amount: orderAmount <= 399 ? orderAmount + 29 : orderAmount }
+      );
+
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+        amount: data.amount,
+        currency: data.currency,
+        name: "My E-commerce Store",
+        description: "Order Payment",
+        order_id: data.id,
+        prefill: {
+          contact: "",
+        },
+        handler: function (response) {
+          console.log("Payment successful:", response);
+          toast.success("Payment Successful! Updating stock...");
+
+          // After payment success >>>  deduct stock
+          placeFinalOrder();
+        },
+        theme: { color: "#2b7fff" },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (err) {
+      console.error("Payment failed:", err);
+      toast.error("Payment failed!");
+    }
+  };
+
+  // Validation for login
+  const handlePlaceOrder = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
+
+    if (!user || !token) {
+      toast.warn("Please login first");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      const res = await axios.get(
+        `http://localhost:3000/api/users/get-address/${user.id}`
+      );
+
+      const addresses = res.data.addresses;
+
+      if (!addresses || addresses.length === 0) {
+        toast.warn("No address found! Please update your address first.");
+        navigate("/profile");
+        return;
+      }
+
+      const defaultAddress =
+        addresses.find((a) => a.isDefault === true) || addresses[0];
+
+      openRazorpay();
+    } catch (error) {
+      toast.error("Could not fetch address")
+    }
+  };
+
+  return (
+    <>
+    <button
+      className="w-full cursor-pointer bg-blue-500 p-2 shadow-xl rounded-lg mt-2 text-white font-semibold hover:shadow-2xl hover:bg-blue-900 hover:scale-105 transition-transform duration-300 active:bg-blue-900"
+      onClick={handlePlaceOrder}
+    >
+      Place Order
+    </button>
+    <ToastContainer />
+    </>
+  );
+};
+
+export default CheckoutButton;

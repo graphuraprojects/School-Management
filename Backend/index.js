@@ -13,8 +13,11 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 app.use("/api/merchandise", require("./routes/merchandise"));
-app.use("/api/users", require("./routes/users"))
-app.use("/api/admission", require("./routes/admission"))
+app.use("/api/users", require("./routes/users"));
+app.use("/api/admission", require("./routes/admission"));
+app.use("/api/payment", require("./routes/payment"));
+app.use("/api/orders", require("./routes/orderComplete"));
+app.use("/api/admin", require("./routes/admin"));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

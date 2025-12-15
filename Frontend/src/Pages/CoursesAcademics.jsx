@@ -227,7 +227,7 @@ function CourseModal({ course, onClose }) {
           </div>
 
           <div className="modal-actions">
-            <button className="btn-enrol">Enrol Now</button>
+            <button className="btn-enrol"><a href="/admission">Enrol Now</a></button>
             <button className="btn-cancel" onClick={onClose}>
               Close
             </button>

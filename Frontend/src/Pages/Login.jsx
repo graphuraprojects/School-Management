@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,10 +23,14 @@ const Login = () => {
       const res = await axios.post(`${apiUrl}/users/login`, form);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
-      navigate("/");
-      console.log("Login successful:", res.data);
+      toast.success("Login successful");
+      window.dispatchEvent(new Event("storage"));
+      setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+      }, 1500);
     } catch (error) {
-      console.log("Login failed", error);
+      toast.error("Login failed", error);
     }
   };
   return (
@@ -33,7 +38,8 @@ const Login = () => {
       <div className="bg-white p-3 sm:p-5 flex flex-col items-center max-w-[450px] shadow-lg rounded-lg w-full">
         <h1 className="font-extrabold text-2xl">Login</h1>
         <p className="text-gray-500 font-semibold text-center mt-2">
-          Welcome back! Log in to continue exploring school updates and student resources.
+          Welcome back! Log in to continue exploring school updates and student
+          resources.
         </p>
         <form className="w-full p-4" onSubmit={handleSubmit}>
           <div className="flex flex-col mb-4">
@@ -78,14 +84,21 @@ const Login = () => {
               ></i>
             )}
           </div>
-          <button type="submit" className="bg-blue-500 text-white w-full p-2 rounded-lg cursor-pointer hover:bg-blue-900 hover:scale-105 active:bg-blue-900 hover:shadow-lg transition-transform duration-300">
+          <button
+            type="submit"
+            className="bg-blue-500 text-white w-full p-2 rounded-lg cursor-pointer hover:bg-blue-900 hover:scale-105 active:bg-blue-900 hover:shadow-lg transition-transform duration-300"
+          >
             Login
           </button>
         </form>
-        <span className="text-gray-500 font-semibold" >
-          Do not have an Account? <Link to={"/register"} className="text-blue-500 cursor-pointer">Register</Link>
+        <span className="text-gray-500 font-semibold">
+          Do not have an Account?{" "}
+          <Link to={"/register"} className="text-blue-500 cursor-pointer">
+            Register
+          </Link>
         </span>
       </div>
+      <ToastContainer />
     </div>
   );
 };

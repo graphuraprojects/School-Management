@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "../Styles/AdmissionApplication.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { CheckCircle } from "lucide-react";
 
 function AdmissionApplication() {
   const apiUrl = import.meta.env.VITE_API_URL;
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     // Student Personal Details
     fullName: "",
@@ -62,7 +65,19 @@ function AdmissionApplication() {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      setShowPopup(true);
+      // setShowPopup(true);
+      toast.success(
+        <div className="flex items-center gap-3">
+          <CheckCircle size={22} className="text-green-600" />
+          <span className="font-semibold text-gray-800">Details Submitted, We will contact you soon.</span>
+        </div>,
+        {
+          className: "rounded-xl shadow-lg border border-green-200 bg-green-50",
+          bodyClassName: "text-sm",
+          progressClassName: "bg-green-500",
+        }
+      );
+      navigate("/home")
     } catch (error) {
       console.log(error);
     } finally {
@@ -183,10 +198,10 @@ function AdmissionApplication() {
                     name="studentPhoto"
                     accept="image/*"
                     onChange={handleInputChange}
+                    required
                   />
                   <span className="file-hint">
                     Upload a recent passport-sized photograph of the student
-                    (JPG, PNG, max 5MB)
                   </span>
                 </div>
               </div>
@@ -317,10 +332,11 @@ function AdmissionApplication() {
                     name="birthCertificate"
                     accept=".pdf,.jpg,.jpeg,.png"
                     onChange={handleInputChange}
+                    required
                   />
                   <span className="file-hint">
                     Upload a scanned copy of the student's birth certificate
-                    (PDF, JPG, max 5MB)
+                    photo/image
                   </span>
                 </div>
               </div>
@@ -334,10 +350,11 @@ function AdmissionApplication() {
                     name="previousMarksheets"
                     accept=".pdf,.jpg,.jpeg,.png"
                     onChange={handleInputChange}
+                    required
                   />
                   <span className="file-hint">
                     Upload scanned copies of previous academic year marksheets
-                    (PDF, JPG, max 10MB)
+                    photo/image
                   </span>
                 </div>
               </div>
@@ -425,6 +442,15 @@ function AdmissionApplication() {
           </div>
         </div>
       )}
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="light"
+      />
     </div>
   );
 }

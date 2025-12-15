@@ -95,8 +95,8 @@
 }
 
 /* Responsive mobile */
-@media (max-width: 768px) {
-  .hamburger { display: flex; }
+@media (max-width: 767.98px) {
+  .hamburger, .hiding { display: flex; }
 
   .navbar {
     position: fixed;

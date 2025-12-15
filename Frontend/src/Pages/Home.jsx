@@ -18,7 +18,7 @@ const eventImages = {
 const upcomingEvents = [
   {
     id: 1,
-    title: "📚 Academic Events",
+    title: "Academic Events",
     description:
       "Competitions, workshops and knowledge-based activities to boost academic excellence.",
     date: "Feb 10, 2025",
@@ -27,7 +27,7 @@ const upcomingEvents = [
   },
   {
     id: 2,
-    title: "🎭 Cultural Events",
+    title: "Cultural Events",
     description:
       "A celebration of traditions, dance, music and creativity from diverse cultures.",
     date: "March 05, 2025",
@@ -36,7 +36,7 @@ const upcomingEvents = [
   },
   {
     id: 3,
-    title: "⚽ Sports Events",
+    title: "Sports Events",
     description:
       "Engaging athletics, games, and competitive sports to build confidence and team spirit.",
     date: "April 22, 2025",
@@ -45,7 +45,7 @@ const upcomingEvents = [
   },
   {
     id: 4,
-    title: "💡 Skill & Personality Development Events",
+    title: "Skill & Personality Development Events",
     description:
       "Workshops and activities focused on communication, leadership, creativity, and personal growth.",
     date: "May 18, 2025",
@@ -54,7 +54,7 @@ const upcomingEvents = [
   },
   {
     id: 5,
-    title: "💚 Community & Social Events",
+    title: "Community & Social Events",
     description:
       "Events that encourage social bonding, community contribution and group spirit.",
     date: "June 10, 2025",
@@ -63,7 +63,7 @@ const upcomingEvents = [
   },
   {
     id: 6,
-    title: "🎉 Student Life & Fun Events",
+    title: "Student Life & Fun Events",
     description:
       "Enjoyable and memorable events including fairs, DJ night, picnics and carnival experiences!",
     date: "August 25, 2025",
@@ -194,11 +194,11 @@ function Home() {
             <h1 className="hero-title">
               Inspiring Futures,
               <br />
-              Empowering Minds:
+              Empowering Minds
               <br />
               <span className="highlight">
                 Welcome To <br />
-                Graphura EduConnect
+                Graphura School
               </span>
             </h1>
             <p className="hero-description">
@@ -235,8 +235,8 @@ function Home() {
             {/* Vision Card */}
             <div className="bg-white px-8 py-10 rounded-2xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
               <div className="flex items-center justify-center">
-                <div className="bg-blue-100 text-blue-600 p-5 rounded-full shadow-md">
-                  <svg
+                <div className="bg-blue-100 text-blue-600 p-5 rounded-full shadow-md flex items-center justify-center">
+                  {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="32"
                     height="32"
@@ -246,7 +246,8 @@ function Home() {
                   >
                     <circle cx="12" cy="12" r="10" />
                     <circle cx="12" cy="12" r="3" />
-                  </svg>
+                  </svg> */}
+                  <i className="fa-regular fa-eye text-blue-500 text-2xl"></i>
                 </div>
               </div>
               <h3 className="text-2xl font-semibold text-center mt-6">
@@ -272,17 +273,7 @@ function Home() {
             <div className="bg-white px-8 py-10 rounded-2xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
               <div className="flex items-center justify-center">
                 <div className="bg-green-100 text-green-600 p-5 rounded-full shadow-md">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                    <path d="M9 12l2 2 4-4" />
-                  </svg>
+                  <i className="fa-regular fa-square-check text-2xl text-green-400 px-1"></i>
                 </div>
               </div>
               <h3 className="text-2xl font-semibold text-center mt-6">
@@ -325,22 +316,8 @@ function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-6 md:px-16">
             {/* Item */}
             <div className="group flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-200">
-              <div className="text-indigo-600 mb-3 group-hover:scale-110 transition-transform">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="40"
-                  height="40"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-                  <path d="M4 22h16" />
-                  <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
-                  <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
-                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-                </svg>
+              <div className="text-indigo-600 mb-3 group-hover:scale-110 transition-transform ">
+                <i className="fa-solid fa-trophy text-blue-500 text-4xl"></i>
               </div>
               <h3 className="text-3xl font-bold text-gray-900">15+</h3>
               <p className="text-gray-500 mt-1">National Awards</p>
@@ -349,19 +326,8 @@ function Home() {
             {/* Item */}
             <div className="group flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-200">
               <div className="text-indigo-600 mb-3 group-hover:scale-110 transition-transform">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="40"
-                  height="40"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
+
+                <i className="fa-solid fa-people-group text-4xl text-blue-500"></i>
               </div>
               <h3 className="text-3xl font-bold text-gray-900">2000+</h3>
               <p className="text-gray-500 mt-1">Students Enrolled</p>
@@ -370,17 +336,8 @@ function Home() {
             {/* Item */}
             <div className="group flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-200">
               <div className="text-indigo-600 mb-3 group-hover:scale-110 transition-transform">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="40"
-                  height="40"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                  <path d="M6 12v5c3 3 9 3 12 0v-5" />
-                </svg>
+                
+                 <i className="fa-solid fa-graduation-cap text-4xl text-blue-500"></i>
               </div>
               <h3 className="text-3xl font-bold text-gray-900">98%</h3>
               <p className="text-gray-500 mt-1">Graduation Rate</p>
@@ -389,17 +346,8 @@ function Home() {
             {/* Item */}
             <div className="group flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-200">
               <div className="text-indigo-600 mb-3 group-hover:scale-110 transition-transform">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="40"
-                  height="40"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
+               
+                <i className="fa-solid fa-globe text-4xl text-blue-500"></i>
               </div>
               <h3 className="text-3xl font-bold text-gray-900">50+</h3>
               <p className="text-gray-500 mt-1">Community Projects</p>
