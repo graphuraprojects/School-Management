@@ -67,13 +67,6 @@ function Footer() {
 
   return (
     <>
-      {/* ================= WAVE SEPARATOR ================= */}
-      {/* <div className="footer-wave">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M0,0 C150,100 350,0 600,0 C850,0 1050,100 1200,0 L1200,120 L0,120 Z" />
-        </svg>
-      </div> */}
-
       {/* ================= FOOTER MAIN ================= */}
       <footer className="footer-container">
         {/* ---------------- MAIN GRID ---------------- */}
@@ -82,11 +75,11 @@ function Footer() {
           <div className="footer-brand">
             <div className="footer-logo-block">
               <div className="w-28 h-10 md:w-35 md:h-15">
-              <img
-                src={graphuraLogo}
-                className="footer-logo-img"
-                alt="Graphura"
-              />
+                <img
+                  src={graphuraLogo}
+                  className="footer-logo-img"
+                  alt="Graphura"
+                />
               </div>
               <p className="brand-sub brand-sub-big font-semibold mb-2">
                 Fostering academic excellence & holistic development.
@@ -99,8 +92,6 @@ function Footer() {
                 <strong>Join our Newsletter</strong>
                 <span> - Get monthly tips, updates & campus news.</span>
               </div>
-
-              
             </form>
 
             {/* Social Icons */}
@@ -112,7 +103,10 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <svg viewBox="0 0 24 24">
+                <svg
+                  className="bg-[##1877F2]"
+                  viewBox="0 0 24 24"
+                >
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                 </svg>
               </a>
@@ -123,8 +117,8 @@ function Footer() {
                 aria-label="Google"
                 target="_blank"
               >
-                <svg viewBox="0 0 24 24">
-                  <path d="M21.35 11.1H12v2.8h5.35A4.87 4.87 0 0 1 12 18.6 6.6 6.6 0 1 1 17.6 7.4l2-2A9.47 9.47 0 1 0 21.35 11.1z" />
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26L22.5 21.75h-6.38l-4.995-6.535L5.41 21.75H2.1l7.73-8.84L1.5 2.25h6.54l4.52 5.99 5.684-5.99Zm-1.161 17.6h1.833L7.62 4.05H5.654l11.429 15.8Z" />
                 </svg>
               </a>
 
@@ -197,19 +191,6 @@ function Footer() {
                 <span onClick={goToFAQ}>FAQs</span>
               </li>
             </ul>
-
-            <div className="institutional">
-              <h4 className="inst-heading">Opening Hours</h4>
-              <p className="inst-hours">Mon–Fri: 9 AM – 6 PM</p>
-              <p className="inst-hours">Sat: 10 AM – 2 PM</p>
-              <a
-                href="https://maps.app.goo.gl/6bezSVeb72PZisUY8"
-                className="map-link"
-                target="_blank"
-              >
-                View on map
-              </a>
-            </div>
           </div>
 
           {/* CONTACT SECTION */}
@@ -217,16 +198,33 @@ function Footer() {
             <h3 className="footer-heading">Contact Us</h3>
 
             <div className="contact-information flex flex-col gap-2">
-              <p className="flex gap-4 items-center"><i className="fa-solid fa-location-dot text-blue-500"></i><span> Graphura India Private Limited, near RSF, Pataudi, Gurgaon, Haryana 122503</span></p>
-              <p className="flex gap-4 items-center"><i className="fa-solid fa-phone text-blue-500"></i><span> +91 7378021327</span></p>
-              <p className="flex gap-4 items-center"><i className="fa-regular fa-envelope text-blue-500"></i><a href="mailto:support@graphura.in"><span> support@graphura.in</span></a></p>
+              <p className="flex gap-4 items-center">
+                <i className="fa-solid fa-location-dot text-blue-500"></i>
+                <span>
+                  {" "}
+                  Graphura India Private Limited, near RSF, Pataudi, Gurgaon,
+                  Haryana 122503
+                </span>
+              </p>
+              <p className="flex gap-4 items-center">
+                <i className="fa-solid fa-phone text-blue-500"></i>
+                <span> +91 7378021327</span>
+              </p>
+              <p className="flex gap-4 items-center">
+                <i className="fa-regular fa-envelope text-blue-500"></i>
+                <a href="mailto:support@graphura.in">
+                  <span> support@graphura.in</span>
+                </a>
+              </p>
             </div>
           </div>
         </div>
 
         {/* ---------------- COPYRIGHT ---------------- */}
         <div className="legal">
-          <p className="small font-semibold text-md">© 2025 Graphura India Private Limited. All Rights Reserved</p>
+          <p className="small font-semibold text-md">
+            © 2025 Graphura India Private Limited. All Rights Reserved
+          </p>
           {/* <p className="small">CIN: U12345MH2025PTC000000</p> */}
         </div>
       </footer>

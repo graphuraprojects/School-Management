@@ -70,14 +70,14 @@ const Login = () => {
             />
             {showPassword ? (
               <i
-                className="fa-solid fa-eye absolute right-2.5 top-9 z-10 cursor-pointer"
+                className="fa-solid fa-eye absolute right-2.5 top-10 z-10 cursor-pointer"
                 onClick={() => {
                   setShowPassword(false);
                 }}
               ></i>
             ) : (
               <i
-                className="fa-solid fa-eye-slash absolute right-2.5 top-9 z-10 cursor-pointer"
+                className="fa-solid fa-eye-slash absolute right-2.5 top-10 z-10 cursor-pointer"
                 onClick={() => {
                   setShowPassword(true);
                 }}

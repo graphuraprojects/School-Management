@@ -61,8 +61,8 @@ const Register = () => {
 
 
   return (
-    <div className="bg-[#f6f7f8] h-screen flex items-center justify-center flex-col p-5 mt-5">
-      <div className="bg-white p-3 sm:p-5 flex flex-col items-center max-w-[450px] shadow-lg rounded-lg w-full">
+    <div className="bg-[#f6f7f8] flex items-center justify-center flex-col p-5 mt-5 lg:mt-10">
+      <div className="bg-white p-3 sm:p-5 flex flex-col items-center max-w-[450px] shadow-lg rounded-lg w-full ">
         {!otpScreen ? (
           <>
             <h1 className="font-extrabold text-2xl">Create Your Account</h1>
@@ -128,12 +128,12 @@ const Register = () => {
 
                 {showPassword ? (
                   <i
-                    className="fa-solid fa-eye absolute right-2.5 top-9 cursor-pointer"
+                    className="fa-solid fa-eye absolute right-2.5 top-10 cursor-pointer"
                     onClick={() => setShowPassword(false)}
                   ></i>
                 ) : (
                   <i
-                    className="fa-solid fa-eye-slash absolute right-2.5 top-9 cursor-pointer"
+                    className="fa-solid fa-eye-slash absolute right-2.5 top-10 cursor-pointer"
                     onClick={() => setShowPassword(true)}
                   ></i>
                 )}

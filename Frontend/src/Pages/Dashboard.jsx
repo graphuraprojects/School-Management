@@ -107,14 +107,14 @@ const Dashboard = () => {
   // ---------- FETCH ADMISSIONS ----------
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/admission")
+      .get(`${import.meta.env.VITE_API_URL}/admission`)
       .then((res) => setAdmissions(res.data.data))
       .catch((err) => console.error(err));
   }, []);
 
   const handleView = (id) => {
     axios
-      .get(`http://localhost:3000/api/admission/${id}`)
+      .get(`${import.meta.env.VITE_API_URL}/admission/${id}`)
       .then((res) => {
         setSelectedAdmission(res.data.data);
         setIsModalOpen(true);
@@ -592,7 +592,7 @@ const Dashboard = () => {
     // Fetch all orders
     const fetchOrders = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/orders");
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/orders`);
         setOrders(res.data);
         setLoading(false);
       } catch (err) {
@@ -607,7 +607,7 @@ const Dashboard = () => {
     // Update order status
     const updateStatus = async (id, newStatus) => {
       try {
-        await axios.put(`http://localhost:3000/api/orders/status/${id}`, {
+        await axios.put(`${import.meta.env.VITE_API_URL}/orders/status/${id}`, {
           status: newStatus,
         });
 
@@ -773,7 +773,7 @@ const Dashboard = () => {
   ///get user details page
   const GetUserPage = () => (
     <div className="p-10 flex flex-col items-center gap-6">
-      <p className="text-[#111418] text-4xl font-black w-full">🔍 Find User</p>
+      <p className="text-[#111418] text-4xl font-black w-full">Find User</p>
       <div
         className="flex gap-3 mt-2 w-full overflow-x-auto
     whitespace-nowrap
@@ -862,7 +862,7 @@ const Dashboard = () => {
 
       {/* USER CARD */}
       {searchedUser && (
-        <div className="bg-white shadow-2xl rounded-2xl p-6 w-full max-w-md border">
+        <div className="bg-white shadow-2xl rounded-2xl p-6 w-full max-w-md border-2 border-blue-500">
           <h3 className="text-xl font-bold text-center mb-4">
             👤 User Details
           </h3>
@@ -919,7 +919,7 @@ const Dashboard = () => {
         const token = localStorage.getItem("token");
 
         const res = await axios.post(
-          "http://localhost:3000/api/admin/create-admin",
+          `${import.meta.env.VITE_API_URL}/admin/create-admin`,
           form,
           {
             headers: {

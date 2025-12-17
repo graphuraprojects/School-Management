@@ -57,12 +57,15 @@ function ContactSupport() {
           <div className="contact-info card">
             <h2>Reach Us Directly</h2>
 
-            <p>📍 Graphura India Private Limited, near RSF, Pataudi, Gurgaon, Haryana 122503</p>
-            <p>📞  +91 7378021327</p>
+            <p>
+              📍 Graphura India Private Limited, near RSF, Pataudi, Gurgaon,
+              Haryana 122503
+            </p>
+            <p>📞 +91 7378021327</p>
             <p>✉️ support@graphura.in</p>
 
             <a href="tel:+917378021327">
-              <button className="btn-primary-one">📞 Call Us</button>
+              <button className="btn-primary-one">Call Us</button>
             </a>
 
             <a
@@ -72,7 +75,7 @@ function ContactSupport() {
               rel="noopener noreferrer"
             >
               <button className="btn-whatsapp-unified" type="button">
-                💬 WhatsApp Us
+                WhatsApp Us
               </button>
             </a>
           </div>

@@ -57,14 +57,13 @@ export const CartProvider = ({ children }) => {
     );
 
     setCart(response.data.cart);
-    // console.log("Added to cart:", response.data.cart);
     toast.success(
     <div className="flex items-start gap-3">
       <CheckCircle size={22} className="text-green-600 mt-1" />
 
       <div className="flex-1">
         <p className="font-semibold text-gray-800">
-          Item added to cart
+          Item added to cart!
         </p>
 
         <button
@@ -80,7 +79,7 @@ export const CartProvider = ({ children }) => {
         "rounded-xl shadow-lg border border-green-200 bg-green-50",
       bodyClassName: "p-3",
       progressClassName: "bg-green-500",
-      autoClose: 4000,
+      autoClose: 3000,
     }
   );
   } catch (error) {

@@ -166,27 +166,6 @@ function Activities() {
               </div>
               <div
                 className={`campus-card reveal-on-scroll ${
-                  filter === "all" || filter === "sports" ? "" : "hidden"
-                }`}
-                data-category="sports"
-              >
-                <img src={basketball} alt="Basketball" />
-                <h3>Basketball Team</h3>
-                <p>Join the team, train hard and compete for victory.</p>
-              </div>
-
-              <div
-                className={`campus-card reveal-on-scroll ${
-                  filter === "all" || filter === "culture" ? "" : "hidden"
-                }`}
-                data-category="culture"
-              >
-                <img src={drama} alt="Annual Drama Production" />
-                <h3>Annual Drama Production</h3>
-                <p>Showcase your acting and stage management talents.</p>
-              </div>
-              <div
-                className={`campus-card reveal-on-scroll ${
                   filter === "all" || filter === "culture" ? "" : "hidden"
                 }`}
                 data-category="culture"
@@ -223,18 +202,6 @@ function Activities() {
               </div>
               
 
-              <div
-                className={`campus-card reveal-on-scroll ${
-                  filter === "all" || filter === "academic" ? "" : "hidden"
-                }`}
-                data-category="academic"
-              >
-                <img src={debate} alt="Debate Club" />
-                <h3>Debate Club</h3>
-                <p>
-                  Sharpen your public speaking and critical thinking skills.
-                </p>
-              </div>
               <div
                 className={`campus-card reveal-on-scroll ${
                   filter === "all" || filter === "academic" ? "" : "hidden"

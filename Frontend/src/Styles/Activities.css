@@ -23,10 +23,10 @@
 }
 
 .act-h1 {
-  font-size: 3rem;
-  font-weight: 600;
+  font-size: 2.5rem;
+  font-weight: 700;
   color: #000000;
-  padding: 1rem;
+  padding: 0 1rem 2rem 1rem;
 }
 
 /* Hidden helper for filtering */
@@ -63,7 +63,7 @@
 
 #act-section2 {
   width: 100%;
-  padding: 2.5rem 1rem;
+  padding: 0 1rem;
   margin-bottom: 3rem;
   display: flex;
   flex-direction: column;
@@ -143,7 +143,7 @@
 /* Large screens */
 @media (min-width: 1200px) {
   .campus-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -189,7 +189,7 @@
 #act-section3 {
   margin-top: 4rem;
   margin-bottom: 3rem;
-  padding: 3rem 1.8rem;
+  padding: 2rem 1.8rem;
   border-radius: 24px;
   background: linear-gradient(135deg, #eff6ff 0%, #f9fafb 55%, #e0f2fe 100%);
   display: flex;

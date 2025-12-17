@@ -17,7 +17,7 @@ const CheckoutButton = ({ orderAmount, cartItems }) => {
       }));
 
       // ⬇️ Correct backend route + correct field name totalPrice
-      await axios.post("http://localhost:3000/api/orders/create", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/orders/create`, {
         userId: user._id || user.id,
         items: fixedItems,
         totalPrice: orderAmount <= 399 ? orderAmount + 29 : orderAmount,
@@ -25,7 +25,7 @@ const CheckoutButton = ({ orderAmount, cartItems }) => {
 
       // Clear user cart
       await axios.delete(
-        `http://localhost:3000/api/users/clear-cart/${user._id || user.id}`
+        `${import.meta.env.VITE_API_URL}/users/clear-cart/${user._id || user.id}`
       );
       setCart([]);
       toast.success("Order placed successfully! Cart cleared.");
@@ -40,7 +40,7 @@ const CheckoutButton = ({ orderAmount, cartItems }) => {
   const openRazorpay = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/payment/create-order",
+        `${import.meta.env.VITE_API_URL}/payment/create-order`,
         { amount: orderAmount <= 399 ? orderAmount + 29 : orderAmount }
       );
 
@@ -85,14 +85,16 @@ const CheckoutButton = ({ orderAmount, cartItems }) => {
 
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/users/get-address/${user.id}`
+        `${import.meta.env.VITE_API_URL}/users/get-address/${user.id}`
       );
 
       const addresses = res.data.addresses;
 
       if (!addresses || addresses.length === 0) {
         toast.warn("No address found! Please update your address first.");
-        navigate("/profile");
+        setTimeout(() => {
+          navigate("/profile");
+        }, 2000);
         return;
       }
 

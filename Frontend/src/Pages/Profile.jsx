@@ -80,14 +80,14 @@ const Profile = () => {
     e.preventDefault();
     try {
       if (address) {
-        await axios.put("http://localhost:3000/api/users/update-address", {
+        await axios.put(`${import.meta.env.VITE_API_URL}/users/update-address`, {
           userId,
           addressId: address._id,
           address: addressForm,
         });
         toast.success("Address updated!");
       } else {
-        await axios.post("http://localhost:3000/api/users/add-address", {
+        await axios.post(`${import.meta.env.VITE_API_URL}/users/add-address`, {
           userId,
           address: addressForm,
         });
@@ -95,7 +95,7 @@ const Profile = () => {
       }
 
       const addrRes = await axios.get(
-        `http://localhost:3000/api/users/get-address/${userId}`
+        `${import.meta.env.VITE_API_URL}/users/get-address/${userId}`
       );
       setAddress(addrRes.data.addresses[0]);
       setEditingAddress(false);

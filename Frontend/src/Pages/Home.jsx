@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Styles/Home.css";
 import hero from "../assets/heropage.png";
-// const heroImage = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80"
 
 const eventImages = {
   scienceFair:
@@ -202,7 +201,7 @@ function Home() {
               </span>
             </h1>
             <p className="hero-description">
-              At EduConnect Hub, we are dedicated to providing a holistic
+              At Graphura, we are dedicated to providing a holistic
               education that fosters academic excellence, critical thinking, and
               personal growth. Discover a vibrant community where every student
               thrives.
@@ -236,17 +235,6 @@ function Home() {
             <div className="bg-white px-8 py-10 rounded-2xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
               <div className="flex items-center justify-center">
                 <div className="bg-blue-100 text-blue-600 p-5 rounded-full shadow-md flex items-center justify-center">
-                  {/* <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <circle cx="12" cy="12" r="3" />
-                  </svg> */}
                   <i className="fa-regular fa-eye text-blue-500 text-2xl"></i>
                 </div>
               </div>
@@ -416,7 +404,7 @@ function Home() {
         </section>
 
         {/* Photo Gallery Section */}
-        <section className="py-20 px-6 bg-[#f6f7f8]">
+        <section className="py-15 px-6 bg-[#f6f7f8]">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-black-600">Gallery</h2>
             <p className="text-gray-500">
@@ -495,7 +483,7 @@ function Home() {
         </section>
 
         {/* Latest Updates Section */}
-        <section className="py-16 bg-[#f6f7f8]">
+        <section className="py-12 bg-[#f6f7f8]">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
               Latest Updates

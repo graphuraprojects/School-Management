@@ -25,7 +25,7 @@ function Header() {
       setCheckUser(Boolean(token));
     };
 
-    checkToken(); // initial
+    checkToken(); 
 
     window.addEventListener("storage", checkToken);
 
@@ -61,6 +61,7 @@ function Header() {
   };
 
   return (
+    <div className="header-bg">
     <header className="header-container">
       <NavLink to="/" className="logo" onClick={closeMenu}>
         <img src={graphuraLogo} alt="Graphura Logo" />
@@ -277,6 +278,7 @@ function Header() {
         </div>
       </div>
     </header>
+    </div>
   );
 }
 

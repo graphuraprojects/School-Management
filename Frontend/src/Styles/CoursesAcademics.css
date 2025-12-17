@@ -1,8 +1,10 @@
-/* ==================== COURSES ACADEMICS PAGE ==================== */
+/* ==================== COURSES ACADEMICS PAGE (Main Layout) ==================== */
 
 .courses-academics-page {
   min-height: 100vh;
   background-color: #f8f9fa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
 }
 
 /* ==================== HERO SECTION ==================== */
@@ -10,7 +12,7 @@
 .courses-hero {
   text-align: center;
   padding: 60px 20px;
-  background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+  background: #f6f7f8;
   border-bottom: 1px solid #e9ecef;
 }
 
@@ -91,16 +93,6 @@
 
 .filter-section-header:hover {
   color: #4361ee;
-}
-
-.chevron {
-  font-size: 0.75rem;
-  transition: transform 0.3s ease;
-  color: #6c757d;
-}
-
-.chevron.expanded {
-  transform: rotate(180deg);
 }
 
 .filter-options {
@@ -208,7 +200,7 @@
 
 .course-image {
   width: 100%;
-  height: 280px;
+  height: 200px;
   overflow: hidden;
   background: #e9ecef;
 }
@@ -282,15 +274,6 @@
   line-height: 1.4;
 }
 
-.course-meta p:last-child {
-  margin-bottom: 0;
-}
-
-.course-meta strong {
-  color: #1a1a2e;
-  font-weight: 600;
-}
-
 .view-details-btn {
   display: inline-flex;
   align-items: center;
@@ -314,11 +297,6 @@
   transform: translateY(-2px);
 }
 
-.view-details-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(66, 133, 244, 0.3);
-}
-
 /* ==================== NO RESULTS ==================== */
 
 .no-results {
@@ -327,6 +305,7 @@
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  grid-column: span 3;
 }
 
 .no-results p {
@@ -334,7 +313,7 @@
   color: #6c757d;
 }
 
-/* ==================== MOBILE FILTER COMPONENTS ==================== */
+/* ==================== MOBILE FILTER TOGGLE ==================== */
 
 .mobile-filter-toggle {
   display: none;
@@ -354,19 +333,6 @@
   margin-bottom: 20px;
 }
 
-.mobile-filter-toggle:hover {
-  background-color: #4361ee;
-  color: #ffffff;
-}
-
-.mobile-filter-toggle:active {
-  transform: scale(0.98);
-}
-
-.filter-icon {
-  font-size: 1.1rem;
-}
-
 .filter-badge {
   background-color: #4361ee;
   color: #ffffff;
@@ -374,68 +340,6 @@
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
-}
-
-.mobile-filter-toggle:hover .filter-badge {
-  background-color: #ffffff;
-  color: #4361ee;
-}
-
-.filter-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 998;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.filter-overlay.active {
-  opacity: 1;
-}
-
-.mobile-filter-header {
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 2px solid #e9ecef;
-}
-
-.mobile-filter-header h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #1a1a2e;
-  margin: 0;
-}
-
-.close-filter-btn {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f0f4f8;
-  border: none;
-  border-radius: 50%;
-  font-size: 1.1rem;
-  color: #6c757d;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.close-filter-btn:hover {
-  background-color: #e9ecef;
-  color: #1a1a2e;
-}
-
-.close-filter-btn:active {
-  transform: scale(0.95);
 }
 
 .clear-filters-btn {
@@ -449,41 +353,9 @@
   color: #d32f2f;
   cursor: pointer;
   margin-bottom: 20px;
-  transition: all 0.2s ease;
 }
 
-.clear-filters-btn:hover {
-  background-color: #ffebee;
-}
-
-.clear-filters-btn:active {
-  transform: scale(0.98);
-}
-
-.apply-filters-btn {
-  display: none;
-  width: 100%;
-  padding: 16px 20px;
-  background-color: #4361ee;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #ffffff;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: all 0.3s ease;
-}
-
-.apply-filters-btn:hover {
-  background-color: #3651d4;
-}
-
-.apply-filters-btn:active {
-  transform: scale(0.98);
-}
-
-/* ==================== RESPONSIVE DESIGN ==================== */
+/* ==================== MEDIA QUERIES (Main Page) ==================== */
 
 @media (max-width: 1200px) {
   .courses-grid {
@@ -495,147 +367,33 @@
   .courses-content {
     flex-direction: column;
   }
-
   .filter-sidebar {
     width: 100%;
     position: static;
   }
-  
-  /* Show mobile filter toggle */
   .mobile-filter-toggle {
     display: flex;
   }
-
-  /* Show overlay when filter is open */
-  .filter-overlay {
-    display: block;
-    pointer-events: none;
-  }
-
-  .filter-overlay.active {
-    pointer-events: auto;
-  }
-
-  /* Transform sidebar into slide-in panel */
   .filter-sidebar {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 85%;
-    max-width: 350px;
-    height: 100vh;
-    border-radius: 0;
-    z-index: 999;
-    overflow-y: auto;
-    transition: left 0.3s ease;
-    padding: 24px;
-    padding-bottom: 100px;
+    display: none; /* In a real app you'd toggle a class here */
   }
-
   .filter-sidebar.open {
-    left: 0;
-  }
-
-  /* Show mobile header in sidebar */
-  .mobile-filter-header {
-    display: flex;
-  }
-
-  /* Hide desktop title on mobile */
-  .filter-sidebar .filter-title {
-    display: none;
-  }
-
-  /* Show apply button on mobile */
-  .apply-filters-btn {
     display: block;
-    position: sticky;
-    bottom: 0;
-    margin-top: auto;
-  }
-
-  .courses-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .courses-hero {
-    padding: 40px 16px;
+  .courses-grid {
+    grid-template-columns: 1fr;
   }
-
   .courses-hero h1 {
     font-size: 2rem;
   }
-
-  .courses-hero p {
-    font-size: 1rem;
-  }
-
-  .courses-content {
-    padding: 24px 16px;
-    gap: 24px;
-  }
-
-  .courses-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .filter-sidebar {
-    width: 90%;
-    max-width: 320px;
-    padding: 20px;
-  }
-
-  /* Touch-friendly filter options */
-  .filter-checkbox {
-    padding: 12px 0 12px 32px;
-  }
-
-  .filter-checkbox:active {
-    background-color: #f0f4f8;
-  }
-
-  .filter-section-header {
-    padding: 12px 0;
-  }
-
-  .filter-section-header:active {
-    color: #4361ee;
-  }
 }
 
-@media (max-width: 480px) {
-  .courses-hero h1 {
-    font-size: 1.75rem;
-  }
-
-  .course-image {
-    height: 160px;
-  }
-
-  .course-content {
-    padding: 16px;
-  }
-
-  .course-title {
-    font-size: 1rem;
-  }
-
-  .mobile-filter-toggle {
-    padding: 12px 16px;
-    font-size: 0.9rem;
-  }
-
-  .filter-sidebar {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-
-/* ==================== NEW MODAL STYLES (Added) ==================== */
+/* ################################################################## 
+   POP-UP (MODAL) STYLES - SIDE BY SIDE LAYOUT
+   ################################################################## */
 
 /* Backdrop with Fade In */
 .modal-backdrop {
@@ -654,19 +412,21 @@
   animation: fadeIn 0.3s ease-out forwards;
 }
 
-/* Modal Panel with Slide Up/Scale */
+/* Modal Panel - FLEX ROW for Side-by-Side */
 .modal-panel {
   background: #ffffff;
   width: 100%;
-  max-width: 800px;
-  max-height: 90vh;
+  max-width: 900px;
+  height: auto;
+  max-height: 85vh; /* Keep it inside viewport height */
   border-radius: 16px;
-  overflow-y: auto; /* Internal scrolling */
+  overflow: hidden;
   position: relative;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Image Left, Content Right */
 }
 
 /* Close Button */
@@ -677,45 +437,53 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
+  background: #f0f4f8;
   border: none;
   font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
-  z-index: 2;
+  z-index: 10;
   color: #1a1a2e;
   display: flex;
-  align-items: center;
   justify-content: center;
   transition: background 0.2s;
 }
 
 .modal-close-btn:hover {
-  background: #f0f4f8;
+  background: #e9ecef;
 }
 
-/* Hero Image */
+/* Hero Image (Left Side) */
 .modal-hero-image {
-  width: 100%;
-  height: 250px;
+  width: 50%;
+  height: auto;
+  min-height: 100%;
   flex-shrink: 0;
+  position: relative;
+  background-color: #e9ecef;
 }
 
 .modal-hero-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-/* Content Area */
+/* Content Area (Right Side) */
 .modal-content {
+  width: 60%;
   padding: 30px;
+  overflow-y: auto; /* Scroll text if too long */
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-header {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   border-bottom: 1px solid #e9ecef;
-  padding-bottom: 20px;
+  padding-bottom: 16px;
+  padding-right: 30px; /* Space for close button */
 }
 
 .modal-tags-list {
@@ -725,81 +493,77 @@
 }
 
 .modal-header h2 {
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   color: #1a1a2e;
   margin: 0;
+  line-height: 1.3;
 }
 
-/* Grid Layout for Info */
+/* Grid Layout (Vertical Stack inside Right Panel) */
 .modal-grid {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 30px;
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 24px;
 }
 
 .modal-main-info h3 {
   font-size: 1.1rem;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   color: #1a1a2e;
 }
 
 .modal-main-info p {
   color: #495057;
-  line-height: 1.7;
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
 
-/* Sidebar Info Box */
+/* Sidebar Info Box (Metadata Grid) */
 .modal-sidebar-info {
   background: #f8f9fa;
   padding: 20px;
   border-radius: 12px;
-  height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 Columns */
+  gap: 16px;
 }
 
 .info-item {
   display: flex;
   flex-direction: column;
-  margin-bottom: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #e9ecef;
-}
-
-.info-item:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
 }
 
 .info-item .label {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: #6c757d;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 4px;
 }
 
 .info-item .value {
   color: #1a1a2e;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 /* Actions Footer */
 .modal-actions {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   padding-top: 20px;
   border-top: 1px solid #e9ecef;
   justify-content: flex-end;
+  margin-top: auto;
 }
 
 .btn-enrol {
   background-color: #4361ee;
   color: white;
   border: none;
-  padding: 12px 30px;
+  padding: 10px 24px;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
@@ -815,7 +579,7 @@
   background-color: transparent;
   color: #6c757d;
   border: 1px solid #dee2e6;
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: 8px;
   font-weight: 500;
   cursor: pointer;
@@ -829,36 +593,47 @@
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px) scale(0.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-/* Responsive Modal */
+/* ==================== RESPONSIVE MODAL (Mobile) ==================== */
 @media (max-width: 768px) {
-  .modal-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .modal-panel {
+    flex-direction: column; /* Back to Top/Bottom stack */
+    max-height: 90vh;
   }
-  
   .modal-hero-image {
-    height: 180px;
+    width: 100%;
+    height: 200px;
   }
-  
+  .modal-content {
+    width: 100%;
+    overflow-y: visible;
+  }
+  .modal-sidebar-info {
+    grid-template-columns: 1fr;
+  }
   .modal-actions {
     flex-direction: column-reverse;
   }
-  
-  .btn-enrol, .btn-cancel {
+  .btn-enrol,
+  .btn-cancel {
     width: 100%;
-    text-align: center;
-  }
-  
-  .modal-header h2 {
-    font-size: 1.4rem;
   }
 }

@@ -27,7 +27,7 @@ function AboutSchool() {
 
   const text2 = (
     <>
-      EduConnect Hub was founded in 1985 with a vision to create an educational
+      Graphura was founded in 1985 with a vision to create an educational
       institution that fosters critical thinking, creativity, and a strong sense
       of community. Starting from humble beginnings as a small preparatory
       school, we have grown into a leading academic center renowned for our
