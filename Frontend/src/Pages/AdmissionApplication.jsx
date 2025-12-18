@@ -90,7 +90,7 @@ function AdmissionApplication() {
       <div className="admission-wrapper">
         {/* Header Section */}
         <div className="admission-header">
-          <h1>Admission Application</h1>
+          <h1 className="text-center">Admission Application</h1>
           <p>
             Welcome to the EduConnect Hub online admission portal. Please fill
             out the form below carefully, providing all necessary details and

@@ -182,7 +182,7 @@ function Footer() {
                 <span onClick={() => goToPage("/admission")}>Admission</span>
               </li>
               <li>
-                <span onClick={() => goToPage("/store")}>Merchandise</span>
+                <span onClick={() => goToPage("/store")}>Store</span>
               </li>
               <li>
                 <span onClick={() => goToPage("/contact")}>Support</span>

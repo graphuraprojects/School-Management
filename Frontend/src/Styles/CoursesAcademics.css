@@ -199,8 +199,8 @@
 }
 
 .course-image {
-  width: 100%;
-  height: 200px;
+  width: auto;
+  height: auto;
   overflow: hidden;
   background: #e9ecef;
 }
@@ -375,7 +375,7 @@
     display: flex;
   }
   .filter-sidebar {
-    display: none; /* In a real app you'd toggle a class here */
+    display: none;
   }
   .filter-sidebar.open {
     display: block;
@@ -392,10 +392,10 @@
 }
 
 /* ################################################################## 
-   POP-UP (MODAL) STYLES - SIDE BY SIDE LAYOUT
+   POP-UP (MODAL) STYLES - FIXED 2-COLUMN LAYOUT
    ################################################################## */
 
-/* Backdrop with Fade In */
+/* Backdrop */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -412,21 +412,25 @@
   animation: fadeIn 0.3s ease-out forwards;
 }
 
-/* Modal Panel - FLEX ROW for Side-by-Side */
+/* Modal Panel - Flex Column to stack content vertically */
 .modal-panel {
   background: #ffffff;
   width: 100%;
-  max-width: 900px;
-  height: auto;
-  max-height: 85vh; /* Keep it inside viewport height */
+  max-width: 850px;
+  max-height: 90vh;
   border-radius: 16px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-
   display: flex;
-  flex-direction: row; /* Image Left, Content Right */
+  flex-direction: column;
+}
+
+.modal-content {
+  padding: 30px;
+  overflow-y: auto;
+  height: 100%;
 }
 
 /* Close Button */
@@ -442,48 +446,48 @@
   font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
-  z-index: 10;
-  color: #1a1a2e;
+  z-index: 20;
   display: flex;
   justify-content: center;
-  transition: background 0.2s;
+  align-items: center;
+  color: #1a1a2e;
 }
-
 .modal-close-btn:hover {
   background: #e9ecef;
 }
 
-/* Hero Image (Left Side) */
-.modal-hero-image {
-  width: 50%;
-  height: auto;
-  min-height: 100%;
-  flex-shrink: 0;
-  position: relative;
-  background-color: #e9ecef;
+/* --- NEW LAYOUT: FLEX ROW (Top Section) --- */
+.modal-top-section {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+  align-items: flex-start; /* Aligns image and text to the top */
 }
 
-.modal-hero-image img {
+/* Left Column: Image */
+.modal-image-col {
+  width: 50%; /* Takes 40% of the width */
+  min-width: 250px;
+  flex-shrink: 0; /* Prevents squishing */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding-top: 10px;
+}
+
+.modal-image-col img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
+  object-fit: cover;
+  border-radius: 18px;
 }
 
-/* Content Area (Right Side) */
-.modal-content {
-  width: 60%;
-  padding: 30px;
-  overflow-y: auto; /* Scroll text if too long */
+/* Right Column: Details */
+.modal-details-col {
+  flex: 1; /* Takes the remaining space */
   display: flex;
   flex-direction: column;
-}
-
-.modal-header {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #e9ecef;
-  padding-bottom: 16px;
-  padding-right: 30px; /* Space for close button */
 }
 
 .modal-tags-list {
@@ -492,41 +496,36 @@
   margin-bottom: 12px;
 }
 
-.modal-header h2 {
-  font-size: 1.6rem;
+.modal-details-col h2 {
+  font-size: 1.8rem;
   color: #1a1a2e;
-  margin: 0;
-  line-height: 1.3;
+  margin: 0 0 16px 0;
+  line-height: 1.2;
 }
 
-/* Grid Layout (Vertical Stack inside Right Panel) */
-.modal-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin-bottom: 24px;
-}
-
-.modal-main-info h3 {
+.modal-description-box h3 {
   font-size: 1.1rem;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: #1a1a2e;
 }
 
-.modal-main-info p {
+.modal-description-box p {
   color: #495057;
   line-height: 1.6;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  margin: 0;
 }
 
-/* Sidebar Info Box (Metadata Grid) */
+/* --- BOTTOM SECTION: Info Grid --- */
 .modal-sidebar-info {
   background: #f8f9fa;
   padding: 20px;
   border-radius: 12px;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 Columns */
+  grid-template-columns: repeat(3, 1fr); /* 3 items per row */
   gap: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .info-item {
@@ -552,43 +551,55 @@
 /* Actions Footer */
 .modal-actions {
   display: flex;
-  gap: 12px;
+  gap: 3rem;
   padding-top: 20px;
   border-top: 1px solid #e9ecef;
-  justify-content: flex-end;
-  margin-top: auto;
+  justify-content: center;
 }
 
 .btn-enrol {
-  background-color: #4361ee;
-  color: white;
-  border: none;
-  padding: 10px 24px;
-  border-radius: 8px;
+  background: #1d4ed8;
+  border-radius: 999px;
+  padding: 0.6rem 1.6rem;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 10px 28px rgba(37, 99, 235, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
+.btn-enrol a {
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
 .btn-enrol:hover {
-  background-color: #3651d4;
+  background-color: linear-gradient(135deg, #1d4ed8, #1d4ed8);
+  box-shadow: 0 10px 35px rgba(69, 120, 231, 0.4);
   transform: translateY(-2px);
 }
 
 .btn-cancel {
-  background-color: transparent;
-  color: #6c757d;
-  border: 1px solid #dee2e6;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 500;
+  background: rgba(128, 128, 128, 0.253);
+  border-radius: 999px;
+  padding: 0.6rem 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 10px 28px rgba(37, 99, 235, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .btn-cancel:hover {
-  background-color: #f1f3f5;
-  color: #1a1a2e;
+  background-color: linear-gradient(135deg, #1d4ed8, #1d4ed8);
+  box-shadow: 0 10px 35px rgba(69, 120, 231, 0.4);
+  transform: translateY(-2px);
 }
 
 /* Animations */
@@ -612,22 +623,17 @@
   }
 }
 
-/* ==================== RESPONSIVE MODAL (Mobile) ==================== */
+/* --- RESPONSIVE MODAL (Mobile) --- */
 @media (max-width: 768px) {
-  .modal-panel {
-    flex-direction: column; /* Back to Top/Bottom stack */
-    max-height: 90vh;
+  .modal-top-section {
+    flex-direction: column; /* Stack image on top of text */
   }
-  .modal-hero-image {
+  .modal-image-col {
     width: 100%;
-    height: 200px;
-  }
-  .modal-content {
-    width: 100%;
-    overflow-y: visible;
+    margin-bottom: 16px;
   }
   .modal-sidebar-info {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Stack info items vertically */
   }
   .modal-actions {
     flex-direction: column-reverse;

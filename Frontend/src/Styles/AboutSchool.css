@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3rem 1.5rem 4rem;
+  padding: 2rem 1.5rem 4rem;
 }
 
 .container-heading {
@@ -47,7 +47,7 @@
   color: #4b5563;
 }
 
-#first-container .btns {
+.banner-container .btns {
   background: #2196F3;
   color: #fff;
   border-radius: 999px;
@@ -61,7 +61,7 @@
   transition: 0.18s ease;
 }
 
-#first-container .btns:hover {
+.banner-container .btns:hover {
   background: #003c6e;
   transform: translateY(-2px);
 }

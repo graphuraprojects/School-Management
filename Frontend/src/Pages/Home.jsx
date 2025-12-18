@@ -221,7 +221,7 @@ function Home() {
         </section>
 
         {/* Vision & Mission Section */}
-        <section className="py-20 bg-[#f6f7f8]">
+        <section className="py-15 bg-[#f6f7f8]">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800">
               Our <span className="text-black-600">Vision & Mission</span>
@@ -286,9 +286,9 @@ function Home() {
         </section>
 
         {/* Achievements Section */}
-        <section className="py-16 bg-[#f6f7f8]">
+        <section className="py-12 bg-[#f6f7f8]">
           {/* Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-4xl font-bold text-gray-800">
               Our Achievements
             </h2>
@@ -344,8 +344,7 @@ function Home() {
         </section>
 
         {/* Upcoming Events Section */}
-        <section
-          className="py-16 bg-white shadow-lg rounded-2xl mb-5"
+        <section className="py-12 bg-white shadow-lg rounded-2xl mb-5"
           id="events"
         >
           <div className="max-w-7xl mx-auto px-6 text-center">

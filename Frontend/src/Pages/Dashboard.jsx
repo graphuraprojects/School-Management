@@ -533,6 +533,9 @@ const Dashboard = () => {
                 <th className="px-4 py-3 border-b">Category</th>
                 <th className="px-4 py-3 border-b">Price</th>
                 <th className="px-4 py-3 border-b">Stock</th>
+                <th className="px-4 py-3 border-b text-center">
+                  Increase Quantity
+                </th>
               </tr>
             </thead>
 

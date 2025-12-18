@@ -7,7 +7,7 @@ const coursesData = [
     id: 1,
     title: "Mathematics – Grade 6",
     description:
-      "Fundamentals of numbers, fractions, decimals, geometry, and simple equations for Grade 6 learners.",
+      "Fundamentals of numbers, fractions, decimals, geometry, and simple equations for Grade 6 learners. This course provides a comprehensive foundation for middle school mathematics, ensuring students are well-prepared for algebra and geometry in higher grades.",
     duration: "1 Academic Year",
     faculty: "Mrs. Anjali Sharma",
     level: "Beginner",
@@ -15,14 +15,14 @@ const coursesData = [
     gradeLevel: "Middle School (6-8)",
     programType: "Standard Curriculum",
     image:
-      "https://images.unsplash.com/photo-1509223197845-458d87318791?auto=format&fit=crop&w=1200&q=60",
+      "https://res.cloudinary.com/dw4u4z3fr/image/upload/v1766048605/Gemini_Generated_Image_s93svks93svks93s_rh4mzx.png",
     tags: ["Math", "Grade 6"],
   },
   {
     id: 2,
     title: "General Science – Grade 7",
     description:
-      "Covers basic Physics, Chemistry, and Biology concepts with real-life examples and activities.",
+      "Covers basic Physics, Chemistry, and Biology concepts with real-life examples and activities. Students will engage in weekly hands-on experiments to understand the scientific method.",
     duration: "1 Academic Year",
     faculty: "Mr. Rohan Mehta",
     level: "Beginner",
@@ -30,14 +30,14 @@ const coursesData = [
     gradeLevel: "Middle School (6-8)",
     programType: "Standard Curriculum",
     image:
-      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=60",
+      "https://res.cloudinary.com/dw4u4z3fr/image/upload/v1766048658/Gemini_Generated_Image_epxvx2epxvx2epxv_f05ts6.png",
     tags: ["Science", "Experiments"],
   },
   {
     id: 3,
     title: "English Grammar & Reading – Grade 8",
     description:
-      "Improve writing, grammar, comprehension, and vocabulary through interactive reading sessions.",
+      "Improve writing, grammar, comprehension, and vocabulary through interactive reading sessions. Focuses on classic literature analysis and creative writing skills.",
     duration: "1 Academic Year",
     faculty: "Ms. Priya Kapoor",
     level: "Intermediate",
@@ -45,14 +45,14 @@ const coursesData = [
     gradeLevel: "Middle School (6-8)",
     programType: "Standard Curriculum",
     image:
-      "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1200&q=60",
+      "https://res.cloudinary.com/dw4u4z3fr/image/upload/v1766048754/Gemini_Generated_Image_58dmkh58dmkh58dm_byuwyn.png",
     tags: ["English", "Grammar"],
   },
   {
     id: 4,
     title: "Social Studies – Grade 9",
     description:
-      "Learn about Indian history, civics, geography, economics and global awareness topics.",
+      "Learn about Indian history, civics, geography, economics and global awareness topics. Includes map work and projects on current world events.",
     duration: "1 Academic Year",
     faculty: "Mr. Akash Verma",
     level: "Intermediate",
@@ -60,14 +60,14 @@ const coursesData = [
     gradeLevel: "High School (9-12)",
     programType: "Standard Curriculum",
     image:
-      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=60",
+      "https://res.cloudinary.com/dw4u4z3fr/image/upload/v1766048868/Gemini_Generated_Image_4wbb7h4wbb7h4wbb_1_reck2c.png",
     tags: ["Social Studies"],
   },
   {
     id: 5,
     title: "Computer Basics & Coding – Grade 10",
     description:
-      "Introduction to computers, typing skills, MS Office, and basic programming in HTML & Python.",
+      "Introduction to computers, typing skills, MS Office, and basic programming in HTML & Python. Students will build their own personal website by the end of the term.",
     duration: "1 Academic Year",
     faculty: "Ms. Neha Bhatia",
     level: "Beginner",
@@ -75,14 +75,14 @@ const coursesData = [
     gradeLevel: "High School (9-12)",
     programType: "Standard Curriculum",
     image:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=60",
+      "https://res.cloudinary.com/dw4u4z3fr/image/upload/v1766047634/Gemini_Generated_Image_r7fydtr7fydtr7fy_r3agrk.png",
     tags: ["Coding", "Basic Computers"],
   },
   {
     id: 6,
     title: "Physics – Class 11 (NCERT)",
     description:
-      "Mechanics, laws of motion, waves, and thermodynamics taught using models & experiments.",
+      "Mechanics, laws of motion, waves, and thermodynamics taught using models & experiments. Preparation for competitive exams is integrated into the curriculum.",
     duration: "1 Academic Year",
     faculty: "Dr. Sameer Rao",
     level: "Advanced",
@@ -90,14 +90,14 @@ const coursesData = [
     gradeLevel: "High School (9-12)",
     programType: "Standard Curriculum",
     image:
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=60",
+      "https://res.cloudinary.com/dw4u4z3fr/image/upload/v1766047757/Gemini_Generated_Image_to16nzto16nzto16_vl6b8m.png",
     tags: ["Physics", "Class 11"],
   },
   {
     id: 7,
     title: "Chemistry – Class 12 (NCERT)",
     description:
-      "Physical, Organic, and Inorganic Chemistry concepts with lab-based learning.",
+      "Physical, Organic, and Inorganic Chemistry concepts with lab-based learning. Emphasis on chemical equations, stoichiometry, and practical lab skills.",
     duration: "1 Academic Year",
     faculty: "Mrs. Shweta Kulkarni",
     level: "Advanced",
@@ -105,14 +105,14 @@ const coursesData = [
     gradeLevel: "High School (9-12)",
     programType: "Standard Curriculum",
     image:
-      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=60",
+      "https://res.cloudinary.com/dw4u4z3fr/image/upload/v1766048206/Gemini_Generated_Image_ke5c5lke5c5lke5c_s6bwcw.png",
     tags: ["Chemistry", "Class 12"],
   },
   {
     id: 8,
     title: "Fine Arts & Drawing – School Program",
     description:
-      "Creative drawing, painting, coloring, and craft activities for school students.",
+      "Creative drawing, painting, coloring, and craft activities for school students. Explores watercolors, acrylics, and sketching techniques.",
     duration: "12 Weeks",
     faculty: "Ms. Alisha D’Souza",
     level: "Beginner",
@@ -120,7 +120,7 @@ const coursesData = [
     gradeLevel: "Elementary (K-5)",
     programType: "Enrichment Program",
     image:
-      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=60",
+      "https://res.cloudinary.com/dw4u4z3fr/image/upload/v1766049983/Screenshot_2025-12-18_at_2.51.30_PM_e1xvbw.png",
     tags: ["Arts", "Drawing"],
   },
 ];
@@ -148,7 +148,7 @@ const programTypes = [
 const difficultyLevels = ["Beginner", "Intermediate", "Advanced"];
 
 /* ==========================================================
-   RE-USABLE MODAL COMPONENT
+   MODAL COMPONENT (Fixed 2-Column Layout)
    ========================================================== */
 function CourseModal({ course, onClose }) {
   // Lock body scroll and handle Escape key
@@ -168,7 +168,7 @@ function CourseModal({ course, onClose }) {
     <div className="modal-backdrop" onClick={onClose}>
       <div
         className="modal-panel"
-        onClick={(e) => e.stopPropagation()} // Prevent click from closing modal
+        onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
       >
@@ -176,56 +176,61 @@ function CourseModal({ course, onClose }) {
           &times;
         </button>
 
-        <div className="modal-hero-image">
-          <img src={course.image} alt={course.title} />
-        </div>
-
         <div className="modal-content">
-          <div className="modal-header">
-            <div className="modal-tags-list">
-              {course.tags.map((tag, idx) => (
-                <span key={idx} className="course-tag">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <h2>{course.title}</h2>
-          </div>
-
-          <div className="modal-grid">
-            <div className="modal-main-info">
-              <h3>About this Course</h3>
-              <p>{course.description}</p>
+          {/* --- TOP SECTION: SPLIT COLUMNS (Image Left, Text Right) --- */}
+          <div className="modal-top-section">
+            {/* Left Column: Image */}
+            <div className="modal-image-col">
+              <img src={course.image} alt={course.title} />
             </div>
 
-            <div className="modal-sidebar-info">
-              <div className="info-item">
-                <span className="label">Grade Level</span>
-                <span className="value">{course.gradeLevel}</span>
+            {/* Right Column: Title & Description */}
+            <div className="modal-details-col">
+              <div className="modal-tags-list">
+                {course.tags.map((tag, idx) => (
+                  <span key={idx} className="course-tag">
+                    {tag}
+                  </span>
+                ))}
               </div>
-              <div className="info-item">
-                <span className="label">Subject</span>
-                <span className="value">{course.subject}</span>
-              </div>
-              <div className="info-item">
-                <span className="label">Program Type</span>
-                <span className="value">{course.programType}</span>
-              </div>
-              <div className="info-item">
-                <span className="label">Difficulty</span>
-                <span className="value">{course.level}</span>
-              </div>
-              <div className="info-item">
-                <span className="label">Duration</span>
-                <span className="value">{course.duration}</span>
-              </div>
-              <div className="info-item">
-                <span className="label">Faculty</span>
-                <span className="value">{course.faculty}</span>
+              <h2>{course.title}</h2>
+
+              <div className="modal-description-box">
+                <h3>About this Course</h3>
+                <p>{course.description}</p>
               </div>
             </div>
           </div>
 
+          {/* --- BOTTOM SECTION: INFO GRID --- */}
+          <div className="modal-sidebar-info">
+            <div className="info-item">
+              <span className="label">Grade Level</span>
+              <span className="value">{course.gradeLevel}</span>
+            </div>
+            <div className="info-item">
+              <span className="label">Subject</span>
+              <span className="value">{course.subject}</span>
+            </div>
+            <div className="info-item">
+              <span className="label">Program Type</span>
+              <span className="value">{course.programType}</span>
+            </div>
+            <div className="info-item">
+              <span className="label">Difficulty</span>
+              <span className="value">{course.level}</span>
+            </div>
+            <div className="info-item">
+              <span className="label">Duration</span>
+              <span className="value">{course.duration}</span>
+            </div>
+            <div className="info-item">
+              <span className="label">Faculty</span>
+              <span className="value">{course.faculty}</span>
+            </div>
+          </div>
+
+          {/* --- FOOTER --- */}
           <div className="modal-actions">
             <button className="btn-enrol">
               <a href="/admission">Enrol Now</a>
@@ -241,7 +246,7 @@ function CourseModal({ course, onClose }) {
 }
 
 /* ==========================================================
-   MAIN PAGE
+   MAIN PAGE COMPONENT
    ========================================================== */
 export default function CoursesAcademics() {
   /* --------------  FILTER STATE -------------- */
@@ -460,7 +465,6 @@ export default function CoursesAcademics() {
                       <strong>Level:</strong> {c.level}
                     </p>
                   </div>
-                  {/* Updated Button to Open Modal */}
                   <button
                     className="view-details-btn"
                     onClick={() => setSelectedCourse(c)}

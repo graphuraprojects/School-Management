@@ -69,13 +69,41 @@ function AboutSchool() {
     <>
       <section id="main-page">
         {/* 1st-box */}
-        <section id="first-container" className="reveal-on-scroll">
+        {/* <section id="first-container" className="reveal-on-scroll">
           <h1 className="container-heading">Our Foundation</h1>
           <div id="heading-desc">
             <p>{textp}</p>
           </div>
           <Link to="/admission" className="btns">Apply</Link>
-        </section>
+        </section> */}
+        <section id="banner-container" className="rounded-2xl overflow-hidden relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh]">
+      {/* Background Image */}
+      <img
+        src="https://res.cloudinary.com/drq2a0262/image/upload/v1765967740/Gemini_Generated_Image_youyjiyouyjiyouy_ixh47o.png"
+        alt="Banner"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      {/* Black Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 flex h-full items-center justify-center px-4">
+        <div className="text-center max-w-3xl">
+          <h1 className="text-white text-3xl sm:text-4xl md:text-5xl! font-bold leading-tight">
+            Our Foundation
+          </h1>
+
+          <p className="mt-4 text-gray-200 text-sm sm:text-base md:text-xl">
+           {textp}
+          </p>
+
+          <div className="mt-6 flex justify-center gap-4">
+            <Link to="/admission" className="btns text-white font-semibold bg-blue-500 px-5 py-2 rounded-3xl hover:scale-105 hover:bg-blue-900 shadow-xl transition-transform duration-200">Apply</Link>
+          </div>
+        </div>
+      </div>
+    </section>
 
         {/* 2nd-box */}
         <section id="second-container" className="reveal-on-scroll">
