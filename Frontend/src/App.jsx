@@ -1,6 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from './Layout/Layout.jsx'
 import Home from './Pages/Home.jsx'
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // pages
 import AboutSchool from './Pages/AboutSchool.jsx'
@@ -22,6 +25,28 @@ import "react-toastify/dist/ReactToastify.css";
 import ScrollToTop from "./Components/ScrollToTop.jsx";
 
 function App() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      const expiryTime = payload.exp * 1000; // JWT exp is in seconds
+
+      if (Date.now() > expiryTime) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        toast.info("Session expired. Please login again.");
+        navigate("/login");
+      }
+    } catch (err) {
+      console.error("Invalid token");
+      navigate("/login");
+    }
+  }, []);
+  
   return (
     <div  className="bg-[#f6f7f8]">
        <ToastContainer
@@ -49,6 +74,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
+    <ToastContainer />
     </div>
   )
 }

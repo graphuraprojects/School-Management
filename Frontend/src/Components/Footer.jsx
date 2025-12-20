@@ -81,21 +81,21 @@ function Footer() {
                   alt="Graphura"
                 />
               </div>
-              <p className="brand-sub brand-sub-big font-semibold mb-2">
+              <p className="brand-sub brand-sub-big font-semibold mb-2 text-start">
                 Fostering academic excellence & holistic development.
               </p>
             </div>
 
             {/* Newsletter */}
             <form className="newsletter" onSubmit={handleSubscribe}>
-              <div className="newsletter-text">
+              <div className="newsletter-text text-start">
                 <strong>Join our Newsletter</strong>
                 <span> - Get monthly tips, updates & campus news.</span>
               </div>
             </form>
 
             {/* Social Icons */}
-            <div className="social-icons mt-4">
+            <div className="social-icons mt-4 flex justify-start!">
               <a
                 href="https://www.facebook.com/share/19nKAMTopZ/"
                 className="social-icon"
@@ -156,7 +156,7 @@ function Footer() {
           </div>
 
           {/* QUICK LINKS */}
-          <div className="footer-section">
+          <div className="footer-section text-start">
             <h3 className="footer-heading">Quick Links</h3>
             <ul className="footer-links">
               <li>
@@ -175,7 +175,7 @@ function Footer() {
           </div>
 
           {/* RESOURCES */}
-          <div className="footer-section">
+          <div className="footer-section text-start">
             <h3 className="footer-heading">Resources</h3>
             <ul className="footer-links">
               <li>
@@ -194,7 +194,7 @@ function Footer() {
           </div>
 
           {/* CONTACT SECTION */}
-          <div className="footer-section">
+          <div className="footer-section text-start">
             <h3 className="footer-heading">Contact Us</h3>
 
             <div className="contact-information flex flex-col gap-2">
