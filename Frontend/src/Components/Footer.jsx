@@ -166,10 +166,10 @@ function Footer() {
                 <span onClick={() => goToPage("/about")}>About Us</span>
               </li>
               <li>
-                <span onClick={() => goToPage("/courses")}>Courses</span>
+                <span onClick={() => goToPage("/contact")}>Contact</span>
               </li>
               <li>
-                <span onClick={() => goToPage("/activities")}>Activities</span>
+                <span onClick={() => goToPage("/admission")}>Admission</span>
               </li>
             </ul>
           </div>
@@ -179,16 +179,13 @@ function Footer() {
             <h3 className="footer-heading">Resources</h3>
             <ul className="footer-links">
               <li>
-                <span onClick={() => goToPage("/admission")}>Admission</span>
-              </li>
-              <li>
                 <span onClick={() => goToPage("/store")}>Store</span>
               </li>
               <li>
-                <span onClick={() => goToPage("/contact")}>Support</span>
+                <span onClick={() => goToPage("/courses")}>Courses</span>
               </li>
               <li>
-                <span onClick={goToFAQ}>FAQs</span>
+                <span onClick={() => goToPage("/activities")}>Activities</span>
               </li>
             </ul>
           </div>
@@ -199,7 +196,7 @@ function Footer() {
 
             <div className="contact-information flex flex-col gap-2">
               <p className="flex gap-4 items-center">
-                <i className="fa-solid fa-location-dot text-blue-500"></i>
+                <i className="fa-solid fa-location-dot text-[#6fd513]"></i>
                 <span>
                   {" "}
                   Graphura India Private Limited, near RSF, Pataudi, Gurgaon,
@@ -207,11 +204,11 @@ function Footer() {
                 </span>
               </p>
               <p className="flex gap-4 items-center">
-                <i className="fa-solid fa-phone text-blue-500"></i>
+                <i className="fa-solid fa-phone text-[#6fd513]"></i>
                 <span> +91 7378021327</span>
               </p>
               <p className="flex gap-4 items-center">
-                <i className="fa-regular fa-envelope text-blue-500"></i>
+                <i className="fa-regular fa-envelope text-[#6fd513]"></i>
                 <a href="mailto:support@graphura.in">
                   <span> support@graphura.in</span>
                 </a>
@@ -223,9 +220,8 @@ function Footer() {
         {/* ---------------- COPYRIGHT ---------------- */}
         <div className="legal">
           <p className="small font-semibold text-md">
-            © 2025 Graphura India Private Limited. All Rights Reserved
+            © 2026 Graphura India Private Limited. All Rights Reserved
           </p>
-          {/* <p className="small">CIN: U12345MH2025PTC000000</p> */}
         </div>
       </footer>
 

@@ -1,6 +1,5 @@
 /* Container Styles */
 .admission-container {
-  min-height: 100vh;
   background-color: #f8fafc;
   padding: 2rem 1rem;
 }
@@ -218,7 +217,6 @@
   font-size: 0.95rem;
   font-weight: 600;
   color: #ffffff;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -277,3 +275,694 @@
     font-size: 0.8rem;
   }
 }
+/* ===================================================== */
+/* OVERRIDE – ADMISSION HERO */
+/* ===================================================== */
+
+.admission-hero {
+  background: linear-gradient(180deg, #0c3031 0%, #0f3730 50%, #1a472d 100%);
+  padding: 4rem 1.5rem;
+  margin-top: 5rem;
+  border-radius: 18px;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.28);
+}
+
+.hero-content {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  letter-spacing: 0.4px;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  color: #d1fae5;
+  line-height: 1.75;
+}
+
+.submit-btn:hover {
+  background-color: #53a110;
+  background-image: none;
+  box-shadow: 0 8px 18px rgba(83, 161, 16, 0.45);
+  transform: translateY(-1px);
+}
+
+/* ======================================== */
+/* FORM POLISH OVERRIDES */
+/* ======================================== */
+
+.form-section {
+  border-radius: 16px;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #53a110;
+  box-shadow: 0 0 0 3px rgba(83, 161, 16, 0.15);
+}
+
+.file-upload input[type="file"]:hover {
+  border-color: #53a110;
+  background-color: #f0fdf4;
+}
+
+.file-upload input[type="file"]::file-selector-button:hover {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+/* ======================================== */
+/* RESPONSIVE OVERRIDES */
+/* ======================================== */
+
+@media (max-width: 640px) {
+  .admission-hero {
+    padding: 3rem 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.9rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  margin-top: 2.5rem;
+}
+
+/* Ensure button looks balanced in center */
+.submit-btn {
+  min-width: 240px;
+  text-align: center;
+}
+
+/* Reduce bottom space of last form section */
+.form-section:last-of-type {
+  margin-bottom: 0.75rem;
+}
+
+/* Tighten form layout spacing */
+.admission-form {
+  gap: 1.1rem;
+}
+
+/* Center button with controlled spacing */
+.form-actions {
+  margin-top: 1.2rem !important;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Optional: visually anchor button closer */
+.submit-btn {
+  min-width: 240px;
+}
+
+.admission-container {
+  position: relative;
+  background-color: #f8fafc;
+}
+
+/* Full-width top background */
+.admission-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 380px;
+  background: radial-gradient(
+      circle at right center,
+      rgba(83, 161, 16, 0.25),
+      transparent 55%
+    ),
+    linear-gradient(180deg, #0b2f2e 0%, #0f3a31 45%, #1a472d 100%);
+  z-index: 0;
+}
+
+/* Ensure content stays above background */
+.admission-wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+.admission-hero {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  margin-top: 4.5rem;
+  padding: 4rem 1.5rem;
+}
+
+/* ===================================== */
+/* RESPONSIVE FIX – ADMISSION HERO */
+/* ===================================== */
+
+@media (max-width: 768px) {
+  .admission-hero {
+    padding: 3.2rem 1rem 3.8rem;
+  }
+
+  .hero-content {
+    max-width: 92%;
+    padding: 0 0.75rem;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 auto;
+  }
+
+  .admission-container::before {
+    height: 520px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admission-hero {
+    padding: 2.8rem 1rem 3.2rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .admission-container::before {
+    height: 560px;
+  }
+}
+
+/* modified */
+/* Container Styles */
+.admission-container {
+  background: linear-gradient(135deg, #0a2e2d 0%, #0f3730 50%, #1a472d 100%);
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative background elements */
+.admission-container::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(111, 213, 19, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.admission-container::after {
+  content: "";
+  position: absolute;
+  bottom: -15%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(111, 213, 19, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.admission-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero Header */
+.admission-hero {
+  text-align: center;
+  padding: 3rem 1.5rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.admission-container .hero-content h1 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.admission-container.hero-content p {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Form Section Styles */
+.admission-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.form-section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2.25rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.form-section:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.section-header {
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgba(111, 213, 19, 0.3);
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #6fd513;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.section-header p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.form-group label::after {
+  content: "*";
+  color: #6fd513;
+  font-size: 1.1rem;
+  margin-left: 0.15rem;
+}
+
+/* Input Styles */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 0.98rem;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  backdrop-filter: blur(5px);
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #6fd513;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236fd513' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25rem;
+  padding-right: 3rem;
+}
+
+.form-group select option {
+  background: #0f3730;
+  color: #ffffff;
+  padding: 0.5rem;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 130px;
+  line-height: 1.6;
+}
+
+/* Date input special styling */
+.form-group input[type="date"] {
+  color-scheme: dark;
+}
+
+.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(1.5);
+  cursor: pointer;
+}
+
+/* File Upload Styles */
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.file-upload input[type="file"] {
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(111, 213, 19, 0.08);
+  border: 2px dashed rgba(111, 213, 19, 0.3);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.file-upload input[type="file"]:hover {
+  border-color: #6fd513;
+  background: rgba(111, 213, 19, 0.12);
+}
+
+.file-upload input[type="file"]:focus {
+  outline: none;
+  border-color: #6fd513;
+}
+
+.file-upload input[type="file"]::file-selector-button {
+  padding: 0.7rem 1.5rem;
+  margin-right: 1.25rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0f3730;
+  background: #6fd513;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.file-upload input[type="file"]::file-selector-button:hover {
+  background: #53a110;
+  transform: translateY(-1px);
+}
+
+.file-hint {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Checkbox Styles */
+.checkbox-group {
+  margin-top: 0.75rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  accent-color: #6fd513;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.terms-link {
+  color: #6fd513;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.terms-link:hover {
+  color: #53a110;
+}
+
+/* Submit Button */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+.submit-btn {
+  padding: 1.15rem 3.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f3730;
+  background: #6fd513;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  min-width: 280px;
+  text-transform: uppercase;
+}
+
+.submit-btn:hover {
+  background: #53a110;
+  transform: translateY(-3px);
+}
+
+.submit-btn:active {
+  transform: translateY(-1px);
+}
+
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .admission-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+
+  .form-section {
+    padding: 1.75rem 1.5rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-group.full-width {
+    grid-column: 1;
+  }
+
+  .section-header h2 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .form-section {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .submit-btn {
+    width: 100%;
+    min-width: auto;
+    padding: 1rem 2rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 0.92rem;
+    padding: 0.875rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .admission-container {
+    padding: 1rem 0.75rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.15rem;
+  }
+
+  .form-section {
+    padding: 1.25rem 1rem;
+  }
+}
+
+/* Additional polish */
+.form-section:first-of-type {
+  margin-top: 0;
+}
+
+.form-section:last-of-type {
+  margin-bottom: 0.75rem;
+}
+
+.admission-form {
+  gap: 1.5rem;
+}
+
+/* Validation feedback styles */
+.form-group input:invalid:not(:placeholder-shown),
+.form-group select:invalid:not(:placeholder-shown),
+.form-group textarea:invalid:not(:placeholder-shown) {
+  border-color: rgba(239, 68, 68, 0.6);
+}
+
+.form-group input:valid:not(:placeholder-shown),
+.form-group select:valid:not(:placeholder-shown),
+.form-group textarea:valid:not(:placeholder-shown) {
+  border-color: rgba(111, 213, 19, 0.6);
+}
+
+/* Loading state for submit button */
+.submit-btn:disabled::after {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 10px;
+  border: 2px solid #0f3730;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-section {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.form-section:nth-child(1) { animation-delay: 0.1s; }
+.form-section:nth-child(2) { animation-delay: 0.2s; }
+.form-section:nth-child(3) { animation-delay: 0.3s; }
+.form-section:nth-child(4) { animation-delay: 0.4s; }

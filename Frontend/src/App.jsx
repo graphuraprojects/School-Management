@@ -22,7 +22,6 @@ import Profile from "./Pages/Profile.jsx";
 import TrackOrder from "./Pages/TrackOrder.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ScrollToTop from "./Components/ScrollToTop.jsx";
 
 function App() {
   const navigate = useNavigate();
@@ -42,7 +41,7 @@ function App() {
         navigate("/login");
       }
     } catch (err) {
-      console.error("Invalid token");
+      console.error("Invalid token",err);
       navigate("/login");
     }
   }, []);
@@ -54,7 +53,6 @@ function App() {
         autoClose={3000}
         pauseOnHover
       />
-      <ScrollToTop />
     <Routes>
       <Route path="/" element={<Layout />} >
         <Route index element={<Home />} />

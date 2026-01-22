@@ -13,6 +13,7 @@ import scienceLib from "../assets/AboutSchool/scienceLaboratories.jpg";
 import compLabs from "../assets/AboutSchool/computerLabs.jpg";
 import schlFaci from "../assets/AboutSchool/schoolFacilities.png";
 import artandmusic from "../assets/AboutSchool/artAndMusic.jpg";
+import { Quote } from "lucide-react";
 
 import { Link } from "react-router-dom";
 function AboutSchool() {
@@ -69,41 +70,49 @@ function AboutSchool() {
     <>
       <section id="main-page">
         {/* 1st-box */}
-        {/* <section id="first-container" className="reveal-on-scroll">
-          <h1 className="container-heading">Our Foundation</h1>
-          <div id="heading-desc">
-            <p>{textp}</p>
+        <section
+          id="banner-container"
+          className="overflow-hidden relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh]"
+        >
+          {/* Background Image */}
+          <img
+            src="https://res.cloudinary.com/drq2a0262/image/upload/v1765967740/Gemini_Generated_Image_youyjiyouyjiyouy_ixh47o.png"
+            alt="Banner"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+
+          {/* Green Gradient Overlay */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(12, 48, 49, 0.85) 0%, rgba(15, 55, 48, 0.85) 50%, rgba(26, 71, 45, 0.85) 100%)",
+            }}
+          ></div>
+
+          {/* Content */}
+          <div className="relative animate-fade-up z-10 flex h-full items-center justify-center px-4">
+            <div className="text-center max-w-3xl">
+              <h1 className="text-white text-3xl sm:text-4xl md:text-5xl! font-bold leading-tight">
+                Our Foundation
+              </h1>
+
+              <p className="mt-4 text-gray-200 text-sm sm:text-base md:text-xl">
+                {textp}
+              </p>
+
+              <div className="mt-6 flex justify-center gap-4">
+                <Link
+                  to="/admission"
+                  className="btns text-white font-semibold bg-[#6fd513] px-6 py-3 rounded-xl hover:bg-[#53a110] hover:-translate-y-0.5 active:scale-95 shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <i className="fa-solid fa-file-pen"></i>
+                  Apply Now
+                </Link>
+              </div>
+            </div>
           </div>
-          <Link to="/admission" className="btns">Apply</Link>
-        </section> */}
-        <section id="banner-container" className="rounded-2xl overflow-hidden relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh]">
-      {/* Background Image */}
-      <img
-        src="https://res.cloudinary.com/drq2a0262/image/upload/v1765967740/Gemini_Generated_Image_youyjiyouyjiyouy_ixh47o.png"
-        alt="Banner"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-
-      {/* Black Overlay */}
-      <div className="absolute inset-0 bg-black/60"></div>
-
-      {/* Content */}
-      <div className="relative z-10 flex h-full items-center justify-center px-4">
-        <div className="text-center max-w-3xl">
-          <h1 className="text-white text-3xl sm:text-4xl md:text-5xl! font-bold leading-tight">
-            Our Foundation
-          </h1>
-
-          <p className="mt-4 text-gray-200 text-sm sm:text-base md:text-xl">
-           {textp}
-          </p>
-
-          <div className="mt-6 flex justify-center gap-4">
-            <Link to="/admission" className="btns text-white font-semibold bg-blue-500 px-5 py-2 rounded-3xl hover:scale-105 hover:bg-blue-900 shadow-xl transition-transform duration-200">Apply</Link>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
         {/* 2nd-box */}
         <section id="second-container" className="reveal-on-scroll">
@@ -149,7 +158,7 @@ function AboutSchool() {
 
             <div className="pillar-card reveal-on-scroll">
               <img src={ourValues} alt="Values Icon" className="pillar-icon" />
-              <h3  className="font-bold">Our Values</h3>
+              <h3 className="font-bold">Our Values</h3>
               <p>
                 Integrity, Respect, Excellence, Collaboration, and Innovation
                 guide every action and decision.
@@ -159,30 +168,34 @@ function AboutSchool() {
         </section>
 
         {/* 4th-box */}
-        <section className="principal-message reveal-on-scroll">
-          <h2>A Message from Our Principal</h2>
-
-          <div className="message-card">
-            <div className="principal-img">
-              <img src={profile} alt="Principal" />
-            </div>
-
-            <div className="message-text">
-              <p className="quote">
+        <section className="principal-message reveal-on-scroll mb-6!">
+          <div className="principal-message-wrapper">
+            <div className="principal-content">
+              <h2>What Our Principal Says</h2>
+              <p className="testimonial-text bg-[#15544a] px-3 py-4 relative rounded-lg">
+                <Quote size={48} strokeWidth={2.5} className="text-[#6fd513] absolute -top-7" />
                 I warmly welcome you to our school website. Our vision is to
                 create a supportive and inspiring environment where students
                 grow academically, socially, and emotionally. We are committed
                 to excellence in education and dedicated to preparing students
-                for a successful future.
-                <br />
-                <br />
-                Thank you for your constant support and trust.
-                <br />
-                <br />
+                for a successful future. Thank you for your constant support and
+                trust.
               </p>
-
-              <h4 className="name">Dr. María Cruz</h4>
-              <p className="designation">Principal, EduConnect Hub</p>
+              <div className="testimonial-author">
+                <h4 className="name">Dr. María Cruz</h4>
+                <p className="designation">Principal, Graphura School</p>
+              </div>
+            </div>
+            <div className="principal-image-section">
+              <img
+                src={profile}
+                alt="Principal"
+                className="principal-main-image"
+              />
+              <div className="decorative-books">
+                <i className="fa-solid fa-book"></i>
+                <i className="fa-solid fa-book"></i>
+              </div>
             </div>
           </div>
         </section>
@@ -193,57 +206,99 @@ function AboutSchool() {
 
           <div className="campus-grid">
             <div className="campus-card reveal-on-scroll">
-              <img src={advSchool} alt="Advanced Classroom" />
-              <h3 className="font-bold">Advanced Classrooms</h3>
-              <p>
-                Equipped with cutting-edge technology to facilitate interactive
-                and engaging learning experiences.
-              </p>
+              <div className="campus-card-image-wrapper">
+                <img src={advSchool} alt="Advanced Classroom" />
+                <div className="campus-card-icon">
+                  <i className="fa-solid fa-chalkboard-user"></i>
+                </div>
+              </div>
+              <div className="campus-card-content">
+                <h3 className="font-bold">Advanced Classrooms</h3>
+                <p>
+                  Equipped with cutting-edge technology to facilitate
+                  interactive and engaging learning experiences.
+                </p>
+              </div>
             </div>
 
             <div className="campus-card reveal-on-scroll">
-              <img src={exLibrary} alt="Extensive Library" />
-              <h3 className="font-bold">Extensive Library</h3>
-              <p>
-                A rich collection of resources and a serene environment
-                conducive to deep learning and research.
-              </p>
+              <div className="campus-card-image-wrapper">
+                <img src={exLibrary} alt="Extensive Library" />
+                <div className="campus-card-icon">
+                  <i className="fa-solid fa-book-open"></i>
+                </div>
+              </div>
+              <div className="campus-card-content">
+                <h3 className="font-bold">Extensive Library</h3>
+                <p>
+                  A rich collection of resources and a serene environment
+                  conducive to deep learning and research.
+                </p>
+              </div>
             </div>
 
             <div className="campus-card reveal-on-scroll">
-              <img src={scienceLib} alt="Science Laboratories" />
-              <h3 className="font-bold">Science Laboratories</h3>
-              <p>
-                Dedicated labs for physics, chemistry, and biology, fostering
-                hands-on scientific discovery.
-              </p>
+              <div className="campus-card-image-wrapper">
+                <img src={scienceLib} alt="Science Laboratories" />
+                <div className="campus-card-icon">
+                  <i className="fa-solid fa-flask"></i>
+                </div>
+              </div>
+              <div className="campus-card-content">
+                <h3 className="font-bold">Science Laboratories</h3>
+                <p>
+                  Dedicated labs for physics, chemistry, and biology, fostering
+                  hands-on scientific discovery.
+                </p>
+              </div>
             </div>
 
             <div className="campus-card reveal-on-scroll">
-              <img src={compLabs} alt="Computer Labs" />
-              <h3 className="font-bold">Computer Labs</h3>
-              <p>
-                Equipped with high-performance computers and software for
-                programming, design, and digital literacy.
-              </p>
+              <div className="campus-card-image-wrapper">
+                <img src={compLabs} alt="Computer Labs" />
+                <div className="campus-card-icon">
+                  <i className="fa-solid fa-computer"></i>
+                </div>
+              </div>
+              <div className="campus-card-content">
+                <h3 className="font-bold">Computer Labs</h3>
+                <p>
+                  Equipped with high-performance computers and software for
+                  programming, design, and digital literacy.
+                </p>
+              </div>
             </div>
 
             <div className="campus-card reveal-on-scroll">
-              <img src={schlFaci} alt="Sports Facilities" />
-              <h3 className="font-bold">Sports Facilities</h3>
-              <p>
-                Indoor and outdoor courts, fields, and a gym to support a wide
-                range of athletic activities.
-              </p>
+              <div className="campus-card-image-wrapper">
+                <img src={schlFaci} alt="Sports Facilities" />
+                <div className="campus-card-icon">
+                  <i className="fa-solid fa-dumbbell"></i>
+                </div>
+              </div>
+              <div className="campus-card-content">
+                <h3 className="font-bold">Sports Facilities</h3>
+                <p>
+                  Indoor and outdoor courts, fields, and a gym to support a wide
+                  range of athletic activities.
+                </p>
+              </div>
             </div>
 
             <div className="campus-card reveal-on-scroll">
-              <img src={artandmusic} alt="Art & Music Studios" />
-              <h3 className="font-bold">Art & Music Studios</h3>
-              <p>
-                Creative spaces designed to inspire artistic expression and
-                musical talent.
-              </p>
+              <div className="campus-card-image-wrapper">
+                <img src={artandmusic} alt="Art & Music Studios" />
+                <div className="campus-card-icon">
+                  <i className="fa-solid fa-palette"></i>
+                </div>
+              </div>
+              <div className="campus-card-content">
+                <h3 className="font-bold">Art & Music Studios</h3>
+                <p>
+                  Creative spaces designed to inspire artistic expression and
+                  musical talent.
+                </p>
+              </div>
             </div>
           </div>
         </section>

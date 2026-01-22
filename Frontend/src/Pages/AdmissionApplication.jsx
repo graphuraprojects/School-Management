@@ -9,7 +9,6 @@ function AdmissionApplication() {
   const apiUrl = import.meta.env.VITE_API_URL;
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     // Student Personal Details
     fullName: "",
@@ -65,19 +64,8 @@ function AdmissionApplication() {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      // setShowPopup(true);
-      toast.success(
-        <div className="flex items-center gap-3">
-          <CheckCircle size={22} className="text-green-600" />
-          <span className="font-semibold text-gray-800">Details Submitted, We will contact you soon.</span>
-        </div>,
-        {
-          className: "rounded-xl shadow-lg border border-green-200 bg-green-50",
-          bodyClassName: "text-sm",
-          progressClassName: "bg-green-500",
-        }
-      );
-      navigate("/home")
+      alert("Admission Application Submitted Successfully 🎉");
+      
     } catch (error) {
       console.log(error);
     } finally {
@@ -88,14 +76,17 @@ function AdmissionApplication() {
   return (
     <div className="admission-container">
       <div className="admission-wrapper">
-        {/* Header Section */}
-        <div className="admission-header">
-          <h1 className="text-center">Admission Application</h1>
-          <p>
-            Welcome to the EduConnect Hub online admission portal. Please fill
-            out the form below carefully, providing all necessary details and
-            uploading required documents. Your journey with us begins here!
-          </p>
+        {/* Hero Section */}
+        <div className="admission-hero">
+          <div className="hero-content animate-fade-up">
+            <h1>Admission Application</h1>
+            <p className="text-center w-full">
+              Welcome to the EduConnect Hub admission portal. We are committed
+              to nurturing young minds through quality education, guidance, and
+              care. Fill in the required details to take the first step toward
+              your child’s successful academic future.
+            </p>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="admission-form">
@@ -417,7 +408,7 @@ function AdmissionApplication() {
             <div className="form-actions">
               <button
                 type="submit"
-                className="submit-btn bg-blue-600 text-white py-2 px-6 rounded-lg font-semibold"
+                className="submit-btn bg-[#6fd513]! hover:bg-[#53a110]! text-white py-2 px-6 rounded-lg font-semibold"
                 disabled={loading}
               >
                 {loading ? "Submitting..." : "Submit Application"}
@@ -435,7 +426,7 @@ function AdmissionApplication() {
             </p>
             <button
               onClick={() => setShowPopup(false)}
-              className="mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+              className="mt-4 bg-[#6fd513] text-white px-5 py-2 rounded-lg hover:bg-[#53a110] transition"
             >
               Close
             </button>

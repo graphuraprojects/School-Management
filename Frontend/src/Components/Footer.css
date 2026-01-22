@@ -5,8 +5,8 @@
   background-color: #ffffff;
   padding-top: 20px;
   padding-bottom: 30px;
-  color: #222;
-  border-top: 1px solid #dddddd50;
+  color: #111827;
+  border-top: 1px solid rgba(111, 213, 19, 0.15);
 }
 
 /* ============================================================
@@ -74,23 +74,25 @@
 }
 
 .newsletter-actions input:focus {
-  border-color: #4482ff;
-  box-shadow: 0 0 8px #4482ff50;
+  border-color: #6fd513;
+  box-shadow: 0 0 8px rgba(111, 213, 19, 0.4);
 }
 
 .btn-subscribe {
   padding: 10px 14px;
-  border-radius: 8px;
-  background: linear-gradient(90deg, #4482ff, #135ae8);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6fd513, #53a110);
   border: none;
   color: #fff;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.25s ease;
+  box-shadow: 0 10px 25px rgba(111, 213, 19, 0.35);
 }
 
 .btn-subscribe:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 14px 30px rgba(111, 213, 19, 0.45);
 }
 
 /* ============================================================
@@ -163,6 +165,20 @@
 .footer-heading {
   font-size: 16px;
   font-weight: 700;
+  color: #0f172a;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.footer-heading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 36px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6fd513, rgba(111, 213, 19, 0.1));
 }
 
 /* Links */
@@ -184,7 +200,7 @@
 }
 
 .footer-links li span:hover {
-  color: #135ae8;
+  color: #6fd513;
   text-decoration: none !important;
 }
 
@@ -208,7 +224,7 @@
 }
 
 .map-link:hover {
-  color: #135ae8;
+  color: #6fd513;
   text-decoration: none;
 }
 
@@ -246,7 +262,7 @@
 }
 
 .legal-links span:hover {
-  color: #135ae8;
+  color: #6fd513;
 }
 
 /* ============================================================
@@ -259,7 +275,7 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: linear-gradient(90deg, #4482ff, #135ae8);
+  background: #6fd513;
   color: white;
   border: none;
   cursor: pointer;
@@ -331,7 +347,7 @@
   bottom: -2px;
   width: 0%;
   height: 2px;
-  background: #135ae8;
+  background: #6fd513;
   transition: 0.3s ease;
 }
 
@@ -341,8 +357,8 @@
 
 /* Newsletter input focus glow */
 .newsletter-actions input:focus {
-  border-color: #135ae8;
-  box-shadow: 0 0 10px #135ae860;
+  border-color: #6fd513;
+  box-shadow: 0 0 10px rgba(111, 213, 19, 0.45);
   transform: scale(1.02);
 }
 

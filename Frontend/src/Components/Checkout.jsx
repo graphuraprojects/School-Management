@@ -48,7 +48,7 @@ const CheckoutButton = ({ orderAmount, cartItems }) => {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount: data.amount,
         currency: data.currency,
-        name: "My E-commerce Store",
+        name: "Graphura School Store",
         description: "Order Payment",
         order_id: data.id,
         prefill: {
@@ -61,7 +61,7 @@ const CheckoutButton = ({ orderAmount, cartItems }) => {
           // After payment success >>>  deduct stock
           placeFinalOrder();
         },
-        theme: { color: "#2b7fff" },
+        theme: { color: "#6fd513" },
       };
 
       const rzp = new window.Razorpay(options);
@@ -110,10 +110,12 @@ const CheckoutButton = ({ orderAmount, cartItems }) => {
   return (
     <>
     <button
-      className="w-full cursor-pointer bg-blue-500 p-2 shadow-xl rounded-lg mt-2 text-white font-semibold hover:shadow-2xl hover:bg-blue-900 hover:scale-105 transition-transform duration-300 active:bg-blue-900"
+      className="w-full cursor-pointer bg-[#6fd513] p-3 sm:p-4 shadow-xl rounded-xl text-white font-bold text-lg hover:bg-[#53a110] hover:shadow-2xl hover:shadow-[#6fd513]/50 hover:scale-[1.02] transition-all duration-300 active:bg-[#53a110] flex items-center justify-center gap-2"
       onClick={handlePlaceOrder}
     >
+      <i className="fa-solid fa-lock"></i>
       Place Order
+      <i className="fa-solid fa-arrow-right"></i>
     </button>
     <ToastContainer />
     </>

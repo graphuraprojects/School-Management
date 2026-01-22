@@ -51,6 +51,18 @@ const Dashboard = () => {
     // Admin → stay on dashboard
   }, [navigate]);
 
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isModalOpen]);
+
   // ---------- ADD PRODUCT ----------
   const handleAddProduct = async (e) => {
     e.preventDefault();
@@ -135,7 +147,7 @@ const Dashboard = () => {
       );
       setSearchedUser(res.data.user);
     } catch (err) {
-      setUserError("User not found");
+      setUserError("User not found",err);
     } finally {
       setUserLoading(false);
     }
@@ -177,7 +189,7 @@ const Dashboard = () => {
   // ------------------- DASHBOARD PAGE ----------------------
   // ---------------------------------------------------------
   const DashboardPage = () => (
-    <div className="p-10 flex flex-col gap-6">
+    <div className="p-10 flex flex-col gap-6 mt-15">
       {/* TOP BAR SWITCHER */}
       <div className="flex justify-between items-center">
         <p className="text-[#111418] text-4xl font-black">
@@ -195,7 +207,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("dashboard")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "dashboard"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -206,7 +218,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("products")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "products"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -216,7 +228,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("orders")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "orders"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -226,7 +238,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("get-user")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "get-user"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -236,7 +248,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("create-admin")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "create-admin"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -246,51 +258,56 @@ const Dashboard = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { title: "Total Students", count: "1850+" },
-          { title: "Total Activities", count: "40+" },
-          { title: "Products in Stock", count: totalQty },
-          { title: "Total Revenue", count: "₹1,50,000+" },
+          { title: "Total Students", count: "1850+", icon: "fa-users" },
+          { title: "Total Activities", count: "40+", icon: "fa-calendar-check" },
+          { title: "Products in Stock", count: totalQty, icon: "fa-boxes" },
+          { title: "Total Revenue", count: "₹1,50,000+", icon: "fa-rupee-sign" },
         ].map((stat, idx) => (
           <div
             key={idx}
-            className="flex flex-col gap-2 rounded-xl p-6 bg-white border border-[#dbe0e6] items-center"
+            className="flex flex-col gap-3 rounded-2xl p-6 bg-white border-2 border-[#6fd513]/20 items-center cursor-pointer hover:-translate-y-2 hover:shadow-xl hover:border-[#6fd513] duration-300 transition-all"
           >
-            <p className="text-black font-bold">{stat.title}</p>
-            <p className="text-blue-500 text-3xl font-bold">{stat.count}</p>
+            <div className="w-16 h-16 bg-[#6fd513]/10 rounded-full flex items-center justify-center mb-2">
+              <i className={`fa-solid ${stat.icon} text-[#6fd513] text-2xl`}></i>
+            </div>
+            <p className="text-gray-700 font-semibold text-center">{stat.title}</p>
+            <p className="text-[#6fd513] text-3xl font-bold">{stat.count}</p>
           </div>
         ))}
       </div>
 
       {/* Admissions */}
-      <div className="w-full max-w-6xl bg-white rounded-3xl shadow-xl border border-blue-200 p-6">
-        <h2 className="text-3xl font-bold text-blue-800 mb-4">
+      <div className="w-full max-w-6xl bg-white rounded-2xl shadow-xl border-2 border-[#6fd513]/20 p-6 hover:border-[#6fd513]/40 transition-all duration-300">
+        <h2 className="text-3xl font-bold text-[#6fd513] mb-4 flex items-center gap-2">
+          <i className="fa-solid fa-graduation-cap"></i>
           Recent Admissions
         </h2>
 
         <div className="max-h-[500px] overflow-y-auto">
           <table className="w-full text-left border-collapse">
-            <thead className="bg-blue-100 text-blue-700 sticky top-0">
+            <thead className="bg-[#e0fac8] text-[#6fd513] sticky top-0">
               <tr>
-                <th className="px-6 py-3 border-b">Student Name</th>
-                <th className="px-6 py-3 border-b">Parent Name</th>
-                <th className="px-6 py-3 border-b">Phone</th>
-                <th className="px-6 py-3 border-b text-center">Action</th>
+                <th className="px-6 py-3 border-b border-[#6fd513]/30">Student Name</th>
+                <th className="px-6 py-3 border-b border-[#6fd513]/30">Parent Name</th>
+                <th className="px-6 py-3 border-b border-[#6fd513]/30">Phone</th>
+                <th className="px-6 py-3 border-b border-[#6fd513]/30 text-center">Action</th>
               </tr>
             </thead>
 
             <tbody>
               {admissions.map((row) => (
-                <tr key={row._id} className="hover:bg-blue-50">
-                  <td className="px-6 py-4 font-medium text-blue-900">
+                <tr key={row._id} className="hover:bg-[#e0fac8]/50 transition-colors">
+                  <td className="px-6 py-4 font-medium text-[#3f5e25]">
                     {row.fullName}
                   </td>
-                  <td className="px-6 py-4 text-blue-800">{row.parentName}</td>
-                  <td className="px-6 py-4 text-blue-700">{row.parentPhone}</td>
+                  <td className="px-6 py-4 text-[#6fd513] font-semibold">{row.parentName}</td>
+                  <td className="px-6 py-4 text-gray-700">{row.parentPhone}</td>
                   <td className="px-6 py-4 text-center">
                     <button
                       onClick={() => handleView(row._id)}
-                      className="px-4 py-1 bg-blue-600 text-white rounded-lg cursor-pointer"
+                      className="px-4 py-2 bg-[#6fd513] text-white rounded-xl cursor-pointer hover:bg-[#53a110] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center gap-2 mx-auto"
                     >
+                      <i className="fa-solid fa-eye"></i>
                       View
                     </button>
                   </td>
@@ -303,99 +320,108 @@ const Dashboard = () => {
 
       {/* Modal */}
       {isModalOpen && selectedAdmission && (
-        <div className="absolute inset-0 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-3xl p-6 border-4 border-blue-400 overflow-y-auto max-h-screen relative mt-50">
-            <button
-              className="cursor-pointer absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-xl font-bold"
-              onClick={closeModal}
-            >
-              ✕
-            </button>
+        <div className="fixed inset-0 flex items-center justify-center z-50 p-4 overflow-y-auto">
+          <div className="bg-white rounded-2xl mt-40 shadow-2xl w-full max-w-3xl my-8 border-2 border-[#6fd513] relative max-h-[90vh] flex flex-col">
+            <div className="sticky top-0 bg-white rounded-t-2xl border-b-2 border-[#6fd513]/20 px-6 py-4 z-10 flex items-center justify-between">
+              <h2 className="text-2xl font-bold text-[#6fd513] flex items-center gap-2">
+                <i className="fa-solid fa-user-graduate"></i>
+                {selectedAdmission.fullName}
+              </h2>
+              <button
+                className="cursor-pointer text-gray-500 hover:text-[#6fd513] text-xl font-bold transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#6fd513]/10"
+                onClick={closeModal}
+              >
+                ✕
+              </button>
+            </div>
+            
+            <div className="overflow-y-auto flex-1 px-6 py-4">
 
-            <div className="flex items-center gap-4 mb-6">
-              {selectedAdmission.studentPhoto && (
+            {selectedAdmission.studentPhoto && (
+              <div className="flex justify-center mb-6">
                 <img
                   src={selectedAdmission.studentPhoto}
                   alt="Student"
-                  className="w-20 h-20 rounded-full object-cover border-2 border-blue-300"
+                  className="w-24 h-24 rounded-full object-cover border-3 border-[#6fd513] shadow-lg"
                 />
-              )}
-              <h2 className="text-2xl font-bold text-blue-700">
-                {selectedAdmission.fullName}
-              </h2>
-            </div>
+              </div>
+            )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 shadow-sm">
-                <h3 className="font-semibold text-blue-800 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div className="bg-[#effee3] p-4 rounded-xl border-2 border-[#6fd513]/30 shadow-sm hover:border-[#6fd513]/60 transition-all">
+                <h3 className="font-semibold text-[#6fd513] mb-2 flex items-center gap-2">
+                  <i className="fa-solid fa-user"></i>
                   Personal Info
                 </h3>
-                <p>
+                <p className="text-gray-700">
                   <strong>DOB:</strong> {selectedAdmission.dateOfBirth}
                 </p>
-                <p>
+                <p className="text-gray-700">
                   <strong>Gender:</strong> {selectedAdmission.gender}
                 </p>
-                <p>
+                <p className="text-gray-700">
                   <strong>Nationality:</strong> {selectedAdmission.nationality}
                 </p>
-                <p>
+                <p className="text-gray-700">
                   <strong>Proposed Grade:</strong>{" "}
                   {selectedAdmission.proposedGrade}
                 </p>
               </div>
 
-              <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 shadow-sm">
-                <h3 className="font-semibold text-blue-800 mb-2">
+              <div className="bg-[#effee3] p-4 rounded-xl border-2 border-[#6fd513]/30 shadow-sm hover:border-[#6fd513]/60 transition-all">
+                <h3 className="font-semibold text-[#6fd513] mb-2 flex items-center gap-2">
+                  <i className="fa-solid fa-users"></i>
                   Parent Info
                 </h3>
-                <p>
+                <p className="text-gray-700">
                   <strong>Name:</strong> {selectedAdmission.parentName}
                 </p>
-                <p>
+                <p className="text-gray-700">
                   <strong>Relationship:</strong>{" "}
                   {selectedAdmission.relationship}
                 </p>
-                <p>
+                <p className="text-gray-700">
                   <strong>Email:</strong> {selectedAdmission.parentEmail}
                 </p>
-                <p>
+                <p className="text-gray-700">
                   <strong>Phone:</strong> {selectedAdmission.parentPhone}
                 </p>
-                <p>
+                <p className="text-gray-700">
                   <strong>WhatsApp:</strong> {selectedAdmission.parentWhatsApp}
                 </p>
               </div>
 
-              <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 shadow-sm">
-                <h3 className="font-semibold text-blue-800 mb-2">
+              <div className="bg-[#effee3] p-4 rounded-xl border-2 border-[#6fd513]/30 shadow-sm hover:border-[#6fd513]/60 transition-all">
+                <h3 className="font-semibold text-[#6fd513] mb-2 flex items-center gap-2">
+                  <i className="fa-solid fa-phone"></i>
                   Emergency Contact
                 </h3>
-                <p>
+                <p className="text-gray-700">
                   <strong>Name:</strong> {selectedAdmission.emergencyName}
                 </p>
-                <p>
+                <p className="text-gray-700">
                   <strong>Relationship:</strong>{" "}
                   {selectedAdmission.emergencyRelationship}
                 </p>
-                <p>
+                <p className="text-gray-700">
                   <strong>Phone:</strong> {selectedAdmission.emergencyPhone}
                 </p>
               </div>
 
-              <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 shadow-sm">
-                <h3 className="font-semibold text-blue-800 mb-2">
+              <div className="bg-[#effee3] p-4 rounded-xl border-2 border-[#6fd513]/30 shadow-sm hover:border-[#6fd513]/60 transition-all">
+                <h3 className="font-semibold text-[#6fd513] mb-2 flex items-center gap-2">
+                  <i className="fa-solid fa-book"></i>
                   Academic Info
                 </h3>
-                <p>
+                <p className="text-gray-700">
                   <strong>Previous School:</strong>{" "}
                   {selectedAdmission.previousSchool}
                 </p>
-                <p>
+                <p className="text-gray-700">
                   <strong>Previous Grade:</strong>{" "}
                   {selectedAdmission.previousGrade}
                 </p>
-                <p>
+                <p className="text-gray-700">
                   <strong>Notes:</strong>{" "}
                   {selectedAdmission.additionalNotes || "N/A"}
                 </p>
@@ -403,14 +429,15 @@ const Dashboard = () => {
             </div>
 
             {/* Files */}
-            <div className="mt-6 flex gap-6 flex-wrap">
+            <div className="mt-6 flex gap-6 flex-wrap pb-4">
               {selectedAdmission.studentPhoto && (
                 <a
                   href={selectedAdmission.studentPhoto}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
+                  className="text-[#6fd513] hover:text-[#53a110] hover:underline flex items-center gap-2 transition-colors px-4 py-2 rounded-lg hover:bg-[#6fd513]/10"
                 >
+                  <i className="fa-solid fa-image"></i>
                   View Student Photo
                 </a>
               )}
@@ -419,8 +446,9 @@ const Dashboard = () => {
                   href={selectedAdmission.birthCertificate}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
+                  className="text-[#6fd513] hover:text-[#53a110] hover:underline flex items-center gap-2 transition-colors px-4 py-2 rounded-lg hover:bg-[#6fd513]/10"
                 >
+                  <i className="fa-solid fa-file"></i>
                   View Birth Certificate
                 </a>
               )}
@@ -429,11 +457,13 @@ const Dashboard = () => {
                   href={selectedAdmission.previousMarksheets}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
+                  className="text-[#6fd513] hover:text-[#53a110] hover:underline flex items-center gap-2 transition-colors px-4 py-2 rounded-lg hover:bg-[#6fd513]/10"
                 >
+                  <i className="fa-solid fa-file-alt"></i>
                   View Previous Marksheets
                 </a>
               )}
+            </div>
             </div>
           </div>
         </div>
@@ -445,16 +475,17 @@ const Dashboard = () => {
   // ------------------- PRODUCTS PAGE -----------------------
   // ---------------------------------------------------------
   const ProductsPage = () => (
-    <div className="p-10 flex flex-col gap-6">
+    <div className="p-10 flex flex-col gap-6 mt-15">
       {/* TOP BAR SWITCHER */}
       <div className="flex justify-between items-center">
         <p className="text-[#111418] text-4xl font-black">Products</p>
 
         <button
           onClick={() => setIsAddProductOpen(true)}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow cursor-pointer"
+          className="px-6 py-3 bg-[#6fd513] hover:bg-[#53a110] text-white rounded-xl shadow-lg cursor-pointer transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center gap-2 font-semibold"
         >
-          + Add Product
+          <i className="fa-solid fa-plus"></i>
+          Add Product
         </button>
       </div>
 
@@ -468,7 +499,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("dashboard")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "dashboard"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -479,7 +510,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("products")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "products"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -489,7 +520,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("orders")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "orders"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -499,7 +530,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("get-user")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "get-user"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -509,7 +540,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("create-admin")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "create-admin"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -523,17 +554,17 @@ const Dashboard = () => {
       </p>
 
       {/* Product Table */}
-      <div className="bg-white rounded-2xl shadow-xl p-4">
+      <div className="bg-white rounded-2xl shadow-xl border-2 border-[#6fd513]/20 p-4 hover:border-[#6fd513]/40 transition-all duration-300">
         <div className="max-h-[450px] overflow-y-auto">
           <table className="min-w-[700px] w-full text-left border-collapse">
             <thead>
-              <tr className="bg-blue-100 text-blue-700 sticky top-0">
-                <th className="px-4 py-3 border-b">Image</th>
-                <th className="px-4 py-3 border-b">Title</th>
-                <th className="px-4 py-3 border-b">Category</th>
-                <th className="px-4 py-3 border-b">Price</th>
-                <th className="px-4 py-3 border-b">Stock</th>
-                <th className="px-4 py-3 border-b text-center">
+              <tr className="bg-[#e0fac8] text-[#6fd513] sticky top-0">
+                <th className="px-4 py-3 border-b border-[#6fd513]/30">Image</th>
+                <th className="px-4 py-3 border-b border-[#6fd513]/30">Title</th>
+                <th className="px-4 py-3 border-b border-[#6fd513]/30">Category</th>
+                <th className="px-4 py-3 border-b border-[#6fd513]/30">Price</th>
+                <th className="px-4 py-3 border-b border-[#6fd513]/30">Stock</th>
+                <th className="px-4 py-3 border-b border-[#6fd513]/30 text-center">
                   Increase Quantity
                 </th>
               </tr>
@@ -541,16 +572,16 @@ const Dashboard = () => {
 
             <tbody>
               {cart.map((item) => (
-                <tr key={item._id} className="hover:bg-blue-50">
+                <tr key={item._id} className="hover:bg-[#e0fac8]/50 transition-colors">
                   <td className="px-4 py-3 border-b">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-14 h-14 rounded object-cover shadow-md"
+                      className="w-14 h-14 rounded-lg object-cover shadow-md border-2 border-[#6fd513]/20"
                     />
                   </td>
 
-                  <td className="px-4 py-3 border-b font-medium">
+                  <td className="px-4 py-3 border-b font-medium text-gray-800">
                     {item.title}
                   </td>
 
@@ -558,19 +589,20 @@ const Dashboard = () => {
                     {item.category}
                   </td>
 
-                  <td className="px-4 py-3 border-b font-semibold text-blue-600">
+                  <td className="px-4 py-3 border-b font-semibold text-[#6fd513]">
                     ₹{item.price}
                   </td>
 
-                  <td className="px-4 py-3 border-b">{item.quantity}</td>
+                  <td className="px-4 py-3 border-b text-gray-700">{item.quantity}</td>
                   <td className="px-4 py-3 text-center">
                     <button
-                      className="bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700"
+                      className="bg-[#6fd513] text-white px-4 py-2 rounded-xl hover:bg-[#53a110] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center gap-2 mx-auto"
                       onClick={() => {
                         setQtyProductId(item._id);
                         setIsQtyModalOpen(true);
                       }}
                     >
+                      <i className="fa-solid fa-plus"></i>
                       Add Qty
                     </button>
                   </td>
@@ -627,13 +659,13 @@ const Dashboard = () => {
 
     const statusStyles = {
       ORDER_PLACED: "bg-gray-100 text-gray-700 border-gray-300",
-      SHIPPED: "bg-blue-100 text-blue-700 border-blue-300",
+      SHIPPED: "bg-[#e0fac8] text-[#6fd513] border-[#6fd513]/50",
       OUT_FOR_DELIVERY: "bg-orange-100 text-orange-700 border-orange-300",
-      DELIVERED: "bg-green-100 text-green-700 border-green-300",
+      DELIVERED: "bg-[#e0fac8] text-[#53a110] border-[#6fd513]/50",
     };
 
     return (
-      <div className="p-10 flex flex-col gap-6">
+      <div className="p-10 flex flex-col gap-6 mt-15">
         <div className="flex justify-between items-center">
           <p className="text-[#111418] text-4xl font-black tracking-[-0.033em]">
             Orders
@@ -649,7 +681,7 @@ const Dashboard = () => {
             onClick={() => setCurrentPage("dashboard")}
             className={`px-4 py-2 rounded-lg cursor-pointer ${
               currentPage === "dashboard"
-                ? "bg-blue-600 text-white"
+                ? "bg-[#6fd513] text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
           >
@@ -660,7 +692,7 @@ const Dashboard = () => {
             onClick={() => setCurrentPage("products")}
             className={`px-4 py-2 rounded-lg cursor-pointer ${
               currentPage === "products"
-                ? "bg-blue-600 text-white"
+                ? "bg-[#6fd513] text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
           >
@@ -670,7 +702,7 @@ const Dashboard = () => {
             onClick={() => setCurrentPage("orders")}
             className={`px-4 py-2 rounded-lg cursor-pointer ${
               currentPage === "orders"
-                ? "bg-blue-600 text-white"
+                ? "bg-[#6fd513] text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
           >
@@ -680,7 +712,7 @@ const Dashboard = () => {
             onClick={() => setCurrentPage("get-user")}
             className={`px-4 py-2 rounded-lg cursor-pointer ${
               currentPage === "get-user"
-                ? "bg-blue-600 text-white"
+                ? "bg-[#6fd513] text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
           >
@@ -690,7 +722,7 @@ const Dashboard = () => {
             onClick={() => setCurrentPage("create-admin")}
             className={`px-4 py-2 rounded-lg cursor-pointer ${
               currentPage === "create-admin"
-                ? "bg-blue-600 text-white"
+                ? "bg-[#6fd513] text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
           >
@@ -698,16 +730,16 @@ const Dashboard = () => {
           </button>
         </div>
 
-        <div className="w-full bg-white rounded-2xl border border-gray-200 shadow p-4 overflow-x-auto">
+        <div className="w-full bg-white rounded-2xl border-2 border-[#6fd513]/20 shadow-xl p-4 overflow-x-auto hover:border-[#6fd513]/40 transition-all duration-300">
           <table className="w-full border-collapse text-left min-w-[1000px]">
             <thead>
-              <tr className="bg-blue-100 text-blue-700">
-                <th className="px-4 py-3 border-b">Order ID</th>
-                <th className="px-4 py-3 border-b">User ID</th>
-                <th className="px-4 py-3 border-b text-center">Items</th>
-                <th className="px-4 py-3 border-b text-center">Total Qty</th>
-                <th className="px-4 py-3 border-b">Total Price</th>
-                <th className="px-4 py-3 border-b">Status</th>
+              <tr className="bg-[#e0fac8] text-[#6fd513]">
+                <th className="px-4 py-3 border-b border-[#6fd513]/30">Order ID</th>
+                <th className="px-4 py-3 border-b border-[#6fd513]/30">User ID</th>
+                <th className="px-4 py-3 border-b border-[#6fd513]/30 text-center">Items</th>
+                <th className="px-4 py-3 border-b border-[#6fd513]/30 text-center">Total Qty</th>
+                <th className="px-4 py-3 border-b border-[#6fd513]/30">Total Price</th>
+                <th className="px-4 py-3 border-b border-[#6fd513]/30">Status</th>
               </tr>
             </thead>
 
@@ -719,22 +751,22 @@ const Dashboard = () => {
                 );
 
                 return (
-                  <tr key={order._id} className="hover:bg-blue-50 transition">
-                    <td className="px-4 py-3 border-b font-medium">
+                  <tr key={order._id} className="hover:bg-[#e0fac8]/50 transition-colors">
+                    <td className="px-4 py-3 border-b font-medium text-gray-800">
                       {order._id}
                     </td>
 
-                    <td className="px-4 py-3 border-b">{order?.userId?._id}</td>
+                    <td className="px-4 py-3 border-b text-gray-700">{order?.userId?._id}</td>
 
-                    <td className="px-4 py-3 border-b text-center">
+                    <td className="px-4 py-3 border-b text-center text-gray-700">
                       {order.items.length}
                     </td>
 
-                    <td className="px-4 py-3 border-b text-center">
+                    <td className="px-4 py-3 border-b text-center text-gray-700">
                       {totalQty}
                     </td>
 
-                    <td className="px-4 py-3 border-b font-semibold text-blue-600">
+                    <td className="px-4 py-3 border-b font-semibold text-[#6fd513]">
                       ₹{order.totalPrice}
                     </td>
 
@@ -745,9 +777,9 @@ const Dashboard = () => {
                           updateStatus(order._id, e.target.value)
                         }
                         className={`
-      px-3 py-2 rounded-lg font-semibold text-sm
-      border cursor-pointer transition-all duration-200
-      focus:outline-none focus:ring-2 focus:ring-offset-1
+      px-3 py-2 rounded-xl font-semibold text-sm
+      border-2 cursor-pointer transition-all duration-200
+      focus:outline-none focus:ring-2 focus:ring-[#6fd513] focus:border-[#6fd513]
       ${statusStyles[order.status]}
     `}
                       >
@@ -775,7 +807,7 @@ const Dashboard = () => {
 
   ///get user details page
   const GetUserPage = () => (
-    <div className="p-10 flex flex-col items-center gap-6">
+    <div className="p-10 flex flex-col items-center gap-6 mt-15">
       <p className="text-[#111418] text-4xl font-black w-full">Find User</p>
       <div
         className="flex gap-3 mt-2 w-full overflow-x-auto
@@ -787,7 +819,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("dashboard")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "dashboard"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -798,7 +830,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("products")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "products"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -808,7 +840,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("orders")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "orders"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -818,7 +850,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("get-user")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "get-user"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -828,7 +860,7 @@ const Dashboard = () => {
           onClick={() => setCurrentPage("create-admin")}
           className={`px-4 py-2 rounded-lg cursor-pointer ${
             currentPage === "create-admin"
-              ? "bg-blue-600 text-white"
+              ? "bg-[#6fd513] text-white"
               : "bg-gray-200 text-gray-700"
           }`}
         >
@@ -837,20 +869,21 @@ const Dashboard = () => {
       </div>
 
       {/* SEARCH BOX */}
-      <div className="bg-white shadow-xl rounded-2xl p-6 w-full max-w-md">
+      <div className="bg-white shadow-xl rounded-2xl border-2 border-[#6fd513]/20 p-6 w-full max-w-md hover:border-[#6fd513]/40 transition-all duration-300">
         <div className="flex flex-col sm:flex-row gap-3">
           <input
             type="text"
             placeholder="Enter User ID"
             value={searchUserId}
             onChange={(e) => setSearchUserId(e.target.value)}
-            className="w-full border px-3 py-2 rounded-lg outline-none"
+            className="w-full border-2 border-gray-200 px-4 py-2 rounded-xl outline-none focus:border-[#6fd513] focus:ring-2 focus:ring-[#6fd513]/20 transition-all"
           />
 
           <button
             onClick={fetchUserById}
-            className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+            className="w-full sm:w-auto bg-[#6fd513] text-white px-6 py-2 rounded-xl hover:bg-[#53a110] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 font-semibold"
           >
+            <i className="fa-solid fa-search"></i>
             Search
           </button>
         </div>
@@ -858,35 +891,45 @@ const Dashboard = () => {
 
       {/* STATES */}
       {userLoading && (
-        <p className="text-blue-600 font-semibold">Searching user...</p>
+        <p className="text-[#6fd513] font-semibold flex items-center gap-2">
+          <i className="fa-solid fa-spinner fa-spin"></i>
+          Searching user...
+        </p>
       )}
 
       {userError && <p className="text-red-500 font-semibold">{userError}</p>}
 
       {/* USER CARD */}
       {searchedUser && (
-        <div className="bg-white shadow-2xl rounded-2xl p-6 w-full max-w-md border-2 border-blue-500">
-          <h3 className="text-xl font-bold text-center mb-4">
-            👤 User Details
+        <div className="bg-white shadow-2xl rounded-2xl border-2 border-[#6fd513] p-6 w-full max-w-md">
+          <h3 className="text-xl font-bold text-center mb-4 text-[#6fd513] flex items-center justify-center gap-2">
+            <i className="fa-solid fa-user"></i>
+            User Details
           </h3>
 
-          <div className="space-y-2 text-gray-700">
-            <p>
+          <div className="space-y-3 text-gray-700">
+            <p className="flex items-center gap-2">
+              <i className="fa-solid fa-id-card text-[#6fd513]"></i>
               <strong>ID:</strong> {searchedUser.id}
             </p>
-            <p>
+            <p className="flex items-center gap-2">
+              <i className="fa-solid fa-user text-[#6fd513]"></i>
               <strong>Name:</strong> {searchedUser.username}
             </p>
-            <p>
+            <p className="flex items-center gap-2">
+              <i className="fa-solid fa-envelope text-[#6fd513]"></i>
               <strong>Email:</strong> {searchedUser.email}
             </p>
-            <p>
+            <p className="flex items-center gap-2">
+              <i className="fa-solid fa-phone text-[#6fd513]"></i>
               <strong>Mobile:</strong> {searchedUser.mobile}
             </p>
-            <p>
+            <p className="flex items-center gap-2">
+              <i className="fa-solid fa-user-shield text-[#6fd513]"></i>
               <strong>Role:</strong> {searchedUser.role}
             </p>
-            <p>
+            <p className="flex items-center gap-2">
+              <i className="fa-solid fa-shopping-cart text-[#6fd513]"></i>
               <strong>Cart Items:</strong> {searchedUser.cart?.length || 0}
             </p>
           </div>
@@ -946,7 +989,7 @@ const Dashboard = () => {
     };
 
     return (
-      <div className="p-10 flex flex-col items-center">
+      <div className="p-10 flex flex-col items-center mt-15">
         <p className="text-[#111418] text-4xl font-black w-full">
           Create New Admin
         </p>
@@ -960,7 +1003,7 @@ const Dashboard = () => {
             onClick={() => setCurrentPage("dashboard")}
             className={`px-4 py-2 rounded-lg cursor-pointer ${
               currentPage === "dashboard"
-                ? "bg-blue-600 text-white"
+                ? "bg-[#6fd513] text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
           >
@@ -971,7 +1014,7 @@ const Dashboard = () => {
             onClick={() => setCurrentPage("products")}
             className={`px-4 py-2 rounded-lg cursor-pointer ${
               currentPage === "products"
-                ? "bg-blue-600 text-white"
+                ? "bg-[#6fd513] text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
           >
@@ -981,7 +1024,7 @@ const Dashboard = () => {
             onClick={() => setCurrentPage("orders")}
             className={`px-4 py-2 rounded-lg cursor-pointer ${
               currentPage === "orders"
-                ? "bg-blue-600 text-white"
+                ? "bg-[#6fd513] text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
           >
@@ -991,7 +1034,7 @@ const Dashboard = () => {
             onClick={() => setCurrentPage("get-user")}
             className={`px-4 py-2 rounded-lg cursor-pointer ${
               currentPage === "get-user"
-                ? "bg-blue-600 text-white"
+                ? "bg-[#6fd513] text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
           >
@@ -1001,7 +1044,7 @@ const Dashboard = () => {
             onClick={() => setCurrentPage("create-admin")}
             className={`px-4 py-2 rounded-lg cursor-pointer ${
               currentPage === "create-admin"
-                ? "bg-blue-600 text-white"
+                ? "bg-[#6fd513] text-white"
                 : "bg-gray-200 text-gray-700"
             }`}
           >
@@ -1023,7 +1066,7 @@ const Dashboard = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-4 mt-10 max-w-[450px] w-full p-10 shadow-2xl rounded-2xl"
+          className="flex flex-col gap-4 mt-10 max-w-[450px] w-full p-10 shadow-2xl rounded-2xl border-2 border-[#6fd513]/20 bg-white hover:border-[#6fd513]/40 transition-all duration-300"
         >
           <input
             type="text"
@@ -1032,7 +1075,7 @@ const Dashboard = () => {
             value={form.username}
             onChange={handleChange}
             required
-            className="border p-3 rounded focus:outline-blue-500"
+            className="border-2 border-gray-200 px-4 py-3 rounded-xl focus:outline-none focus:border-[#6fd513] focus:ring-2 focus:ring-[#6fd513]/20 transition-all"
           />
 
           <input
@@ -1042,7 +1085,7 @@ const Dashboard = () => {
             value={form.email}
             onChange={handleChange}
             required
-            className="border p-3 rounded focus:outline-blue-500"
+            className="border-2 border-gray-200 px-4 py-3 rounded-xl focus:outline-none focus:border-[#6fd513] focus:ring-2 focus:ring-[#6fd513]/20 transition-all"
           />
 
           <input
@@ -1052,7 +1095,7 @@ const Dashboard = () => {
             value={form.password}
             onChange={handleChange}
             required
-            className="border p-3 rounded focus:outline-blue-500"
+            className="border-2 border-gray-200 px-4 py-3 rounded-xl focus:outline-none focus:border-[#6fd513] focus:ring-2 focus:ring-[#6fd513]/20 transition-all"
           />
 
           <input
@@ -1062,15 +1105,25 @@ const Dashboard = () => {
             value={form.mobile}
             onChange={handleChange}
             required
-            className="border p-3 rounded focus:outline-blue-500"
+            className="border-2 border-gray-200 px-4 py-3 rounded-xl focus:outline-none focus:border-[#6fd513] focus:ring-2 focus:ring-[#6fd513]/20 transition-all"
           />
 
           <button
             type="submit"
             disabled={loading}
-            className="bg-blue-600 text-white py-3 rounded font-semibold hover:bg-blue-700 transition disabled:opacity-60"
+            className="bg-[#6fd513] text-white py-3 rounded-xl font-semibold hover:bg-[#53a110] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 disabled:opacity-60 flex items-center justify-center gap-2"
           >
-            {loading ? "Creating..." : "Create Admin"}
+            {loading ? (
+              <>
+                <i className="fa-solid fa-spinner fa-spin"></i>
+                Creating...
+              </>
+            ) : (
+              <>
+                <i className="fa-solid fa-user-plus"></i>
+                Create Admin
+              </>
+            )}
           </button>
         </form>
       </div>
@@ -1081,8 +1134,8 @@ const Dashboard = () => {
   // ------------------- FINAL RETURN ------------------------
   // ---------------------------------------------------------
   return (
-    <div className="w-full min-h-screen bg-[#f6f7f8] font-sans overflow-hidden">
-      <div className="min-h-screen">
+    <div className="w-full bg-[#f6f7f8] font-sans overflow-hidden">
+      <div className="">
         {currentPage === "dashboard" && <DashboardPage />}
         {currentPage === "products" && <ProductsPage />}
         {currentPage === "orders" && <OrdersPage />}
@@ -1092,8 +1145,9 @@ const Dashboard = () => {
       {/* Add Product Modal */}
       {isAddProductOpen && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-9999 p-4 pointer-events-auto">
-          <div className="bg-white p-6 rounded-2xl shadow-xl w-full max-w-lg border-4 border-blue-500">
-            <h2 className="text-xl font-bold mb-4 text-[#111418]">
+          <div className="bg-white p-6 rounded-2xl shadow-xl w-full max-w-lg border-2 border-[#6fd513]">
+            <h2 className="text-xl font-bold mb-4 text-[#6fd513] flex items-center gap-2">
+              <i className="fa-solid fa-plus-circle"></i>
               Add New Product
             </h2>
 
@@ -1101,7 +1155,7 @@ const Dashboard = () => {
               <input
                 type="text"
                 placeholder="Title"
-                className="border p-2 rounded"
+                className="border-2 border-gray-200 px-4 py-2 rounded-xl focus:outline-none focus:border-[#6fd513] focus:ring-2 focus:ring-[#6fd513]/20 transition-all"
                 onChange={(e) =>
                   setNewProduct({ ...newProduct, title: e.target.value })
                 }
@@ -1110,7 +1164,7 @@ const Dashboard = () => {
 
               <textarea
                 placeholder="Description"
-                className="border p-2 rounded"
+                className="border-2 border-gray-200 px-4 py-2 rounded-xl focus:outline-none focus:border-[#6fd513] focus:ring-2 focus:ring-[#6fd513]/20 transition-all"
                 onChange={(e) =>
                   setNewProduct({
                     ...newProduct,
@@ -1122,7 +1176,7 @@ const Dashboard = () => {
               <input
                 type="number"
                 placeholder="Price"
-                className="border p-2 rounded"
+                className="border-2 border-gray-200 px-4 py-2 rounded-xl focus:outline-none focus:border-[#6fd513] focus:ring-2 focus:ring-[#6fd513]/20 transition-all"
                 onChange={(e) =>
                   setNewProduct({ ...newProduct, price: e.target.value })
                 }
@@ -1132,7 +1186,7 @@ const Dashboard = () => {
               <input
                 type="number"
                 placeholder="Stock Quantity"
-                className="border p-2 rounded"
+                className="border-2 border-gray-200 px-4 py-2 rounded-xl focus:outline-none focus:border-[#6fd513] focus:ring-2 focus:ring-[#6fd513]/20 transition-all"
                 onChange={(e) =>
                   setNewProduct({ ...newProduct, quantity: e.target.value })
                 }
@@ -1140,7 +1194,7 @@ const Dashboard = () => {
               />
 
               <select
-                className="border p-2 rounded"
+                className="border-2 border-gray-200 px-4 py-2 rounded-xl focus:outline-none focus:border-[#6fd513] focus:ring-2 focus:ring-[#6fd513]/20 transition-all"
                 onChange={(e) =>
                   setNewProduct({ ...newProduct, category: e.target.value })
                 }
@@ -1157,7 +1211,7 @@ const Dashboard = () => {
               <input
                 type="file"
                 accept="image/*"
-                className="border p-2 rounded"
+                className="border-2 border-gray-200 px-4 py-2 rounded-xl focus:outline-none focus:border-[#6fd513] focus:ring-2 focus:ring-[#6fd513]/20 transition-all"
                 onChange={(e) =>
                   setNewProduct({ ...newProduct, image: e.target.files[0] })
                 }
@@ -1167,7 +1221,7 @@ const Dashboard = () => {
               <div className="flex justify-end gap-3 mt-3">
                 <button
                   type="button"
-                  className="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400 cursor-pointer"
+                  className="px-6 py-2 rounded-xl bg-gray-200 hover:bg-gray-300 cursor-pointer transition-all duration-300 font-semibold"
                   onClick={() => setIsAddProductOpen(false)}
                 >
                   Cancel
@@ -1175,8 +1229,9 @@ const Dashboard = () => {
 
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 cursor-pointer"
+                  className="px-6 py-2 rounded-xl bg-[#6fd513] text-white hover:bg-[#53a110] cursor-pointer transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center gap-2 font-semibold"
                 >
+                  <i className="fa-solid fa-check"></i>
                   Add Product
                 </button>
               </div>
@@ -1186,8 +1241,9 @@ const Dashboard = () => {
       )}
       {isQtyModalOpen && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-9999 p-4">
-          <div className="bg-white p-6 rounded-2xl shadow-xl w-full max-w-sm border-4 border-blue-500">
-            <h2 className="text-xl font-bold text-center mb-4">
+          <div className="bg-white p-6 rounded-2xl shadow-xl w-full max-w-sm border-2 border-[#6fd513]">
+            <h2 className="text-xl font-bold text-center mb-4 text-[#6fd513] flex items-center justify-center gap-2">
+              <i className="fa-solid fa-boxes"></i>
               Update Product Quantity
             </h2>
 
@@ -1197,7 +1253,7 @@ const Dashboard = () => {
             >
               <input
                 type="number"
-                className="border p-2 rounded"
+                className="border-2 border-gray-200 px-4 py-2 rounded-xl focus:outline-none focus:border-[#6fd513] focus:ring-2 focus:ring-[#6fd513]/20 transition-all"
                 placeholder="Add Quantity (e.g. 5)"
                 value={addQty}
                 onChange={(e) => setAddQty(e.target.value)}
@@ -1207,7 +1263,7 @@ const Dashboard = () => {
               <div className="flex justify-end gap-3 mt-3">
                 <button
                   type="button"
-                  className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                  className="px-6 py-2 bg-gray-200 rounded-xl hover:bg-gray-300 transition-all duration-300 font-semibold"
                   onClick={() => setIsQtyModalOpen(false)}
                 >
                   Cancel
@@ -1215,8 +1271,9 @@ const Dashboard = () => {
 
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                  className="px-6 py-2 bg-[#6fd513] text-white rounded-xl hover:bg-[#53a110] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center gap-2 font-semibold"
                 >
+                  <i className="fa-solid fa-check"></i>
                   Update
                 </button>
               </div>

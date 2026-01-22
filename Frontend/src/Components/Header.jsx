@@ -189,17 +189,17 @@ function Header() {
           {userMenu && (
             <div
               ref={menuRef}
-              className="absolute right-0  w-64 bg-white shadow-xl rounded-2xl p-5 z-50 border border-blue-500"
+              className="absolute right-0  w-64 bg-white shadow-xl rounded-2xl p-5 z-50 border border-[#6fd513]"
             >
               {checkUser ? (
                 <>
                   {/* USER INFO */}
                   <div className="mb-3">
-                    <h2 className="font-bold text-xl">
-                      {user?.username || "User"}
+                    <h2 className="font-bold text-xl text-[#23613d]">
+                      {user?.username}
                     </h2>
-                    <p className="text-sm text-gray-500">
-                      {user?.email || "example@email.com"}
+                    <p className="text-sm text-[#6fd513]">
+                      {user?.email}
                     </p>
                   </div>
 
@@ -210,7 +210,7 @@ function Header() {
                     className="flex items-center gap-3 text-gray-700 hover:text-black w-full py-2"
                     onClick={() => {
                       setUserMenu(false);
-                      navigate("/profile"); // navigate to profile page
+                      navigate("/profile"); 
                     }}
                   >
                     <i className="fa-solid fa-user text-lg"></i>
@@ -254,7 +254,7 @@ function Header() {
 
                   {/* LOGIN BUTTON */}
                   <button
-                    className="flex items-center gap-3 bg-blue-500 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-700"
+                    className="flex items-center gap-3 bg-[#6fd513] text-white px-4 py-2 rounded-lg w-full hover:bg-[#53a110] cursor-pointer"
                     onClick={() => {
                       navigate("/login");
                       setUserMenu(false);
@@ -272,7 +272,7 @@ function Header() {
           <NavLink to="/cart">
             <i className="fa-solid fa-cart-shopping text-2xl"></i>
           </NavLink>
-          <span className="absolute bg-blue-500 rounded-full -top-2 -right-2 px-1.5 text-[10px] text-white">
+          <span className="absolute bg-[#6fd513] rounded-full -top-2 -right-2 px-1.5 text-[10px] text-white">
             {totalQuantity === 0 ? "" : totalQuantity}
           </span>
         </div>

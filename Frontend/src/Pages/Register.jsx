@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const Register = () => {
   try {
     const res = await axios.post(`${apiUrl}/users/verify-otp`, {
       email: formData.email,
-      otp: otp,
+      otp: Number(otp),
     });
 
     if (res.data.message === "OTP verified successfully") {
@@ -52,6 +53,7 @@ const Register = () => {
       await axios.post(`${apiUrl}/users/register`, formData);
 
       toast.success("Account created successfully!");
+      alert("Account created successfully!");
       navigate("/login");
     }
   } catch (error) {
@@ -61,134 +63,184 @@ const Register = () => {
 
 
   return (
-    <div className="bg-[#f6f7f8] flex items-center justify-center flex-col p-5 mt-5 lg:mt-10">
-      <div className="bg-white p-3 sm:p-5 flex flex-col items-center max-w-[450px] shadow-lg rounded-lg w-full ">
+    <div 
+      className="flex items-center justify-center flex-col p-5 py-10 lg:py-20"
+      style={{
+        background: "linear-gradient(180deg, #0c3031 0%, #0f3730 50%, #1a472d 100%)"
+      }}
+    >
+      <div className="bg-white p-6 sm:p-8 flex flex-col items-center max-w-[500px] shadow-2xl rounded-2xl border-2 border-white/20 hover:border-[#6fd513] transition-all duration-300 w-full mt-15 backdrop-blur-sm">
         {!otpScreen ? (
           <>
-            <h1 className="font-extrabold text-2xl">Create Your Account</h1>
-            <p className="text-gray-500 font-semibold text-center">
-              Create your account to stay connected with school updates,
-              admissions, and student resources.
-            </p>
+            <div className="text-center mb-6">
+              <div className="mb-4 flex justify-center">
+                <div className="w-16 h-16 bg-[#6fd513] bg-opacity-10 rounded-full flex items-center justify-center">
+                <FontAwesomeIcon icon={faUserPlus} className="text-3xl text-[#1a472d]" />
+                </div>
+              </div>
+              <h1 className="font-bold text-3xl text-gray-800 mb-2">Create Your Account</h1>
+              <p className="text-gray-600 font-medium text-center">
+                Create your account to stay connected with school updates,
+                admissions, and student resources.
+              </p>
+            </div>
 
-            <form className="w-full p-4" onSubmit={handleSendOtp}>
-              <div className="flex flex-col mb-4">
-                <label className="font-semibold">Username</label>
+            <form className="w-full space-y-5" onSubmit={handleSendOtp}>
+              <div className="flex flex-col">
+                <label className="font-semibold mb-2 text-gray-700 flex items-center gap-2">
+                  <i className="fa-solid fa-user text-[#6fd513] text-sm"></i>
+                  Username
+                </label>
                 <input
                   name="username"
                   type="text"
                   placeholder="Enter your name"
-                  className="border border-gray-400 px-3 py-1.5 rounded-md shadow-sm"
+                  className="border-2 border-gray-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6fd513] focus:border-[#6fd513] transition-all duration-200"
                   onChange={handleChange}
                   required
                 />
               </div>
 
-              <div className="flex flex-col mb-4">
-                <label className="font-semibold">Email</label>
+              <div className="flex flex-col">
+                <label className="font-semibold mb-2 text-gray-700 flex items-center gap-2">
+                  <i className="fa-solid fa-envelope text-[#6fd513] text-sm"></i>
+                  Email
+                </label>
                 <input
                   name="email"
                   type="email"
                   placeholder="Enter your email"
-                  className="border border-gray-400 px-3 py-1.5 rounded-md shadow-sm"
+                  className="border-2 border-gray-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6fd513] focus:border-[#6fd513] transition-all duration-200"
                   onChange={handleChange}
                   required
                 />
+                <span className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                  <i className="fa-solid fa-info-circle"></i>
+                  Only Gmail accounts are allowed
+                </span>
               </div>
 
-              <div className="flex flex-col mb-4">
-                <label className="font-semibold">Phone Number</label>
+              <div className="flex flex-col">
+                <label className="font-semibold mb-2 text-gray-700 flex items-center gap-2">
+                  <i className="fa-solid fa-phone text-[#6fd513] text-sm"></i>
+                  Phone Number
+                </label>
                 <input
                   name="mobile"
                   type="tel"
                   placeholder="Enter your number"
                   maxLength={10}
                   pattern="[0-9]{10}"
-                  className="border border-gray-400 px-3 py-1.5 rounded-md shadow-sm"
+                  className="border-2 border-gray-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6fd513] focus:border-[#6fd513] transition-all duration-200"
                   onChange={handleChange}
                   required
                 />
               </div>
 
-              <div className="flex flex-col mb-4 relative">
-                <label className="font-semibold">Password</label>
+              <div className="flex flex-col relative">
+                <label className="font-semibold mb-2 text-gray-700 flex items-center gap-2">
+                  <i className="fa-solid fa-lock text-[#6fd513] text-sm"></i>
+                  Password
+                </label>
                 <input
                   name="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
-                  className="border border-gray-400 px-3 py-1.5 rounded-md shadow-sm"
+                  className="border-2 border-gray-200 px-4 py-3 pr-12 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6fd513] focus:border-[#6fd513] transition-all duration-200"
                   minLength={8}
                   onChange={handleChange}
                   required
                 />
 
-                <span className="text-gray-400 p-1">
-                  Must be at least 8 characters long.
-                </span>
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-10 text-gray-500 hover:text-[#6fd513] transition-colors"
+                >
+                  {showPassword ? (
+                    <i className="fa-solid fa-eye text-lg"></i>
+                  ) : (
+                    <i className="fa-solid fa-eye-slash text-lg"></i>
+                  )}
+                </button>
 
-                {showPassword ? (
-                  <i
-                    className="fa-solid fa-eye absolute right-2.5 top-10 cursor-pointer"
-                    onClick={() => setShowPassword(false)}
-                  ></i>
-                ) : (
-                  <i
-                    className="fa-solid fa-eye-slash absolute right-2.5 top-10 cursor-pointer"
-                    onClick={() => setShowPassword(true)}
-                  ></i>
-                )}
+                <span className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                  <i className="fa-solid fa-shield-halved"></i>
+                  Must be at least 8 characters long
+                </span>
               </div>
 
               <button
                 type="submit"
-                className="bg-blue-500 text-white w-full p-2 rounded-lg cursor-pointer"
+                className="bg-[#6fd513] cursor-pointer text-white w-full py-3 rounded-xl font-semibold hover:bg-[#53a110] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 mt-6"
               >
+                <i className="fa-solid fa-paper-plane"></i>
                 Send OTP
               </button>
             </form>
 
-            <p className="text-gray-500 font-semibold">
+            <p className="text-gray-600 font-medium mt-6">
               Already have an account?{" "}
-              <Link to="/login" className="text-blue-500">
+              <Link to="/login" className="text-[#6fd513] hover:text-[#53a110] font-semibold transition-colors flex items-center gap-1 inline-flex">
                 Log In
+                <i className="fa-solid fa-arrow-right text-sm"></i>
               </Link>
             </p>
           </>
         ) : (
           <>
-            <h2 className="text-xl font-bold">Verify OTP</h2>
-            <p className="text-gray-500">
-              Enter the 6-digit code sent to {formData.email}
-            </p>
+            <div className="text-center mb-6 w-full">
+              <div className="mb-4 flex justify-center">
+                <div className="w-16 h-16 bg-[#6fd513] bg-opacity-10 rounded-full flex items-center justify-center">
+                  <i className="fa-solid fa-shield-check text-3xl text-[#6fd513]"></i>
+                </div>
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">Verify OTP</h2>
+              <p className="text-gray-600 font-medium">
+                Enter the 6-digit code sent to
+              </p>
+              <p className="text-[#6fd513] font-semibold break-all">{formData.email}</p>
+            </div>
 
-            <input
-              type="text"
-              placeholder="Enter OTP"
-              maxLength={6}
-              className="border border-gray-400 px-3 py-2 mt-4 text-center rounded-md w-full"
-              onChange={(e) => setOtp(e.target.value)}
-            />
+            <div className="w-full space-y-4">
+              <div className="flex flex-col">
+                <label className="font-semibold mb-2 text-gray-700 flex items-center gap-2">
+                  <i className="fa-solid fa-key text-[#6fd513] text-sm"></i>
+                  OTP Code
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter 6-digit OTP"
+                  maxLength={6}
+                  value={otp}
+                  className="border-2 border-gray-200 px-4 py-3 text-center text-2xl tracking-widest font-semibold rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6fd513] focus:border-[#6fd513] transition-all duration-200"
+                  onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
+                />
+              </div>
 
-            <button
-              onClick={handleVerifyOtp}
-              className="bg-green-600 text-white w-full p-2 mt-3 rounded-lg cursor-pointer"
-            >
-              Verify OTP & Register
-            </button>
+              <button
+                onClick={handleVerifyOtp}
+                className="bg-[#6fd513] text-white w-full py-3 rounded-xl font-semibold hover:bg-[#53a110] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2"
+              >
+                <i className="fa-solid fa-check-circle"></i>
+                Verify OTP & Register
+              </button>
 
-            <button
-              onClick={() => {
-                setOtpScreen(false);
-                setOtp("");
-              }}
-              className="bg-red-500 text-white w-full p-2 mt-3 rounded-lg cursor-pointer"
-            >
-              Cancel
-            </button>
+              <button
+                onClick={() => {
+                  setOtpScreen(false);
+                  setOtp("");
+                }}
+                className="bg-gray-200 text-gray-700 w-full py-3 rounded-xl font-semibold hover:bg-gray-300 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2"
+              >
+                <i className="fa-solid fa-times"></i>
+                Cancel
+              </button>
+            </div>
           </>
         )}
       </div>
-       <ToastContainer />
+      <ToastContainer />
     </div>
   );
 };

@@ -39,6 +39,7 @@ export const CartProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     if (!token) {
       toast.warn("Please log in to add items to your cart.");
+      alert("Please log in to add items to your cart.");
       return;
     }
 

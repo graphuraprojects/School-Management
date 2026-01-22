@@ -309,13 +309,27 @@ export default function CoursesAcademics() {
   /* --------------  RENDER -------------- */
   return (
     <div className="courses-academics-page">
-      {/* Hero */}
       <section className="courses-hero">
-        <h1>Our Academic Programs</h1>
-        <p>
-          Discover engaging school-level courses designed for growing minds from
-          Grades K–12.
-        </p>
+        <div className="courses-hero-inner animate-fade-up">
+          {/* LEFT CONTENT */}
+          <div className="courses-hero-text">
+            <h1>Our Academic <span className="text-[#6fd513]">Programs</span></h1>
+            <p>
+              Our academic programs are designed to build strong foundations
+              while encouraging curiosity and independent thinking. From early
+              learning to higher grades, we focus on concept clarity, skill
+              development, and overall growth.
+            </p>
+          </div>
+
+          {/* RIGHT IMAGE */}
+          <div className="courses-hero-image">
+            <img
+              src="https://res.cloudinary.com/drq2a0262/image/upload/f_webp/v1768230238/hero-section_e3iplv"
+              alt="Academic Programs"
+            />
+          </div>
+        </div>
       </section>
 
       <div className="courses-content">

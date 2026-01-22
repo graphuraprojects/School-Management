@@ -19,15 +19,16 @@ body, html { height: 100%; margin: 0; padding: 0; font-family: Inter, system-ui,
 .contact-page {
   width: 100%;
   max-width: var(--max-width);
-  margin: 28px auto;
-  padding: 28px;
+  margin: 0px auto;
+  padding: 0px 28px;
   color: #0f172a;
 }
 
 /* ========== Title section ========== */
 .title-section {
-  text-align: left;
+  text-align: center;
   margin-bottom: 18px;
+  background: linear-gradient(180deg, #0c3031 0%, #0f3730 50%, #1a472d 100%);
 }
 .title-section h1 {
   font-size: 1.85rem;
@@ -38,6 +39,8 @@ body, html { height: 100%; margin: 0; padding: 0; font-family: Inter, system-ui,
   margin: 0;
   color: var(--muted);
   font-size: 0.98rem;
+  text-align: center;
+  width: 100%;
 }
 
 /* ========== Content grid (form + info) ========== */
@@ -93,7 +96,7 @@ body, html { height: 100%; margin: 0; padding: 0; font-family: Inter, system-ui,
   box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
   transition: box-shadow .18s ease, border-color .18s ease, transform .06s ease;
   outline: none;
-  -webkit-appearance: none;
+
   resize: vertical;
 }
 
@@ -154,7 +157,7 @@ body, html { height: 100%; margin: 0; padding: 0; font-family: Inter, system-ui,
   font-weight: 700;
   cursor: pointer;
   color: white;
-  background: #25D366; /* WhatsApp green */
+  background: #25D366; 
   box-shadow: 0 10px 24px rgba(37,211,102,0.18);
   transition: transform .12s ease, box-shadow .12s ease;
 }
@@ -360,7 +363,7 @@ body, html { height: 100%; margin: 0; padding: 0; font-family: Inter, system-ui,
   margin-top: 12px;
   font-weight: 700;
 }
-.status-msg[aria-live] { /* visible state styling if needed */ }
+
 
 /* ========== Utilities & optional icon input (commented hints) ========== */
 /* If you want icons inside inputs:
@@ -376,7 +379,7 @@ body, html { height: 100%; margin: 0; padding: 0; font-family: Inter, system-ui,
   .map-container iframe { height: 380px; }
 }
 @media (max-width: 720px) {
-  .contact-page { padding: 16px; }
+  .contact-page { padding: 0px 16px; }
   .content-section { grid-template-columns: 1fr; }
   .contact-info.card { order: 2; }
   .contact-form.card { order: 1; padding: 18px; }
@@ -392,4 +395,194 @@ textarea {
 }
 .contact-form, .contact-info {
   box-shadow: 0 12px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ===================================================== */
+/* INDUSTRY UPGRADE – CONTACT + FAQ */
+/* ===================================================== */
+
+/* ================= CONTACT PAGE ================= */
+
+/* Page spacing refinement */
+.contact-page {
+  margin-bottom: 48px;
+}
+
+/* Title */
+.title-section h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.title-section p {
+  font-size: 1.05rem;
+}
+
+/* Card elevation upgrade */
+.card {
+  border-radius: 18px;
+  box-shadow:
+    0 18px 40px rgba(15, 61, 46, 0.08),
+    0 6px 12px rgba(15, 61, 46, 0.04);
+}
+
+/* ================= FORM ================= */
+
+.contact-form h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+/* Inputs */
+.contact-form input,
+.contact-form textarea {
+  font-size: 1rem;
+  padding: 15px 18px;
+  border-radius: 14px;
+}
+
+/* Focus = enterprise green */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #53a110 !important;
+  box-shadow: 0 0 0 4px rgba(83, 161, 16, 0.18);
+  transform: none;
+}
+
+/* Submit button */
+.contact-form .btn-primary-one {
+  margin-top: 22px;
+  font-size: 1.05rem;
+  padding: 16px;
+  border-radius: 14px;
+}
+
+/* ================= CONTACT INFO ================= */
+
+.contact-info h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* Info lines spacing */
+.contact-info p {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #1f2937;
+}
+
+/* Buttons inside contact card */
+.contact-info .btn-primary-one,
+.contact-info .btn-whatsapp-unified {
+  font-size: 1rem;
+  padding: 15px;
+  border-radius: 14px;
+}
+
+
+/* FAQ Question Text */
+.faq-box summary {
+  color: #0f3d2e !important;
+  font-weight: 600;
+}
+
+/* FAQ Arrow (Closed State) */
+.faq-box summary::before {
+  color: #2f7a3e !important;
+}
+
+/* FAQ Open Question */
+.faq-box[open] summary {
+  color: #2f7a3e !important;
+}
+
+/* FAQ Arrow (Open State) */
+.faq-box[open] summary::before {
+  color: #53a110 !important;
+  transform: rotate(90deg);
+}
+
+/* FAQ Answer Card */
+.faq-box p,
+.faq-box div {
+  background: #f6faf8 !important;
+  border-left: 5px solid #2f7a3e !important;
+  color: #1f2937;
+}
+
+/* FAQ Answer (Open Highlight) */
+.faq-box[open] p,
+.faq-box[open] div {
+  border-left-color: #53a110 !important;
+  background: #eef7f1 !important;
+}
+
+/* Remove any blue focus/outline */
+.faq-box summary:focus {
+  outline: none;
+}
+
+/* Hover refinement */
+.faq-box:hover {
+  box-shadow: 0 10px 26px rgba(47, 122, 62, 0.12);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 720px) {
+  .title-section h1 {
+    font-size: 1.8rem;
+  }
+
+  .faq-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .faq-box {
+    padding: 18px;
+  }
+
+  .faq-box summary {
+    font-size: 1rem;
+  }
+}
+.btn-primary-one {
+  background: #6fd513 !important;
+}
+.btn-primary-one:hover {
+  background-color: #53a110 !important;
+}
+
+/* ========== Page wrapper ========== */
+.contact-page {
+  width: 100%;
+  color: #0f172a;
+}
+
+/* ========== Title section ========== */
+.title-section {
+  text-align: center;
+  margin-bottom: 18px;
+  background: linear-gradient(180deg, #0c3031 0%, #0f3730 50%, #1a472d 100%);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 120px 30px 50px 30px;
+  margin-top: 0;
+}
+.title-section h1 {
+  font-size: 2.5rem;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.02em;
+  color: white;
+  font-weight: 700;
+}
+.title-section p {
+  margin: 0;
+  color: white;
+  font-size: 0.98rem;
+  text-align: center;
+  width: 100%;
 }

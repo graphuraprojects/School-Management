@@ -5,17 +5,42 @@
   -webkit-font-smoothing: antialiased;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3rem 1.5rem 4rem;
+  padding: 0;   
+}
+
+#hero-section {     
+  width: 100%;         
+  margin: 0;
+  padding: 5rem 6vw;      
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+ background: linear-gradient(180deg, #0c3031 0%, #0f3730 50%, #1a472d 100%);
+  border-radius: 0;      
+}
+
+
+.hero-img {
+  flex: 1;
+  max-width: 520px;
+}
+
+.hero-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
 }
 
 #act-section1,
 #act-section2,
 #act-section3,
 #act-section4 {
+  box-shadow: 0 25px 60px rgba(0,0,0,0.08);
   width: 80vw;
   padding: 1rem;
   margin: 2rem;
@@ -24,7 +49,9 @@
 
 .act-h1 {
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  backdrop-filter: blur(6px);
   color: #000000;
   padding: 0 1rem 2rem 1rem;
 }
@@ -40,17 +67,46 @@
   background: linear-gradient(135deg, #1d4ed8, #1d4ed8);
   box-shadow: 0 22px 45px rgba(37, 99, 235, 0.35);
 }
+/* Hover state for filter buttons */
+.act-btn:hover{
+  transform: translateY(-3px) scale(1.05);
+}
 
 .act-description {
   font-size: 1.2rem;
-  color: #363434;
+  color: #ffffff;
+}
+#act-section1 {
+  flex: 1;
+}
+#hero-section #act-section1 {
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
 }
 
-#act-section1 {
+
+#hero-section #act-section1 {
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+#hero-section #act-section1 {
+  min-height: 200px;
+   max-width: 600px;
+  z-index: 10;
+  position: relative;
   padding: 50px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  box-shadow: 0 30px 70px rgba;
+  background: linear-gradient(circle at center, #00b3a4, transparent 60%);
+  background-color: none !important;
   .act-h1 {
-    color: #2563eb;
+    color: #ffffff;
     font-weight: 700;
     text-shadow: 0px 0px 2px rgba(26, 26, 26, 0.62);
     font-size: clamp(2.6rem, 4.4vw, 3.2rem);
@@ -68,6 +124,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  /* background-color: #ffffff; */
 }
 
 /* ----------------------------- */
@@ -102,7 +159,7 @@
 }
 
 .act-btn.active {
-  background: #2563eb;
+  background: #00b3a4;
   color: #fff;
 }
 
@@ -114,6 +171,8 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+ padding-top: 0px;
+  background-color: #ffffff;
 }
 
 /* ----------------------------- */
@@ -133,6 +192,18 @@
   }
 }
 
+@media (max-width: 768px) {
+  #hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-img {
+    max-width: 100%;
+  }
+}
+
+
 /* Small laptops */
 @media (min-width: 900px) {
   .campus-grid {
@@ -151,17 +222,51 @@
 /* CAMPUS CARD */
 /* ----------------------------- */
 
-.campus-card {
-  background: #ffffff;
-  border-radius: 20px;
+.campus-card{
+  position: relative;
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  /* Glass look */
+  
+  background: linear-gradient(135deg, rgba(255,255,255,0.18),rgba(255,255,255,0.05));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.15), inset 0 0 0.5px rgba(255,255,255,0.6);
+
+  transition: transform 0.5s cubic-bezier(.22,1,.36,1), box-shadow 0.5 ease;
+}
+
+.campus-card::before{
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, #00e0d3, #2563eb,#9333ea, #00e0d3);
+  opacity: 0.35;
+  z-index: -1;
+  filter: blur(14px);
 }
 
 .campus-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(120deg, transparent, rgba(29, 206, 188, 0.12),transparent);
+  transform: translateY(-16px) scale(1.04);
+   border: 1px solid #00b3a4;
+   box-shadow: 0 40px 90px rgba(0,0,0,0.25), 0 0 40px rgba(0,244,211,0.45);
+}
+.campus-card::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.7)), transparent 30% rgba(255,255,255,0.7) transparent 70%;
+  /* opacity: 0; */
+  transform: translateX(-120%);
+  transition: 0.7s ease;
+}
+
+.campus-card:hover::after{
+  transform: translateX(120%);
 }
 
 .campus-card img {
@@ -169,19 +274,24 @@
   height: 180px;
   object-fit: cover;
   display: block;
+  transition: transform 0.6s ease;
+}
+
+.campus-card:hover img{
+  transform: scale(1.05);
 }
 
 .campus-card h3 {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  margin: 0.8rem 1rem 0.3rem;
-  color: #1f2937;
+  margin: 0.9rem 1rem 0.4rem;
+  color: #0f172a;
 }
 
 .campus-card p {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   margin: 0 1rem 1.2rem;
-  color: #6b7280;
+  color: #334155;
   line-height: 1.5;
 }
 
@@ -234,9 +344,10 @@
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 45px rgba(0, 179, 164, 0.7);
   background-color: #000;
-  transition: transform 0.3s ease;
+  transform: scale(0.8);
+  transition: transform 0.5s ease;
 }
 
 .video-card:hover {
@@ -265,10 +376,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   border: 3px solid #32b5b52c;
   border-radius: 50%;
+  border-color: #00e0d3;
+  box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
   background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
@@ -315,17 +428,26 @@
 
 #act-section4 {
   display: flex;
+  background: linear-gradient(135deg, #00b3a4, #2563eb, #9333ea);
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-image: linear-gradient(to top, #ebfffb85 0%, #ace1f993 100%);
-  padding-top: 2rem;
+  padding: 0.9rem 2.5rem;
+  font-size: 1.1rem;
+
 
   .act-description {
     text-align: center;
+    color:#6fd513!important;
   }
+
+    #act-section4 .act-btn{
+    transform: translateY(-3px) scale(1.07);
+  }
+
   .act-btn {
-    background: #4482ff;
+    background: #00b3a4;
     color: #fff;
     border-radius: 999px;
     margin-top: 2.2rem;
@@ -377,7 +499,7 @@
     height: auto;
     margin-top: 1rem;
   }
-  .act-h1 {
+ #act-section1  .act-h1 {
     font-size: 2rem;
     font-weight: 600;
     color: #000000;
@@ -385,7 +507,7 @@
 
   .act-description {
     font-size: 1rem;
-    color: #616161;
+    color: #6fd513;
   }
 
   /* Make video cards stack on mobile */
