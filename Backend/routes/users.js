@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
-const bycrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const transporter = require("../email");
+// const transporter = require("../email");
+const sendOtpEmail = require("../email");
 const verifyToken = require("../middleware/verifyToken");
 const Merchandise = require("../models/Merchandise");
 
@@ -16,8 +17,8 @@ router.post("/register", async (req, res) => {
       return res.status(400).json({ error: "User already exists" });
     }
     //hash password
-    const salt = await bycrypt.genSalt(10);
-    const hashedPassword = await bycrypt.hash(password, salt);
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
     const newUser = new User({
       username,
       email,
@@ -40,7 +41,7 @@ router.post("/login", async (req, res) => {
     if (!user) {
       return res.status(400).json("User not found");
     }
-    const passwordMatch = await bycrypt.compare(password, user.password);
+    const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
       return res.status(400).json({ error: "Invalid credentials" });
     }
@@ -148,12 +149,7 @@ router.post("/send-otp", async (req, res) => {
     };
 
     // 4. Send OTP via email
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Your OTP Code",
-      text: `Your OTP code is ${generatedOtp}. It is valid for 2 minutes.`,
-    });
+    await sendOtpEmail(email, generatedOtp);
 
     // 5. Success response
     res.status(200).json({ message: "OTP sent successfully" });

@@ -4,11 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const [otpScreen, setOtpScreen] = useState(false);
   const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -31,42 +33,81 @@ const Register = () => {
       return;
     }
 
+    setLoading(true);
     try {
-      await axios.post(`${apiUrl}/users/send-otp`, { email: formData.email });
+      const response = await axios.post(`${apiUrl}/users/send-otp`, {
+        email: formData.email,
+      });
+
+      console.log("Send OTP Response:", response.data);
       setOtpScreen(true);
       toast.success("OTP sent to your email!");
     } catch (error) {
-      console.log(error);
-      toast.error("Failed to send OTP",error);
+      console.error("Send OTP Error:", error.response?.data || error);
+      toast.error(error.response?.data?.error || "Failed to send OTP");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleVerifyOtp = async () => {
-  try {
-    const res = await axios.post(`${apiUrl}/users/verify-otp`, {
-      email: formData.email,
-      otp: Number(otp),
-    });
+  const handleVerifyOtp = async (e) => {
+    e.preventDefault();
 
-    if (res.data.message === "OTP verified successfully") {
-      // Now register user
-      await axios.post(`${apiUrl}/users/register`, formData);
-
-      toast.success("Account created successfully!");
-      alert("Account created successfully!");
-      navigate("/login");
+    if (!otp || otp.length !== 6) {
+      toast.error("Please enter a valid 6-digit OTP");
+      return;
     }
-  } catch (error) {
-    toast.error("OTP verification failed",error);
-  }
-};
 
+    setLoading(true);
+    try {
+      // Step 1: Verify OTP
+      const verifyResponse = await axios.post(`${apiUrl}/users/verify-otp`, {
+        email: formData.email,
+        otp: otp,
+      });
+
+      console.log("Verify OTP Response:", verifyResponse.data);
+
+      if (verifyResponse.data.message === "OTP verified successfully") {
+        // Step 2: Register user
+        const registerResponse = await axios.post(
+          `${apiUrl}/users/register`,
+          formData,
+        );
+
+        console.log("Register Response:", registerResponse.data);
+
+        toast.success("Account created successfully!");
+
+        // Navigate after a short delay to show the success message
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
+      }
+    } catch (error) {
+      console.error(
+        "Verification/Registration Error:",
+        error.response?.data || error,
+      );
+
+      // Show specific error message
+      const errorMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Verification failed. Please try again.";
+
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div 
+    <div
       className="flex items-center justify-center flex-col p-5 py-10 lg:py-20"
       style={{
-        background: "linear-gradient(180deg, #0c3031 0%, #0f3730 50%, #1a472d 100%)"
+        background:
+          "linear-gradient(180deg, #0c3031 0%, #0f3730 50%, #1a472d 100%)",
       }}
     >
       <div className="bg-white p-6 sm:p-8 flex flex-col items-center max-w-[500px] shadow-2xl rounded-2xl border-2 border-white/20 hover:border-[#6fd513] transition-all duration-300 w-full mt-15 backdrop-blur-sm">
@@ -75,10 +116,15 @@ const Register = () => {
             <div className="text-center mb-6">
               <div className="mb-4 flex justify-center">
                 <div className="w-16 h-16 bg-[#6fd513] bg-opacity-10 rounded-full flex items-center justify-center">
-                <FontAwesomeIcon icon={faUserPlus} className="text-3xl text-[#1a472d]" />
+                  <FontAwesomeIcon
+                    icon={faUserPlus}
+                    className="text-3xl text-[#1a472d]"
+                  />
                 </div>
               </div>
-              <h1 className="font-bold text-3xl text-gray-800 mb-2">Create Your Account</h1>
+              <h1 className="font-bold text-3xl text-gray-800 mb-2">
+                Create Your Account
+              </h1>
               <p className="text-gray-600 font-medium text-center">
                 Create your account to stay connected with school updates,
                 admissions, and student resources.
@@ -97,6 +143,7 @@ const Register = () => {
                   placeholder="Enter your name"
                   className="border-2 border-gray-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6fd513] focus:border-[#6fd513] transition-all duration-200"
                   onChange={handleChange}
+                  value={formData.username}
                   required
                 />
               </div>
@@ -112,6 +159,7 @@ const Register = () => {
                   placeholder="Enter your email"
                   className="border-2 border-gray-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6fd513] focus:border-[#6fd513] transition-all duration-200"
                   onChange={handleChange}
+                  value={formData.email}
                   required
                 />
                 <span className="text-xs text-gray-500 mt-1 flex items-center gap-1">
@@ -133,6 +181,7 @@ const Register = () => {
                   pattern="[0-9]{10}"
                   className="border-2 border-gray-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6fd513] focus:border-[#6fd513] transition-all duration-200"
                   onChange={handleChange}
+                  value={formData.mobile}
                   required
                 />
               </div>
@@ -149,6 +198,7 @@ const Register = () => {
                   className="border-2 border-gray-200 px-4 py-3 pr-12 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6fd513] focus:border-[#6fd513] transition-all duration-200"
                   minLength={8}
                   onChange={handleChange}
+                  value={formData.password}
                   required
                 />
 
@@ -172,16 +222,29 @@ const Register = () => {
 
               <button
                 type="submit"
-                className="bg-[#6fd513] cursor-pointer text-white w-full py-3 rounded-xl font-semibold hover:bg-[#53a110] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 mt-6"
+                disabled={loading}
+                className="bg-[#6fd513] cursor-pointer text-white w-full py-3 rounded-xl font-semibold hover:bg-[#53a110] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <i className="fa-solid fa-paper-plane"></i>
-                Send OTP
+                {loading ? (
+                  <>
+                    <i className="fa-solid fa-spinner fa-spin"></i>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <i className="fa-solid fa-paper-plane"></i>
+                    Send OTP
+                  </>
+                )}
               </button>
             </form>
 
             <p className="text-gray-600 font-medium mt-6">
               Already have an account?{" "}
-              <Link to="/login" className="text-[#6fd513] hover:text-[#53a110] font-semibold transition-colors flex items-center gap-1 inline-flex">
+              <Link
+                to="/login"
+                className="text-[#6fd513] hover:text-[#53a110] font-semibold transition-colors flex items-center gap-1 inline-flex"
+              >
                 Log In
                 <i className="fa-solid fa-arrow-right text-sm"></i>
               </Link>
@@ -195,14 +258,18 @@ const Register = () => {
                   <i className="fa-solid fa-shield-check text-3xl text-[#6fd513]"></i>
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">Verify OTP</h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                Verify OTP
+              </h2>
               <p className="text-gray-600 font-medium">
                 Enter the 6-digit code sent to
               </p>
-              <p className="text-[#6fd513] font-semibold break-all">{formData.email}</p>
+              <p className="text-[#6fd513] font-semibold break-all">
+                {formData.email}
+              </p>
             </div>
 
-            <div className="w-full space-y-4">
+            <form className="w-full space-y-4" onSubmit={handleVerifyOtp}>
               <div className="flex flex-col">
                 <label className="font-semibold mb-2 text-gray-700 flex items-center gap-2">
                   <i className="fa-solid fa-key text-[#6fd513] text-sm"></i>
@@ -215,28 +282,41 @@ const Register = () => {
                   value={otp}
                   className="border-2 border-gray-200 px-4 py-3 text-center text-2xl tracking-widest font-semibold rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6fd513] focus:border-[#6fd513] transition-all duration-200"
                   onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
+                  required
                 />
               </div>
 
               <button
-                onClick={handleVerifyOtp}
-                className="bg-[#6fd513] text-white w-full py-3 rounded-xl font-semibold hover:bg-[#53a110] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2"
+                type="submit"
+                disabled={loading || otp.length !== 6}
+                className="bg-[#6fd513] text-white w-full py-3 rounded-xl font-semibold hover:bg-[#53a110] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <i className="fa-solid fa-check-circle"></i>
-                Verify OTP & Register
+                {loading ? (
+                  <>
+                    <i className="fa-solid fa-spinner fa-spin"></i>
+                    Verifying...
+                  </>
+                ) : (
+                  <>
+                    <i className="fa-solid fa-check-circle"></i>
+                    Verify OTP & Register
+                  </>
+                )}
               </button>
 
               <button
+                type="button"
                 onClick={() => {
                   setOtpScreen(false);
                   setOtp("");
                 }}
-                className="bg-gray-200 text-gray-700 w-full py-3 rounded-xl font-semibold hover:bg-gray-300 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2"
+                disabled={loading}
+                className="bg-gray-200 text-gray-700 w-full py-3 rounded-xl font-semibold hover:bg-gray-300 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 <i className="fa-solid fa-times"></i>
                 Cancel
               </button>
-            </div>
+            </form>
           </>
         )}
       </div>
