@@ -11,7 +11,7 @@ const Merchandise = () => {
 
   useEffect(() => {
     axios
-      .get(`$/api/merchandise`)
+      .get(`/api/merchandise`)
       .then((res) => {
         setProducts(res.data);
         console.log("Type =>", Array.isArray(res.data));
