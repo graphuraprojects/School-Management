@@ -10,9 +10,8 @@ const Merchandise = () => {
   const itemsPerPage = 12;
 
   useEffect(() => {
-    const apiUrl = import.meta.env.VITE_API_URL;
     axios
-      .get(`${apiUrl}/merchandise`)
+      .get(`$/api/merchandise`)
       .then((res) => {
         setProducts(res.data);
         console.log("Type =>", Array.isArray(res.data));

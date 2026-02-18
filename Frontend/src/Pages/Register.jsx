@@ -21,7 +21,6 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const apiUrl = import.meta.env.VITE_API_URL;
 
   const handleSendOtp = async (e) => {
     e.preventDefault();
@@ -32,7 +31,7 @@ const Register = () => {
     }
 
     try {
-      await axios.post(`${apiUrl}/users/send-otp`, { email: formData.email });
+      await axios.post(`/api/users/send-otp`, { email: formData.email });
       setOtpScreen(true);
       toast.success("OTP sent to your email!");
 
@@ -54,7 +53,7 @@ const Register = () => {
   console.log("========================");
 
   try {
-    const res = await axios.post(`${apiUrl}/users/verify-otp`, {
+    const res = await axios.post(`/api/users/verify-otp`, {
       email: formData.email,
       otp: otp,
     });
@@ -63,7 +62,7 @@ const Register = () => {
 
     if (res.data.message === "OTP verified successfully") {
       // Now register user
-      const registerRes = await axios.post(`${apiUrl}/users/register`, formData);
+      const registerRes = await axios.post(`/api/users/register`, formData);
       console.log("Register response:", registerRes.data);
 
       toast.success("Account created successfully!");

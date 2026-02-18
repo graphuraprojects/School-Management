@@ -27,7 +27,7 @@ const Profile = () => {
       if (!userId) return;
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/users/get-user/${userId}`,
+          `/api/users/get-user/${userId}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         const fetchedUser = res.data.user; // <-- get user object
@@ -36,7 +36,7 @@ const Profile = () => {
         setMobile(fetchedUser.mobile);
 
         const addrRes = await axios.get(
-          `http://localhost:3000/api/users/get-address/${userId}`
+          `/api/users/get-address/${userId}`
         );
         if (addrRes.data.addresses.length > 0) {
           setAddress(addrRes.data.addresses[0]);
@@ -61,7 +61,7 @@ const Profile = () => {
   const handleSaveUser = async () => {
     try {
       const res = await axios.put(
-        "http://localhost:3000/api/users/update-user",
+        "/api/users/update-user",
         { username, mobile },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -80,14 +80,14 @@ const Profile = () => {
     e.preventDefault();
     try {
       if (address) {
-        await axios.put(`${import.meta.env.VITE_API_URL}/users/update-address`, {
+        await axios.put(`/api/users/update-address`, {
           userId,
           addressId: address._id,
           address: addressForm,
         });
         toast.success("Address updated!");
       } else {
-        await axios.post(`${import.meta.env.VITE_API_URL}/users/add-address`, {
+        await axios.post(`/api/users/add-address`, {
           userId,
           address: addressForm,
         });
@@ -95,7 +95,7 @@ const Profile = () => {
       }
 
       const addrRes = await axios.get(
-        `${import.meta.env.VITE_API_URL}/users/get-address/${userId}`
+        `/api/users/get-address/${userId}`
       );
       setAddress(addrRes.data.addresses[0]);
       setEditingAddress(false);

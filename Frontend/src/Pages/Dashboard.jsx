@@ -77,7 +77,7 @@ const Dashboard = () => {
       formData.append("image", newProduct.image);
 
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/merchandise`,
+        `/api/merchandise`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -97,7 +97,7 @@ const Dashboard = () => {
     const fetchMerch = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/merchandise`
+          `/api/merchandise`
         );
         const items = res.data || [];
 
@@ -119,14 +119,14 @@ const Dashboard = () => {
   // ---------- FETCH ADMISSIONS ----------
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/admission`)
+      .get(`/api/admission`)
       .then((res) => setAdmissions(res.data.data))
       .catch((err) => console.error(err));
   }, []);
 
   const handleView = (id) => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/admission/${id}`)
+      .get(`/api/admission/${id}`)
       .then((res) => {
         setSelectedAdmission(res.data.data);
         setIsModalOpen(true);
@@ -143,7 +143,7 @@ const Dashboard = () => {
 
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/users/get-user/${searchUserId}`
+        `/api/users/get-user/${searchUserId}`
       );
       setSearchedUser(res.data.user);
     } catch (err) {
@@ -164,7 +164,7 @@ const Dashboard = () => {
 
     try {
       const response = await axios.patch(
-        `${import.meta.env.VITE_API_URL}/merchandise/${qtyProductId}`,
+        `/api/merchandise/${qtyProductId}`,
         { quantity: Number(addQty) }
       );
 
@@ -627,7 +627,7 @@ const Dashboard = () => {
     // Fetch all orders
     const fetchOrders = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/orders`);
+        const res = await axios.get(`/api/orders`);
         setOrders(res.data);
         setLoading(false);
       } catch (err) {
@@ -642,7 +642,7 @@ const Dashboard = () => {
     // Update order status
     const updateStatus = async (id, newStatus) => {
       try {
-        await axios.put(`${import.meta.env.VITE_API_URL}/orders/status/${id}`, {
+        await axios.put(`/api/orders/status/${id}`, {
           status: newStatus,
         });
 
@@ -965,7 +965,7 @@ const Dashboard = () => {
         const token = localStorage.getItem("token");
 
         const res = await axios.post(
-          `${import.meta.env.VITE_API_URL}/admin/create-admin`,
+          `/api/admin/create-admin`,
           form,
           {
             headers: {

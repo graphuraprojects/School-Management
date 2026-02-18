@@ -16,7 +16,7 @@ const TrackOrder = () => {
       setOrderData(null);
 
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/orders/${orderId}`
+        `/api/orders/${orderId}`
       );
 
       setOrderData(res.data);

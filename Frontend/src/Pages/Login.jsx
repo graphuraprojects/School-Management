@@ -8,7 +8,6 @@ import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const apiUrl = import.meta.env.VITE_API_URL;
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -22,7 +21,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${apiUrl}/users/login`, form);
+      const res = await axios.post(`$/api/users/login`, form);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       toast.success("Login successful");

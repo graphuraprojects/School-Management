@@ -6,7 +6,6 @@ import { ToastContainer, toast } from "react-toastify";
 import { CheckCircle } from "lucide-react";
 
 function AdmissionApplication() {
-  const apiUrl = import.meta.env.VITE_API_URL;
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState({
@@ -60,7 +59,7 @@ function AdmissionApplication() {
     });
 
     try {
-      const res = await axios.post(`${apiUrl}/admission`, data, {
+      const res = await axios.post(`/api/admission`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

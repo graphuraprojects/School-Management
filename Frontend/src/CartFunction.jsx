@@ -18,7 +18,7 @@ export const CartProvider = ({ children }) => {
 
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/users/cart`,
+          `/api/users/cart`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -57,7 +57,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/users/add-to-cart`,
+        `/api/users/add-to-cart`,
         { productId, quantity: 1 },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -104,7 +104,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/users/remove-from-cart`,
+        `/api/users/remove-from-cart`,
         { productId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -124,7 +124,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/users/clear-from-cart`,
+        `/api/users/clear-from-cart`,
         { productId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
