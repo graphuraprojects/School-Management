@@ -5,40 +5,59 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center px-4">
-      <div className="bg-white shadow-2xl rounded-3xl p-10 max-w-lg w-full text-center">
-        
-        {/* 404 Number */}
-        <h1 className="text-8xl font-extrabold text-red-500 mb-4">
+    <div className="min-h-screen bg-[#f6f7f8] flex items-center justify-center px-4 py-10">
+      <div className="bg-white rounded-3xl p-8 max-w-lg w-full text-center shadow-[0_8px_40px_rgba(0,0,0,0.08)] border border-[#e8f0e0] mt-20">
+
+        {/* Icon */}
+        <div className="w-16 h-16 bg-[#f3fde8] border border-[#d8f0b8] rounded-2xl flex items-center justify-center mx-auto mb-7">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#6fd513" strokeWidth="1.5" />
+            <path d="M12 8v5" stroke="#1a472d" strokeWidth="2" strokeLinecap="round" />
+            <circle cx="12" cy="16" r="0.8" fill="#1a472d" />
+          </svg>
+        </div>
+
+        {/* 404 */}
+        <h1
+          className="text-[130px] font-bold leading-none tracking-tight mb-1"
+          style={{
+            background: "linear-gradient(135deg, #1a472d, #6fd513)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
           404
         </h1>
 
-        {/* Title */}
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <div className="w-12 h-[3px] bg-[#6fd513] rounded-full mx-auto" />
+
+        <h2 className="text-2xl font-bold text-[#1a2a1a] mb-3">
           Page Not Found
         </h2>
 
-        {/* Description */}
-        <p className="text-gray-500 mb-8">
-          Oops! The page you’re looking for doesn’t exist or has been moved.
+        <p className="text-[#6b7c6b] text-sm leading-relaxed mb-9 font-light max-w-xs mx-auto">
+          Oops! The page you're looking for doesn't exist or may have been moved.
+          Let's get you back on track.
         </p>
 
-        {/* Action Buttons */}
-        <div className="flex justify-center gap-4">
+        {/* Buttons */}
+        <div className="flex gap-3 justify-center flex-wrap mb-8">
           <button
-            onClick={() => navigate(-1)}
-            className="px-6 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition cursor-pointer"
+            onClick={() => window.history.back()}
+            className="px-6 py-2.5 rounded-xl border-[1.5px] border-[#d0e8c0] text-[#1a472d] text-sm font-medium bg-transparent hover:border-[#6fd513] hover:bg-[#f3fde8] transition-all duration-200 cursor-pointer"
           >
-            Go Back
+            ← Go Back
           </button>
-
           <button
             onClick={() => navigate("/")}
-            className="px-6 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition cursor-pointer"
+            className="px-6 py-2.5 rounded-xl text-white text-sm font-medium bg-[#6fd513] shadow-[0_4px_14px_rgba(26,71,45,0.25)] hover:bg-[#53a110] transition-all duration-200 cursor-pointer"
           >
-            Go Home
+            Go to Home
           </button>
         </div>
+
+
       </div>
     </div>
   );
