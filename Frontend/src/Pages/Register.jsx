@@ -4,8 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShield, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showAdminSecret, setShowAdminSecret] = useState(false);
   const navigate = useNavigate();
   const [otpScreen, setOtpScreen] = useState(false);
   const [otp, setOtp] = useState("");
@@ -15,12 +17,17 @@ const Register = () => {
     email: "",
     mobile: "",
     password: "",
+    role: "user",
+    admin_secret: "",
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleRoleChange = (selectedRole) => {
+    setFormData({ ...formData, role: selectedRole, admin_secret: "" });
+  };
 
   const handleSendOtp = async (e) => {
     e.preventDefault();
@@ -34,48 +41,39 @@ const Register = () => {
       await axios.post(`/api/users/send-otp`, { email: formData.email });
       setOtpScreen(true);
       toast.success("OTP sent to your email!");
-
     } catch (error) {
       console.log(error);
-      toast.error("Failed to send OTP", error);
+      toast.error("Failed to send OTP");
     }
   };
 
- const handleVerifyOtp = async (e) => {
-  e.preventDefault();
-  
-  // Add detailed logging
-  console.log("=== VERIFY OTP DEBUG ===");
-  console.log("Email being sent:", formData.email);
-  console.log("OTP being sent:", otp);
-  console.log("OTP type:", typeof otp);
-  console.log("OTP length:", otp.length);
-  console.log("========================");
+  const handleVerifyOtp = async (e) => {
+    e.preventDefault();
 
-  try {
-    const res = await axios.post(`/api/users/verify-otp`, {
-      email: formData.email,
-      otp: otp,
-    });
+    try {
+      const res = await axios.post(`/api/users/verify-otp`, {
+        email: formData.email,
+        otp: otp,
+      });
 
-    console.log("Verify response:", res.data);
+      if (res.data.message === "OTP verified successfully") {
+        const registerRes = await axios.post(`/api/users/register`, formData);
+        console.log("Register response:", registerRes.data);
 
-    if (res.data.message === "OTP verified successfully") {
-      // Now register user
-      const registerRes = await axios.post(`/api/users/register`, formData);
-      console.log("Register response:", registerRes.data);
-
-      toast.success("Account created successfully!");
-      setTimeout(() => {
-        navigate("/login");
-      }, 1500);
+        toast.success("Account created successfully!");
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
+      }
+    } catch (error) {
+      console.error("Error response:", error.response?.data);
+      toast.error(
+        error.response?.data?.error ||
+          error.response?.data?.message ||
+          "OTP verification failed, phone number or email may already be registered",
+      );
     }
-  } catch (error) {
-    console.error("Full error object:", error);
-    console.error("Error response:", error.response?.data);
-    toast.error(error.response?.data?.message || "OTP verification failed ,phone number or email may already be registered");
-  }
-};
+  };
 
   return (
     <div
@@ -107,6 +105,41 @@ const Register = () => {
             </div>
 
             <form className="w-full space-y-5" onSubmit={handleSendOtp}>
+              {/* ── ROLE SELECTOR ── */}
+              <div className="flex flex-col">
+                <label className="font-semibold mb-2 text-gray-700 flex items-center gap-2">
+                  <i className="fa-solid fa-user-tag text-[#6fd513] text-sm"></i>
+                  Register As
+                </label>
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => handleRoleChange("user")}
+                    className={`flex-1 py-3 rounded-xl font-semibold border-2 transition-all duration-200 flex items-center justify-center gap-2 ${
+                      formData.role === "user"
+                        ? "bg-[#6fd513] text-white border-[#6fd513]"
+                        : "bg-white text-gray-600 border-gray-200 hover:border-[#6fd513]"
+                    }`}
+                  >
+                    <i className="fa-solid fa-user text-sm"></i>
+                    User
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleRoleChange("admin")}
+                    className={`flex-1 py-3 rounded-xl font-semibold border-2 transition-all duration-200 flex items-center justify-center gap-2 ${
+                      formData.role === "admin"
+                        ? "bg-[#1a472d] text-white border-[#1a472d]"
+                        : "bg-white text-gray-600 border-gray-200 hover:border-[#1a472d]"
+                    }`}
+                  >
+                    <i className="fa-solid fa-user-shield text-sm"></i>
+                    Admin
+                  </button>
+                </div>
+              </div>
+
+              {/* Username */}
               <div className="flex flex-col">
                 <label className="font-semibold mb-2 text-gray-700 flex items-center gap-2">
                   <i className="fa-solid fa-user text-[#6fd513] text-sm"></i>
@@ -122,6 +155,7 @@ const Register = () => {
                 />
               </div>
 
+              {/* Email */}
               <div className="flex flex-col">
                 <label className="font-semibold mb-2 text-gray-700 flex items-center gap-2">
                   <i className="fa-solid fa-envelope text-[#6fd513] text-sm"></i>
@@ -141,6 +175,7 @@ const Register = () => {
                 </span>
               </div>
 
+              {/* Phone */}
               <div className="flex flex-col">
                 <label className="font-semibold mb-2 text-gray-700 flex items-center gap-2">
                   <i className="fa-solid fa-phone text-[#6fd513] text-sm"></i>
@@ -158,6 +193,7 @@ const Register = () => {
                 />
               </div>
 
+              {/* Password */}
               <div className="flex flex-col relative">
                 <label className="font-semibold mb-2 text-gray-700 flex items-center gap-2">
                   <i className="fa-solid fa-lock text-[#6fd513] text-sm"></i>
@@ -172,11 +208,10 @@ const Register = () => {
                   onChange={handleChange}
                   required
                 />
-
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-10 text-gray-500 hover:text-[#6fd513] transition-colors"
+                  className="absolute right-3 top-11 text-gray-500 hover:text-[#6fd513] transition-colors"
                 >
                   {showPassword ? (
                     <i className="fa-solid fa-eye text-lg"></i>
@@ -184,12 +219,45 @@ const Register = () => {
                     <i className="fa-solid fa-eye-slash text-lg"></i>
                   )}
                 </button>
-
                 <span className="text-xs text-gray-500 mt-1 flex items-center gap-1">
                   <i className="fa-solid fa-shield-halved"></i>
                   Must be at least 8 characters long
                 </span>
               </div>
+
+              {/* ── ADMIN SECRET (only when admin role selected) ── */}
+              {formData.role === "admin" && (
+                <div className="flex flex-col relative">
+                  <label className="font-semibold mb-2 text-gray-700 flex items-center gap-2">
+                    <i className="fa-solid fa-key text-[#1a472d] text-sm"></i>
+                    Admin Secret Key
+                  </label>
+                  <input
+                    name="admin_secret"
+                    type={showAdminSecret ? "text" : "password"}
+                    placeholder="Enter admin secret key"
+                    className="border-2 border-[#1a472d] px-4 py-3 pr-12 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1a472d] focus:border-[#1a472d] transition-all duration-200 bg-green-50"
+                    onChange={handleChange}
+                    value={formData.admin_secret}
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowAdminSecret(!showAdminSecret)}
+                    className="absolute right-3 top-11 text-gray-500 hover:text-[#1a472d] transition-colors"
+                  >
+                    {showAdminSecret ? (
+                      <i className="fa-solid fa-eye text-lg"></i>
+                    ) : (
+                      <i className="fa-solid fa-eye-slash text-lg"></i>
+                    )}
+                  </button>
+                  <span className="text-xs text-amber-600 mt-1 flex items-center gap-1">
+                    <i className="fa-solid fa-triangle-exclamation"></i>
+                    Required to register as an administrator
+                  </span>
+                </div>
+              )}
 
               <button
                 type="submit"
@@ -213,10 +281,11 @@ const Register = () => {
           </>
         ) : (
           <>
+            {/* OTP Screen — unchanged */}
             <div className="text-center mb-6 w-full">
               <div className="mb-4 flex justify-center">
                 <div className="w-16 h-16 bg-[#6fd513] bg-opacity-10 rounded-full flex items-center justify-center">
-                   <FontAwesomeIcon
+                  <FontAwesomeIcon
                     icon={faShield}
                     className="text-3xl text-[#1a472d]"
                   />
@@ -250,7 +319,7 @@ const Register = () => {
               </div>
 
               <button
-              type="button"
+                type="button"
                 onClick={handleVerifyOtp}
                 className="bg-[#6fd513] text-white w-full py-3 rounded-xl font-semibold hover:bg-[#53a110] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2"
               >
@@ -278,3 +347,4 @@ const Register = () => {
 };
 
 export default Register;
+

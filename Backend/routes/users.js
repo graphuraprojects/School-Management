@@ -8,15 +8,23 @@ const sendOtpEmail = require("../email");
 const verifyToken = require("../middleware/verifyToken");
 const Merchandise = require("../models/Merchandise");
 
+
 // register
 router.post("/register", async (req, res) => {
-  const { username, email, password, mobile, role } = req.body;
+  const { username, email, password, mobile, role, admin_secret } = req.body;
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ error: "User already exists" });
     }
-    //hash password
+
+    // Validate admin secret if role is admin
+    if (role === "admin") {
+      if (!admin_secret || admin_secret !== process.env.ADMIN_SECRET_KEY) {
+        return res.status(403).json({ error: "Invalid admin secret key" });
+      }
+    }
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const newUser = new User({
@@ -24,7 +32,7 @@ router.post("/register", async (req, res) => {
       email,
       password: hashedPassword,
       mobile,
-      role: role || "user",
+      role: role === "admin" ? "admin" : "user",
     });
     await newUser.save();
     res.status(201).json({ message: "User registered successfully" });

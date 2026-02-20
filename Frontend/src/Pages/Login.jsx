@@ -91,7 +91,7 @@ const Login = () => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-10 text-gray-500 hover:text-[#6fd513] transition-colors"
+              className="absolute right-3 top-11 text-gray-500 hover:text-[#6fd513] transition-colors"
             >
               {showPassword ? (
                 <i className="fa-solid fa-eye text-lg"></i>
